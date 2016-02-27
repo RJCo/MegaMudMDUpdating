@@ -1,0 +1,26 @@
+Rooms in paths are ID'd as follows.
+
+Example - B140 1040:
+	B14 - Volcano, Darkened Tunnels
+	01040 - Exits SE, E
+
+The first 3 positions are an ID to the room title.  I assume there is a hash table somewhere.
+
+The remaining 5 positions are for the visible exists:
+	10000 - Up
+	40000 - Down
+	50000 - Up & Down
+	01000 - SE
+	04000 - SW
+	05000 - SE & SW
+	00100 - NE
+	00400 - NW
+	00500 - NE & NW
+	00010 - E
+	00040 - W
+	00050 - E & W
+	00001 - N 
+	00004 - S
+	00005 - N & S
+
+	

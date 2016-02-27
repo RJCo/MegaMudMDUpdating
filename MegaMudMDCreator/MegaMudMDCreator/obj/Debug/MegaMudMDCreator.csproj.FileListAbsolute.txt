@@ -1,0 +1,7 @@
+C:\Users\rjc.SIAM\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\bin\Debug\MegaMudMDCreator.exe.config
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\bin\Debug\MegaMudMDCreator.exe.config
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\bin\Debug\MegaMudMDCreator.exe
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\bin\Debug\MegaMudMDCreator.pdb
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\obj\Debug\MegaMudMDCreator.csprojResolveAssemblyReference.cache
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\obj\Debug\MegaMudMDCreator.exe
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MegaMudMDCreator\obj\Debug\MegaMudMDCreator.pdb

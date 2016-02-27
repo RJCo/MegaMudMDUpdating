@@ -1,0 +1,806 @@
+
+00000000 = No flags
+00000002 = Shop
+00000004 = Bank
+00000008 = Trainer
+00000010 = Stop before entering room
+00000020 = Avoid this room (if possible)
+00004040 = Hide in goto list
+
+0000000A = Shop and Trainer
+00000018 = Trainer and Stop before entering
+00000030 = Stop before entering and avoid this room
+
+  00008020 = Only the grey lord, and doesn't look like anything more than avoid if possible.  Error?
+  0000C040 = Only the sysop support chamber, hide in goto list
+- 00004040
+------------
+  00008000 -- really special rooms?
+
+
+
+
+
+CAB00180:00004040:0:0:0:AALY:Ancient Ruin:Ancient Ruin Dark Alley
+C6400055:00000000:0:0:0:ARUI:Ancient Ruin:Ancient Ruin Doors
+E0900040:00000010:0:0:0:AFOR:Ancient Ruin:Ancient Ruin Ice Forge
+E6D80002:00004040:0:0:0:AICY:Ancient Ruin:Ancient Ruin Icy Building
+25701500:00004040:0:0:0:ALIB:Ancient Ruin:Ancient Ruin Library
+36604450:00004040:0:0:0:APLZ:Ancient Ruin:Ancient Ruin Plaza
+367000A1:00004040:0:0:0:ATEM:Ancient Ruin:Ancient Ruin Unholy Temple
+B9504100:00004040:0:0:0:ARGC:Ancient Ruin:Ancient Ruin, Palace Gates (closed)
+B9506100:00004040:0:0:0:ARPO:Ancient Ruin:Ancient Ruin, Palace Gates(open)
+F9900000:00000010:0:0:0:BEHO:Ancient Ruin:Beholder
+1CE40000:00000010:0:0:0:CHIM:Ancient Ruin:Chimera
+30400008:00000010:0:0:0:GORU:Ancient Ruin:Goru-Nezar
+3A900000:00000010:0:0:0:HBAL:Ancient Ruin:Huge Basilisk
+EC040000:00000000:0:0:0:VXPM:Ancient Ruin:Pillaged Museum Vortex
+34720010:00000010:0:0:0:PRSD:Ancient Ruin:Prismatic Dragon
+DD600004:00000010:0:0:0:IDOL:Ancient Ruin:Unholy Idol
+DF000010:00000010:0:0:0:WRAI:Ancient Ruin:Wraithlord
+16500010:00000000:0:0:0:ARAA:Arlysia:Aeriana's Apothecary
+11010000:00000000:0:0:0:AROG:Arlysia:An Open Grave
+E4501150:00000000:0:0:0:ARAG:Arlysia:Ancient Galleon
+42D00140:00000000:0:0:0:ACCD:Arlysia:Arlysia, City Docks
+47000055:00004040:0:0:0:AROW:Arlysia:Arlysia, Outer Wall
+D4F00041:00000004:0:0:0:BKOA:Arlysia:Bank of Arlysia
+6F100056:00000000:0:0:0:CATG:Arlysia:City of Arlysia, Town Gates
+96600000:00000000:0:0:0:ARFR:Arlysia:Filthy Room, Old Man
+E9100010:00000000:0:0:0:ARJD:Arlysia:Ghost of Justice Darkbane
+68B00001:00000000:0:0:0:ARHG:Arlysia:Hap's General Store
+93200044:00000010:0:0:0:ARIA:Arlysia:Inquisitor Armandriel
+E0500054:00000000:0:0:0:IDAH:Arlysia:Intersection of Dock Street & Haven Stre
+E3F00015:00000000:0:0:0:IHAL:Arlysia:Intersection of Haven Street & Long Stre
+66400055:00000000:0:0:0:IMAL:Arlysia:Intersection of Main Street and Long Str
+01800008:00000000:0:0:0:ARJC:Arlysia:Jail Cell
+21700001:00000000:0:0:0:ARJM:Arlysia:Jandar's Missile Weapons
+3CD00006:00000000:0:0:0:LIBS:Arlysia:Library Steps
+3CD00005:00000000:0:0:0:LSOH:Arlysia:Library Steps - Old Hermit
+E0700004:00000000:0:0:0:ARLS:Arlysia:Lud's Smithy
+DD900020:00000000:0:0:0:OOTP:Arlysia:Office of the Pastor (wooden box)
+DB901110:00000010:0:0:0:ARTM:Arlysia:Pastor Lander
+26B00000:00000010:0:0:0:ARMD:Arlysia:Rotting Beholder
+8DA00005:00000000:0:0:0:ARTA:Arlysia:Tavern
+32400001:00000000:0:0:0:ARGS:Arlysia:The Goode Seamstress
+EA200404:00000000:0:0:0:ARWF:Arlysia:White Forest
+EA204100:00000000:0:0:0:WFDP:Arlysia:White Forest, Diamond
+44E00004:00000000:0:0:0:ARFL:Arlysia:White Forest, Landing
+6F540400:00000000:0:0:0:BHRQ:Barren Hills:Barren Hills, Rock Quarry
+99B00025:00000000:0:0:0:BHFG:Barren Hills:Fortress Gate
+01E44000:00000000:0:0:0:BHGM:Barren Hills:Gaunt One Messenger
+C3D00194:00000000:0:0:0:NGAP:Barren Hills:Giant Fortress, Animal Pen
+7B000010:00000010:0:0:0:BHHC:Barren Hills:Hill Giant Chieftain
+4F440001:00000000:0:0:0:BHMP:Barren Hills:Mountain Plateau
+D0100100:00000000:0:0:0:BHNL:Barren Hills:Narrow Ledge
+36804010:00000000:0:0:0:BHSE:Barren Hills:Stone Encampment, Entrance
+70500004:00000010:0:0:0:BHGC:Barren Hills:Stone Giant Chieftain
+AE000019:00000000:0:0:0:SGFS:Barren Hills:Storm Fortress (inside gate)
+D9D04002:00000000:0:0:0:SGFG:Barren Hills:Storm Fortress (outside gate)
+87A00026:00000000:0:0:0:BHSH:Barren Hills:Storm Fortress, Hallway
+16300080:00000010:0:0:0:BHSC:Barren Hills:Storm Giant Commander
+10200010:00000010:0:0:0:BHSK:Barren Hills:Storm Giant King
+E7040010:00000000:0:0:0:RP12:Barren Hills:Storm Mountain, Rocky Path lev 12
+E7040140:00000000:0:0:0:RP18:Barren Hills:Storm Mountain, Rocky Path lev 18
+E7000051:00000000:0:0:0:SMOL:Barren Hills:Storm Mountain,Outside Lalim
+F8100501:00000000:0:0:0:BHTT:Barren Hills:Treetops
+F8100004:00004040:0:0:0:BHCD:Barren Hills:Treetops, Closed Door
+8C300061:00000000:0:0:0:ASTR:Black Caves:Ancient Stronghold
+DDF00020:00000010:0:0:0:AAPP:Black Caves:Ancient Stronghold (Apparatus)
+86D00098:00000000:0:0:0:APUZ:Black Caves:Ancient Stronghold (Puzzle Door)
+7D400050:00000000:0:0:0:BLCO:Black Caves:Black Caves (Bloodstone Orb)
+2D600400:00004040:0:0:0:BLCA:Black Caves:Black Caves (Greasy Bracelet)
+BD400010:00000000:0:0:0:BLC1:Black Caves:Black Caves Level 1
+16C10001:00000000:0:0:0:BLC2:Black Caves:Black Caves Level 2
+6AA11000:00000000:0:0:0:BLC3:Black Caves:Black Caves Level 3
+20700144:00000000:0:0:0:BCMC:Black Caves:Black Caves, Mushroom Cave
+8DB00002:00000010:0:0:0:DEEM:Black Caves:Dark-elf Emissary
+EA300020:00000000:0:0:0:GHKN:Black Caves:Ghost Knight
+E4000080:00000000:0:0:0:GNCM:Black Caves:Gnome Commander
+36600094:00000000:0:0:0:HTOP:Black Caves:Hilltop Fortress
+20700410:00000000:0:0:0:MCBM:Black Caves:Mushroom Cave, Black mushrooms
+8DB00008:00000010:0:0:0:SLRD:Black Caves:Slave Lord
+3A104000:00000000:0:0:0:STDE:Black Caves:Stone Tunnel, Dead End
+DFF00020:00000010:0:0:0:FALC:Black Fort:Alchemist
+A4F00055:00000000:0:0:0:FRT1:Black Fort:Black Fortress
+37200040:00000010:0:0:0:FCOB:Black Fort:Champion of Blood
+9F700100:00000010:0:0:0:FBIS:Black Fort:Dark Bishop
+02900020:00004040:0:0:0:FCEL:Black Fort:Dark Cell
+EAA08040:00000010:0:0:0:FWIZ:Black Fort:Dark Wizard
+5AF00040:00000000:0:0:0:DRKT:Black Fort:Darkened Tunnels
+97300008:00000002:0:0:0:DRES:Black Fort:Dreary Shop
+85500056:00000000:0:0:0:DREA:Black Fort:Dreary Village
+DCF00001:00000000:0:0:0:VXAH:Black Fort:Dreary Vortex
+37900040:00000000:0:0:0:FRTE:Black Fort:Fortress Secret Entrance
+98F00080:00000000:0:0:0:FCHS:Black Fort:Massive Chest
+D7200008:00000010:0:0:0:FMAS:Black Fort:Master Assassin
+F1B00004:00000010:0:0:0:NEWM:Black Fort:New Master Assassin
+78C01600:00004040:0:0:0:FRT2:Black Fort:Outside Dark Wizard
+A4F00056:00004040:0:0:0:FRT3:Black Fort:Outside Master Assassin
+4F400000:00000000:0:0:0:FRTC:Black Fort:Room Of Change
+52720040:00000000:0:0:0:BHB1:Black House:Black House, Basement
+D5000091:00000000:0:0:0:BHFR:Black House:Black House, Foyer
+7D014010:00000000:0:0:0:CAVW:Black House:Cave Worm Area
+D7A01000:00004040:0:0:0:OBCW:Black House:Cave Worm Obelisk
+ADD00001:00000010:0:0:0:CYCL:Black House:Cyclops
+97100100:00000000:0:0:0:DHEL:Black House:Dhelvanen
+23600015:00000000:0:0:0:FUNG:Black House:Fungus Forest
+B5500051:00004040:0:0:0:FFBC:Black House:Fungus Forest (Black Chasm)
+27101144:00004040:0:0:0:EDGE:Black House:Fungus Forest (Hazy Swamp Edge)
+41D00010:00004040:0:0:0:OBFF:Black House:Fungus Forest (Obelisk)
+86605041:00000000:0:0:0:FFSB:Black House:Fungus Forest (Stone Bridge)
+41B00001:00000000:0:0:0:FFHF:Black House:Fungus Forest, Hole to Fungus Tunnels
+3EC00040:00000020:0:0:0:FTUN:Black House:Fungus Tunnel
+90806000:00000000:0:0:0:GST3:Black House:Grand Stair (Gate)
+4AF00000:00000010:0:0:0:GST2:Black House:Grand Stair (Guardroom)
+BAB01000:00004040:0:0:0:GST1:Black House:Grand Stair (Landing)
+56D00004:00000000:0:0:0:VXHS:Black House:Hazy Swamp Vortex
+7D010010:00000000:0:0:0:HELL:Black House:Hellhound Area
+9C000114:00000000:0:0:0:LDRK:Black House:Lady of the Dark
+FC100004:00000010:0:0:0:SERC:Black House:Serpentkin Chieftain
+7F500055:00000000:0:0:0:SERP:Black House:Serpentkin Village
+91A00001:00000010:0:0:0:SERW:Black House:Serpentkin Witchdoctor
+94C00144:00000000:0:0:0:BHDC:Black House:Under Black House
+9C004400:00000000:0:0:0:WCCR:Black House:White Corridor, Crystal
+ED000140:00004040:0:0:0:EOFM:Black Wastelands:Black Wasteland, East of Magus
+ED000015:00004040:0:0:0:WOFM:Black Wastelands:Black Wasteland, West of Magus
+ED000050:00000010:0:0:0:VXMF:Black Wastelands:Mind Flayer Magus
+ED201001:00000000:20:0:0:OBBW:Black Wastelands:Wastelands Obelisk
+ED100410:00000020:20:0:0:VXW5:Black Wastelands:Wastelands Vortex (Copperwood)
+ED101001:00000000:20:0:0:VXW2:Black Wastelands:Wastelands Vortex (Darkwood Forest)
+ED104400:00000020:20:0:0:VXW7:Black Wastelands:Wastelands Vortex (Dreary Village)
+ED100015:00000020:20:0:0:VXW3:Black Wastelands:Wastelands Vortex (DTH)
+ED104001:00000020:20:0:0:VXW4:Black Wastelands:Wastelands Vortex (Hazy Swamp)
+ED100504:00000020:20:0:0:VXW6:Black Wastelands:Wastelands Vortex (Mossy Tunnels)
+ED100104:00000000:20:0:0:VXWN:Black Wastelands:Wastelands Vortex (Neg. Power Plane)
+ED101445:00000020:20:0:0:VXW1:Black Wastelands:Wastelands Vortex (Pillaged Museum)
+CF600051:00000000:0:0:0:AICR:Blackwood Forest:Abandoned Inn, Common Room
+57205400:00004040:0:0:0:BFWF:Blackwood Forest:Blackwood Forest (webbed lair fork)
+3FC00050:00000000:0:0:0:BWFD:Blackwood Forest:Blackwood Forest, Docks
+CCC01400:00000000:0:0:0:BWFG:Blackwood Forest:Blackwood Forest, Garden
+5A600504:00004040:0:0:0:BFGF:Blackwood Forest:Blackwood Forest, Garden Fork
+57201400:00004040:0:0:0:BFOE:Blackwood Forest:Blackwood Forest, Outside Enigma Lord
+95905005:00000000:0:0:0:BFWL:Blackwood Forest:Blackwood Forest, Webbed Lair
+5A601040:00000010:0:0:0:BFBE:Blackwood Forest:Bloody Executioner
+D7B00050:00000010:0:0:0:CTLF:Blackwood Forest:Covered Tent, Lord Feyr
+2AC00050:00004040:0:0:0:CLIR:Blackwood Forest:Crystal Lake, Inlet
+C7300005:00000010:0:0:0:BFDL:Blackwood Forest:Darken Beast Lord
+40100008:00000010:0:0:0:DMIN:Blackwood Forest:Death Minion
+0AB00145:00000000:0:0:0:DPLS:Blackwood Forest:Dirt Path Large Sign
+91E00000:00000010:0:0:0:BFHC:Blackwood Forest:Dreadlord of Blood
+57204011:00000000:0:0:0:BFDF:Blackwood Forest:Dying Fields
+57201001:00000000:0:0:0:WDFE:Blackwood Forest:Dying Fields, West Side
+CEA01140:00004040:0:0:0:ERFK:Blackwood Forest:Eastern Road Fork
+CEA01041:00000000:0:0:0:EROI:Blackwood Forest:Eastern Road, Outside Inn
+46400000:00000010:0:0:0:BFEL:Blackwood Forest:Enigma Lord
+25800005:00000000:0:0:0:FFER:Blackwood Forest:Farmstead
+CEA01404:00000000:0:0:0:FTIF:Blackwood Forest:Fork, Town/Inn/Fields
+82A10010:00000000:0:0:0:FCCO:Blackwood Forest:Frozen Cavern, Cave Opening
+7AE00050:00000000:0:0:0:GEMR:Blackwood Forest:Graveyard Entrance, Main Road
+D9900005:00000000:0:0:0:GESG:Blackwood Forest:Graveyard Entrance, Southern Gate
+2B000006:00000000:0:0:0:GYOD:Blackwood Forest:Graveyard, Outside Drakas tomb
+2B000051:00000000:0:0:0:GYWS:Blackwood Forest:Graveyard, Warrior Statue
+36A04205:00004040:0:0:0:GECF:Blackwood Forest:Gypsy Encampment, Outside Ancient Gypsy
+98A08000:00000010:0:0:0:BFGW:Blackwood Forest:Gypsy Wagon - Ancient Gypsy Woman
+13800004:00000010:0:0:0:RBHT:Blackwood Forest:HangingTree
+79310000:00000010:0:0:0:ROTW:Blackwood Forest:Mammoth Rotworm
+7F010081:00000000:0:0:0:MAUE:Blackwood Forest:Mausoleum, Entrance
+79E00005:00000000:0:0:0:MOS2:Blackwood Forest:Mausoleum, Second FLoor
+0D900004:00004040:0:0:0:MOS3:Blackwood Forest:Mausoleum, Stone Hallway
+0D900001:00004040:0:0:0:MAH1:Blackwood Forest:Mausoleum, Stone Hallway
+C4100005:00000000:0:0:0:MOS4:Blackwood Forest:Mausoleum, Third Floor
+57205004:00004040:0:0:0:DLPR:Blackwood Forest:Outside Darken Beast Lord
+57205000:00004040:0:0:0:DABL:Blackwood Forest:Outside Dreadlord of Blood
+23600000:00000010:0:0:0:BFOZ:Blackwood Forest:Ozrinom
+CBA00015:00000000:0:0:0:PRFA:Blackwood Forest:Private Road, Farms
+6DF04001:00000000:0:0:0:RTSD:Blackwood Forest:Road to the Southern Dock
+8F601045:00000000:0:0:0:CPLN:Cracked Plains:Cracked Plain
+87800100:00000000:0:0:0:CTL1:Cracked Plains:Cracked Tunnel
+D8810010:00000000:0:0:0:CTPS:Cracked Plains:Cracked Tunnel(start of purple worms)
+42480050:00000000:0:0:0:DCTD:Dark-Elf City:Black Moat, trap door
+2C300080:00000010:0:0:0:CAPT:Dark-Elf City:Captain of the Guard
+86400005:00000000:0:0:0:DCOE:Dark-Elf City:City, Main Street Outside Ebon Guild
+3E710004:00004040:0:0:0:DECH:Dark-Elf City:Dark Elf City (Hole up)
+2F540044:00000000:0:0:0:DCSQ:Dark-Elf City:Dark Elf Soldier's Quarters
+2EE00009:00000000:0:0:0:DCTE:Dark-Elf City:Dark Elf Temple, Entrance
+7CF00002:00000010:0:0:0:ARCH:Dark-Elf City:Dark-elf Archmage
+49610011:00000000:0:0:0:CAS1:Dark-Elf City:Dark-elf Castle Level 1
+D2400059:00000000:0:0:0:CAS2:Dark-Elf City:Dark-elf Castle Level 2
+2C940040:00000000:0:0:0:CAS3:Dark-Elf City:Dark-elf Castle Level 3
+2C940004:00000000:0:0:0:CAS4:Dark-Elf City:Dark-elf Castle Level 4
+3AA00009:00000000:0:0:0:DCMS:Dark-Elf City:Dark-Elf City, Moatside
+9B000504:00000010:0:0:0:DCHP:Dark-Elf City:Dark-Elf High Priestess
+91F20008:00000010:0:0:0:DEQU:Dark-Elf City:Dark-elf Queen
+57D00021:00000000:0:0:0:DCFG:Dark-Elf City:Fighter's Guild, Entrance
+C0C80002:00000000:0:0:0:GBST:Dark-Elf City:Guardian Beast
+17800045:00000000:0:0:0:DCEG:Dark-Elf City:Guild of the Ebon Blade, Dark Passage
+DF000001:00000010:0:0:0:TORT:Dark-Elf City:Master Torturer
+E1200040:00000000:0:0:0:DCNA:Dark-Elf City:Narrow Alley
+DA104081:00004040:0:0:0:ARCT:Dark-Elf City:Outside Archmage Tower
+0EA00008:00000000:0:0:0:RVAU:Dark-Elf City:Royal Treasure Vault
+A1400020:00000002:0:0:0:SLEZ:Dark-Elf City:Sleazy Shopkeeper
+C0600420:00004040:0:0:0:DCTA:Dark-Elf City:Tower Antechamber
+5D900006:00004040:0:0:0:DCAR:Dark-Elf City:Town Gates, Archway
+5D600054:00000000:0:0:0:DCTG:Dark-Elf City:Training Grounds
+AB800020:00000010:0:0:0:WEMS:Dark-Elf City:Wererat Emissary
+64400098:00000000:0:0:0:ATRE:Darkwood Forest:Ancient Tree
+DEB00010:00000000:0:0:0:APOR:Darkwood Forest:Ancient Tree Portal
+FE840001:00000000:0:0:0:SPST:Darkwood Forest:Ancient Tree Spiral Stairs
+E3310010:00000000:0:0:0:BLU1:Darkwood Forest:Blue Tower (Jorah)
+C8254400:00000002:0:0:0:BLU2:Darkwood Forest:Blue Tower, Armour (leather)
+C8201000:00000000:0:0:0:BT2N:Darkwood Forest:Blue Tower, Armour (plate/scale)
+C8200100:00000000:0:0:0:BT2S:Darkwood Forest:Blue Tower, Armour (silk)
+E5101000:00000000:0:0:0:BT4N:Darkwood Forest:Blue Tower, Misc (bracers,rings)
+E5100100:00000000:0:0:0:BT4S:Darkwood Forest:Blue Tower, Misc (cloaks, belts, neck)
+E5154400:00000002:0:0:0:BLU4:Darkwood Forest:Blue Tower, Misc (ropes, potions, rings)
+23244400:00000002:0:0:0:BLU5:Darkwood Forest:Blue Tower, Spells (druid)
+23200100:00000002:0:0:0:BT5S:Darkwood Forest:Blue Tower, Spells (mage)
+23201000:00000002:0:0:0:BT5N:Darkwood Forest:Blue Tower, Spells (priest)
+36F54400:00000002:0:0:0:BLU3:Darkwood Forest:Blue Tower, Weapons (blunt)
+36F00100:00000002:0:0:0:BT3S:Darkwood Forest:Blue Tower, Weapons (large)
+36F01000:00000002:0:0:0:BT3N:Darkwood Forest:Blue Tower, Weapons (sharp)
+5E211140:00004040:0:0:0:COCS:Darkwood Forest:Caves of Chaos, Staircase
+77700041:00004040:0:0:0:CFSC:Darkwood Forest:Cleared Fields,Southeast corner
+F4E04410:00004040:0:0:0:DRKF:Darkwood Forest:Darkwood Forest
+F5000001:00004040:0:0:0:OBDF:Darkwood Forest:Darkwood Forest Obelisk
+F4F00404:00000000:0:0:0:VXDF:Darkwood Forest:Darkwood Forest Vortex
+F4E00001:00004040:0:0:0:DFDE:Darkwood Forest:Darkwood Forest, dead end near vortex
+F4E01140:00004040:0:0:0:DFFV:Darkwood Forest:Darkwood Forest, fork near vortex
+ECA01150:00000000:0:0:0:DFGC:Darkwood Forest:Darkwood Forest, Grassy Clearing
+24700004:00000000:0:0:0:DWFL:Darkwood Forest:Darkwood Forest, Lair
+02300055:00000000:0:0:0:DFMR:Darkwood Forest:Darkwood Forest, Main Road (SIgn)
+F1904020:00000000:0:0:0:DFOH:Darkwood Forest:Darkwood Forest, Outside Hidden Keep
+A3E01410:00000000:0:0:0:ELSA:Darkwood Forest:Elder Darkwood Grove, Stone Arch
+CBB04004:00000000:0:0:0:ELGR:Darkwood Forest:Elder Grove
+C5A00040:00004040:0:0:0:OBEG:Darkwood Forest:Elder Grove Obelisk
+36400001:00004040:0:0:0:ELTP:Darkwood Forest:Elder Grove, Thornwalled Path
+05700010:00000010:0:0:0:GSPI:Darkwood Forest:Giant Spider
+02101000:00000010:0:0:0:GGRN:Darkwood Forest:Great Green Dragon
+F4E00504:00000000:0:0:0:GDDF:Darkwood Forest:Green Dragons
+F4E00045:00000000:0:0:0:GRN1:Darkwood Forest:Green Dragons (Start of Loop)
+72A00065:00000000:0:0:0:HKEP:Darkwood Forest:Hidden Keep (Entrance)
+30400002:00000000:0:0:0:HKTR:Darkwood Forest:Hidden Keep (Treasure Room)
+79700000:00000030:0:0:0:HDRU:Darkwood Forest:High Druid
+E2900404:00000000:0:0:0:HDRA:Darkwood Forest:High Druid Arch
+8D900004:00000020:0:0:0:DFDS:Darkwood Forest:Horner The Hide
+5BE00100:00000000:0:0:0:HDWT:Darkwood Forest:Huge Darkwood Tree
+B4300020:00000010:0:0:0:LEOQ:Darkwood Forest:Leo The Quick
+A2C04410:00004040:0:0:0:MRD4:Darkwood Forest:Main Road (Elder Fork)
+30605001:00004040:0:0:0:MRD2:Darkwood Forest:Main Road (Jorah Fork)
+A2C00404:00004040:0:0:0:MRD1:Darkwood Forest:Main Road (Nth Fork)
+B7200055:00004040:0:0:0:MRDG:Darkwood Forest:Main Road (Silvermere Gates)
+A2C01400:00004040:0:0:0:MRD3:Darkwood Forest:Main Road (Spider Fork)
+B2300020:00000000:0:0:0:MORU:Darkwood Forest:Morukai
+42000040:00000000:0:0:0:SMH3:Darkwood Forest:Small Hill
+D1E00004:00008020:0:0:0:GREY:Darkwood Forest:The Grey Lord
+296000A5:00000000:0:0:0:WRCY:Darkwood Forest:Woodard's Ranch, Courtyard
+03A01001:00000000:0:0:0:BLMO:Dragon's Teeth Hills:Black Mountains
+E3204000:00004040:0:0:0:OBBM:Dragon's Teeth Hills:Black Mountains Obelisk
+02300009:00000010:0:0:0:BORC:Dragon's Teeth Hills:Black Orc Boss
+EE800040:00000000:0:0:0:MARK:Dragon's Teeth Hills:Commander Markus
+9A510044:00004040:0:0:0:STT2:Dragon's Teeth Hills:Dark Grey Stone Tunnel
+C4F00414:00004040:0:0:0:DTHH:Dragon's Teeth Hills:Dragon's Teeth Hills (Hole)
+C5100005:00004040:0:0:0:OBD1:Dragon's Teeth Hills:Dragon's Teeth Hills (Obelisk 1)
+C5104100:00004040:0:0:0:OBD2:Dragon's Teeth Hills:Dragon's Teeth Hills (Obelisk 2)
+C4F04050:00004040:0:0:0:TALI:Dragon's Teeth Hills:Dragon's Teeth Hills (Talisman)
+C5000001:00000000:0:0:0:VXDT:Dragon's Teeth Hills:Dragon's Teeth Hills (Vortex)
+C4F05100:00004040:0:0:0:DTHG:Dragon's Teeth Hills:Dragon's Teeth Hills, Gnoll Fork
+1F601140:00000000:0:0:0:DRP2:Dragon's Teeth Hills:Dragon's Teeth Hills, Rocky Passage
+22B00000:00000000:0:0:0:COCO:Dragon's Teeth Hills:Giant Pulsating Cocoon
+F9B00100:00000000:0:0:0:GLWP:Dragon's Teeth Hills:Glowing Pool
+F5600001:00000010:0:0:0:GNCH:Dragon's Teeth Hills:Gnoll Chieftain
+2F401400:00000000:0:0:0:HPGP:Dragon's Teeth Hills:Gnoll Encampment
+2C900055:00000000:0:0:0:GETC:Dragon's Teeth Hills:Gnoll Encampment, Trail Crossroads
+00541040:00000000:0:0:0:JAGH:Dragon's Teeth Hills:Jagged Hills Path
+B4900100:00000010:0:0:0:MERQ:Dragon's Teeth Hills:Mermex Queen
+7C500400:00000010:0:0:0:META:Dragon's Teeth Hills:Metallic Monstrosity
+BEF00009:00000000:0:0:0:RVMD:Dragon's Teeth Hills:Rocky Valley, Massive Doors
+85F40010:00000000:0:0:0:CRAT:Dragon's Teeth Hills:Smoking Crater
+E7E04410:00004040:0:0:0:STT1:Dragon's Teeth Hills:Stone Tunnel
+3A304000:00004040:0:0:0:OBST:Dragon's Teeth Hills:Stone Tunnels Obelisk
+42500100:00000000:0:0:0:WRDA:Dragon's Teeth Hills:Western Road Avalanche
+B2204041:00000000:0:0:0:WRDF:Dragon's Teeth Hills:Western Road Fork
+61C14000:00000000:0:0:0:QUAG:Dwarven Mines:Bottom of Ancient Stair
+ADA40004:00004040:0:0:0:DMAS:Dwarven Mines:Copper Mine (Ancient Stair)
+6CA50001:00000000:0:0:0:DMCO:Dwarven Mines:Copper Mine (Level 2)
+6CA10504:00000000:0:0:0:DMCS:Dwarven Mines:Copper/Silver Mine (Level 3)
+70C00504:00000000:0:0:0:DMDF:Dwarven Mines:Diamond Mine (Devil Fiend area)
+19410004:00000000:0:0:0:DMDI:Dwarven Mines:Diamond Mine Tunnel, Cart Ramp
+CE200080:00000010:0:0:0:DUEL:Dwarven Mines:Duergar Lord
+0E704000:00000010:0:0:0:GEMJ:Dwarven Mines:Gemstone Juggernaut
+78F10050:00000000:0:0:0:DMGO:Dwarven Mines:Gold Mine (Level 5)
+2E000040:00000000:0:0:0:DMNP:Dwarven Mines:Gold Mine NPP Portal
+E7700004:00000010:0:0:0:GULG:Dwarven Mines:Gulgulthra
+1FC00100:00000010:0:0:0:OBGO:Dwarven Mines:Huge Obsidian Golem
+FFB00154:00000000:0:0:0:DMIR:Dwarven Mines:Iron Mine (Level 1)
+EE210404:00000000:0:0:0:DMMI:Dwarven Mines:Mithril Mine (Level 6)
+84440004:00004040:0:0:0:DMDD:Dwarven Mines:Mithril Mine, Down to Diamond mines
+F2310010:00000000:0:0:0:STON:Dwarven Mines:Redstone Tunnel
+F2340100:00000000:0:0:0:DMRT:Dwarven Mines:Redstone Tunnel (Level 3)
+6DA10050:00000000:0:0:0:DMSI:Dwarven Mines:Silver Mine (Level 4)
+57800814:00000000:0:0:0:GNGK:Gang Houses:Entrance Black House Room
+CC700811:00000000:0:0:0:GNGB:Gang Houses:Entrance Blue House Room
+CA100046:00000000:0:0:0:GNGD:Gang Houses:Entrance Gold House Room
+66001082:00000000:0:0:0:GNGG:Gang Houses:Entrance Green House Room
+05F00016:00000000:0:0:0:GNGO:Gang Houses:Entrance Orange House Room
+34C00A04:00000000:0:0:0:GNGR:Gang Houses:Entrance Red House Room
+1B700046:00000000:0:0:0:GNGS:Gang Houses:Entrance Silver House Room
+19500016:00000000:0:0:0:GNGV:Gang Houses:Entrance Violet House Room
+70700009:00000000:0:0:0:GNGW:Gang Houses:Entrance White House Room
+21C00204:00000000:0:0:0:GNGY:Gang Houses:Entrance Yellow House Room
+39500004:00000000:0:0:0:MRSK:Gang Houses:Main Road Shop, Black House
+C3800004:00000000:0:0:0:MRBL:Gang Houses:Main Road Shop, Blue House
+C1A00004:00000000:0:0:0:MRSG:Gang Houses:Main Road Shop, Gold House
+42D00001:00000000:0:0:0:MRGR:Gang Houses:Main Road Shop, Green House
+C8000001:00000000:0:0:0:MRSO:Gang Houses:Main Road Shop, Orange House
+47100001:00000000:0:0:0:MRSR:Gang Houses:Main Road Shop, Red House
+D7400004:00000000:0:0:0:MRSS:Gang Houses:Main Road Shop, Silver House
+D6700001:00000000:0:0:0:MRSV:Gang Houses:Main Road Shop, Violet House
+49400004:00000000:0:0:0:MRSW:Gang Houses:Main Road Shop, White House
+DBD00001:00000000:0:0:0:MRSY:Gang Houses:Main Road Shop, Yellow House
+31400004:00000002:0:0:0:GGEN:Gnome Village:General Store
+BC500002:00000002:0:0:0:GALC:Gnome Village:Gnome Alchemist
+B0300020:00000000:0:0:0:GENC:Gnome Village:Gnome Enchantress
+50700800:00000000:0:0:0:GINV:Gnome Village:Gnome Inventor
+2A300145:00000000:0:0:0:GVIL:Gnome Village:Gnome Village
+65C00001:00000002:0:0:0:GJEW:Gnome Village:Jeweler's Shop
+DCF00010:00000010:0:0:0:QANT:Gnome Village:Queen Ant
+4D400050:00000000:0:0:0:GOBC:Goblin caves:Goblin Caves
+ECB00060:00004040:0:0:0:GOB4:Goblin caves:Goblin Caves (green metal key door)
+13900060:00004040:0:0:0:GOB5:Goblin caves:Goblin Caves (large iron key door)
+01180050:00004040:0:0:0:GOB2:Goblin caves:Goblin Caves (Slavemaster fork)
+89505100:00004040:0:0:0:GOB1:Goblin caves:Goblin Caves (Slime Beast fork)
+01104410:00004040:0:0:0:GOB3:Goblin caves:Goblin Caves (Werewolf fork)
+4BB00000:00000010:0:0:0:GGOL:Goblin caves:Guardian Golem
+CCE00091:00000000:0:0:0:HCNT:Goblin caves:Huge Cavern, North Training Area
+CCE00055:00000000:0:0:0:HCTA:Goblin caves:Huge Cavern, Training Area
+CCE00065:00000000:0:0:0:HCES:Goblin caves:Huge Cavern, Training Area, East Side
+CCE00095:00000000:0:0:0:HCWS:Goblin caves:Huge Cavern, Training Area, West side
+CCE00061:00000000:0:0:0:HCNE:Goblin caves:Huge Cavern,North Training Area East
+E5E00095:00000000:0:0:0:OBES:Goblin caves:Orc Barracks, East Side
+7EE00059:00004040:0:0:0:OBOW:Goblin caves:Orc Barracks, Outside Warlord
+E5E00065:00000000:0:0:0:OBWS:Goblin caves:Orc Barracks, West Side
+7EE00054:00000010:0:0:0:OBCQ:Goblin caves:Orc Warlord
+E7600049:00000010:0:0:0:SLMA:Goblin caves:Slave Master
+05E01000:00000000:0:0:0:SLIM:Goblin caves:Slime Beast
+74400004:00000000:0:0:0:GCSS:Goblin caves:Small Stone Passage
+DE700080:00000010:0:0:0:THRG:Goblin caves:Thrag
+D7200040:00000010:0:0:0:WERE:Goblin caves:Werewolf
+E7A10001:00000000:0:10:0:CRY1:Graveyard:Crypt Level 1
+F2605000:00000000:0:10:0:CRY2:Graveyard:Crypt Level 2
+F2610001:00000000:0:10:0:CRY3:Graveyard:Crypt Level 3
+C9E00006:00000000:0:0:0:CRST:Graveyard:Crypt, Sealed Tomb
+85204100:00000000:0:0:0:GRVB:Graveyard:Graveyard Bridge
+4C100044:00004040:0:0:0:OBGY:Graveyard:Graveyard Obelisk
+EAA00056:00000000:0:0:0:GYTE:Graveyard:Graveyard, Tomb Entrance
+88220000:00000010:0:0:0:SPEC:Graveyard:Spectral Knight
+12910055:00000000:0:0:0:TOMB:Graveyard:Tomb Vault
+3C900060:00000000:0:0:0:ACRY:Island:Ancient Crypt
+3A000001:00000010:0:0:0:BNSH:Island:Banshee
+27400054:00000000:0:0:0:ISLB:Island:Island Beach Landing
+7D500054:00000000:0:0:0:LABE:Island:Labyrinth Entrance
+F1D00004:00004040:0:0:0:OBLA:Island:Labyrinth Obelisk
+08900001:00000010:0:0:0:MCHP:Island:Minotaur Champion
+4BB00080:00000000:0:0:0:MCHS:Island:Minotaur Chest
+8AA00001:00000010:0:0:0:MCHF:Island:Minotaur Chieftain
+FBB00064:00004040:0:0:0:MLEV:Island:Outside minotaur champion (lever)
+82400094:00000000:0:0:0:MWOD:Island:Wooden Passages
+F0240054:00000000:0:0:0:JABT:Jungle:Abandoned Temple
+6B800410:00000000:0:0:0:JBLT:Jungle:Bottom of the Life Tree
+B8100040:00000000:0:0:0:ECNI:Jungle:Earthen Catacombs (no idol)
+B8100041:00000000:0:0:0:ECOK:Jungle:Earthen Catacombs, Outside Kuel
+7E800090:00000000:0:0:0:JJCA:Jungle:Jungle Cave
+01E00004:00000000:50:0:0:DCJP:Jungle:Jungle NPP Portal
+50700010:00000010:0:0:0:KUEL:Jungle:Kuel
+71E00014:00000000:0:0:0:LLGM:Jungle:Large Mound
+61D00040:00000000:0:0:0:JTMW:Jungle:Massive Web
+7C110004:00000000:0:0:0:JSAB:Jungle:Sandy Beach
+7C100100:00000000:0:0:0:JSBE:Jungle:Sandy Beach, Entrance
+71E00041:00000000:0:0:0:SJLM:Jungle:Shallow Jungle, Large Mound
+E8201000:00000000:0:0:0:MUD3:Jungle:Shallow Jungle, Mud Pit
+E8200100:00000000:0:0:0:MUD2:Jungle:Shallow Jungle, Mud Pit
+E8201004:00000000:0:0:0:MUD1:Jungle:Shallow Jungle, Mud Pit
+31805110:00004040:0:0:0:SJTO:Jungle:Shallow Jungle, Trail (outside NPP )
+26D00080:00000002:0:0:0:SYLK:Jungle:Sylk
+32F00001:00000010:0:0:0:JTAM:Jungle:Tasloi Animal Master
+68C04000:00000010:0:0:0:JTSC:Jungle:Tasloi Chief
+19F00400:00000010:0:0:0:JTLS:Jungle:Tasloi Shaman
+82A00054:00000000:0:0:0:JTVL:Jungle:Tasloi Village
+E5900011:00000000:0:0:0:JTVE:Jungle:Tasloi Village, Entrance
+A8200011:00000000:0:0:0:JTLT:Jungle:Tasloi Village, Large Tree
+5E800140:00000000:0:0:0:JVBL:Jungle:Vine Bridge, Life Tree
+B0D00050:00000000:0:0:0:JVBG:Jungle:Vine Bridge, Wooden Gateway
+63544000:00000010:0:0:0:SNDD:Khazarad:Ancient Sand Dragon
+F1E00004:00000002:0:0:0:KAXE:Khazarad:Axe of Fury Weapon Store
+2AC00004:00000004:0:0:0:KBNK:Khazarad:Bank of Khazarad
+8A200040:00000000:0:0:0:GUDR:Khazarad:Champion Gudruk
+2F300044:00000002:0:0:0:KWEP:Khazarad:Drotha's Deadly Weaponry
+31400001:00000002:0:0:0:KGEN:Khazarad:Dwarven General Store
+8A200014:00000002:0:0:0:KTEM:Khazarad:Dwarven Temple Healer
+72600011:00000000:0:0:0:KFMT:Khazarad:Frothing Mug Tavern (dwarven ale)
+ADF00001:00000002:0:0:0:KGEM:Khazarad:Gorthun's Gemstones
+CE400001:00000002:0:0:0:KLEA:Khazarad:Gurdal's Leather Goods
+AC900001:00000002:0:0:0:KCLO:Khazarad:Harkul's Haberdashery
+91E00040:00000010:0:0:0:KAIM:Khazarad:Kai Master
+19800051:00000000:0:0:0:KHAZ:Khazarad:Khazarad Center
+C5A00014:00000000:0:0:0:KINN:Khazarad:Khazarad Inn
+A6E00055:00000000:0:0:0:KENT:Khazarad:Khazarad, Entry Arch
+9EC0001A:00000000:0:0:0:KING:Khazarad:King Kulgar
+F3700018:00000000:0:0:0:LORE:Khazarad:Loremaster Thulgraf
+80C00001:00000002:0:0:0:KARM:Khazarad:Martok's Battered Breastplate
+8FC00055:00000000:0:0:0:SMTH:Khazarad:Master Smith Martok
+0FE00050:00000002:0:0:0:KMIN:Khazarad:Miner's Guild
+6FB40014:00000000:0:0:0:MLNJ:Khazarad:Mountain Ledge, Nekojin Village Fork
+E3700001:00000000:0:0:0:RNPP:Khazarad:Redstone Tunnel, NPP Portal
+0CE00001:00000000:0:0:0:KRDC:Khazarad:Rubbish Disposal Chamber
+63504000:00000000:0:0:0:ADSR:Khazarad:Sandy Mountain Cave
+02F40040:00000000:0:0:0:SSCI:Khazarad:Spiral Stairwell, Cave-In
+32600004:00000010:0:0:0:SHED:Lava Fields:Adult She-Dragon
+0C100004:00000010:0:0:13:LFCP:Lava Fields:Choira Pyromancer
+A9E000AA:00000030:0:0:0:CFCR:Lava Fields:Crazed Inquisitor
+47700009:00000000:0:0:0:CFOR:Lava Fields:Crimson Fortress, Entrance
+B2600002:00000010:0:0:0:CFIF:Lava Fields:Crimson Fortress, Inquisitor Fulgore
+BF380004:00000000:0:0:0:CFMD:Lava Fields:Crimson Fortress, Massive Door
+96200040:00000000:0:0:0:CRIT:Lava Fields:Crimson Tunnel
+85804000:00000010:0:0:0:EFRE:Lava Fields:Efreeti
+03A00055:00000010:0:0:0:FPDI:Lava Fields:Flame Pit (Demoness Irikani)
+93F00052:00000000:0:0:0:CFMG:Lava Fields:Fortress of the Crimson Flame, Main Gate
+6E000004:00000000:0:0:0:KOTA:Lava Fields:Kotar Bloodthorn
+B1900008:00000000:0:0:0:FIRE:Lava Fields:Lake of Fire
+36601440:00000000:0:0:0:LVF4:Lava Fields:Lava Cavern, Obsidian Cliffs
+05C00050:00000000:0:0:0:LAVT:Lava Fields:Lava Tube (Red Dragons)
+05C05400:00004040:0:0:0:LTEF:Lava Fields:Lava Tube, Efreeti Fork
+05C00005:00000000:0:0:0:LTOC:Lava Fields:Lava Tube, outside Choira Pyromancer
+ADF04140:00000000:0:0:0:DNES:Lava Fields:Magma River, Dragon Nest
+8E404500:00004040:0:0:0:LAVB:Lava Fields:Outside Boulder
+05C10100:00000000:0:0:0:TUBE:Lava Fields:Salamander Tubes
+24400004:00000010:0:0:0:TOFC:Lava Fields:Temple of Fire (Crimson High Priest)
+04C00005:00000000:0:0:0:TOFF:Lava Fields:Temple of Fire (outside high priest)
+FFE20001:00000000:0:0:0:TEMF:Lava Fields:Temple of Fire, Massive Door
+73900054:00000000:0:0:0:LAVM:Lava Fields:Tunnel Mouth
+6E900001:00000000:0:0:0:LCBM:Lost City:Amazon Battle Master
+A0B00040:00000000:0:0:0:LCAC:Lost City:Amazon Craftswoman
+72400001:00000002:0:0:0:LCAB:Lost City:Armour Shop, Back Room
+33300005:00000002:0:0:0:LCAF:Lost City:Armour Shop, Front Room
+3FA00001:00000004:0:0:0:LCBA:Lost City:Bank of the Lost City
+84000001:00000010:0:0:0:LCGH:Lost City:Deranged Priest
+BE600026:00000000:0:0:0:LCWR:Lost City:Elders' Council Chambers, Waiting Room
+3FC00449:00004040:0:0:0:LCF4:Lost City:Forest Street
+3FC01056:00004040:0:0:0:LCF2:Lost City:Forest Street
+3B400451:00004040:0:0:0:LSF1:Lost City:Forest Street, Intersection
+3B400151:00004040:0:0:0:LCF3:Lost City:Forest Street, Intersection
+7C900001:00000002:0:0:0:LCGB:Lost City:General Store, Back Room
+50800005:00000002:0:0:0:LCGF:Lost City:General Store, Front Room
+4A500004:00000002:0:0:0:LCHS:Lost City:Hides Shop
+E2400001:00000002:0:0:0:LCJS:Lost City:Jewelry Shop
+EAA00004:00000002:0:0:0:LCM2:Lost City:Magic Shop, Back Room
+A2100041:00000002:0:0:0:LCM1:Lost City:Magic Shop, Front Room
+3B904046:00004040:0:0:0:LCT2:Lost City:Market Street
+5D640000:00000000:0:0:0:LCPD:Lost City:Practice Dummy
+AD300004:00000000:0:0:0:LCQ2:Lost City:Queen's Room (East)
+AD300010:00000000:0:0:0:LCQ1:Lost City:Queen's Room (West)
+B4D40000:00000000:0:0:0:LCSS:Lost City:Spiral Staircase
+3A700155:00004040:0:0:0:LCT1:Lost City:Temple Stairs
+3A700041:00000000:0:0:0:LCSE:Lost City:Temple Stairs
+83B40000:00004040:0:0:0:TGHD:Lost City:Training Grounds, Halls of the Dead
+F2300004:00000002:0:0:0:LCWB:Lost City:Weapons Shop, Back Room
+BCA00041:00000002:0:0:0:LCWF:Lost City:Weapons Shop, Front Room
+11E00004:00000000:0:0:0:LCDE:Lost City:Well Lit Alley, Dead End
+9B800004:00000010:0:0:0:AURU:Misty Valley:Aurumvorax
+94E00001:00000010:0:0:0:BDRA:Misty Valley:Black Dragon
+80B00010:00000010:0:0:0:TROL:Misty Valley:Giant Two-Headed Troll
+6BA00100:00000002:0:0:0:GYPE:Misty Valley:Gypsy Encampment
+27700200:00000010:0:0:0:KOBK:Misty Valley:Kobold King
+DB401041:00000000:0:0:0:KOBT:Misty Valley:Kobold Tunnels
+04A00051:00000000:0:0:0:MVBD:Misty Valley:Misty Bog (Black Dragons Area)
+04A00010:00000000:0:0:0:MBNP:Misty Valley:Misty Bog NPP Portal
+04A10404:00000000:0:0:0:MBDF:Misty Valley:Misty Bog, Black Dragon Fork
+20710404:00004040:0:0:0:MSWP:Misty Valley:Misty Swamp (Dragon Fork)
+93700044:00000002:0:0:0:ORFE:Misty Valley:Orfeo Talespinner
+57B00001:00000000:0:0:0:OVSH:Misty Valley:Overgrown Shrine
+47E00110:00004040:0:0:0:RPTH:Misty Valley:Rocky Path (Aurumvora fork)
+77904410:00004040:0:0:0:SWPC:Misty Valley:Swamp Ridge Path Crossroads
+75604410:00000000:0:0:0:SPDF:Misty Valley:Swampside Path, Darkwood Fork
+75605100:00000000:0:0:0:SPNF:Misty Valley:Swampside Path, Northern Fork
+95901051:00000000:0:0:0:VALC:Misty Valley:Valley Path Crossroads
+08610040:00000000:0:0:0:CATA:Mossy Tunnels:Catacombs
+E6400004:00000000:0:0:0:CRUM:Mossy Tunnels:Crumbling Ruins
+4CD00100:00000000:0:0:0:HAUN:Mossy Tunnels:Haunting Spirit
+4CD00101:00004040:0:0:0:HSBD:Mossy Tunnels:Hauntng Spirit, barrier down
+5D840010:00000000:0:0:0:MOST:Mossy Tunnels:Mossy Tunnel
+67E00400:00000000:0:0:0:MOSL:Mossy Tunnels:Mossy Tunnel (Lichen)
+EF304001:00000000:0:0:0:VXMT:Mossy Tunnels:Mossy Tunnel (Vortex)
+24F00040:00000010:0:0:0:NECR:Mossy Tunnels:Necromancer
+B1B00080:00000010:0:0:0:NHAG:Mossy Tunnels:Night Hag
+DCF200AA:00000010:0:0:0:FALA:Negative Power Plane:Fallen Angel
+91D00040:00000010:50:0:0:GNAJ:Negative Power Plane:Gnaj the Creator
+DCF00008:00004040:0:0:0:NPPO:Negative Power Plane:Negative Power Plane (outside Angel)
+DD055500:00000020:40:0:0:NPPV:Negative Power Plane:Negative Power Plane Vortex
+50800001:00000002:0:3:0:NARM:Newhaven:Armour Shop (Betram)
+60700001:00000002:0:3:0:NGEN:Newhaven:General Store (Dathalar)
+DDF00004:00000010:0:3:0:NMCB:Newhaven:Mineshaft Cave Bear
+ABC10002:00000000:0:3:0:NARN:Newhaven:Newhaven Arena
+38B40051:00000000:0:0:0:NEWH:Newhaven:Newhaven Town
+2D601045:00000000:0:0:0:NHVE:Newhaven:Newhaven, Village Entrance
+BC300004:00000002:0:3:0:NSPL:Newhaven:Spell Shop (Rayth)
+17900010:00000002:0:3:0:NTEM:Newhaven:Temple Healer
+D9300004:00000002:0:3:0:NWEP:Newhaven:Weapons Shop (Nathaniel)
+1CB15500:00000000:0:0:0:ETRE:Northern Forests:Ancient Tree
+1B100040:00000010:0:0:0:AWIL:Northern Forests:Ancient Willow
+06700000:00000010:0:0:0:HIVE:Northern Forests:Bee Hive
+81F00001:00000000:0:0:0:NFBC:Northern Forests:Bloodbear cave (evil entrance to silverw
+41410400:00004040:0:0:0:BCCP:Northern Forests:Bloodbear cave, Cramped Passageway
+CCB00004:00004040:0:0:0:OBBF:Northern Forests:Bronzewood Obelisk
+7BA40000:00000000:0:0:0:NUTS:Northern Forests:Brown Nuts Tree
+CB500001:00000000:0:0:0:VXCF:Northern Forests:Copperwood Vortex
+94700144:00000000:0:0:0:DYGR:Northern Forests:Dying Grove
+7E240000:00000002:0:0:0:ESHP:Northern Forests:Elven Shop
+CC400004:00000020:0:0:0:EPIS:Northern Forests:Evil Passage, Inside Silverwood Forest
+84400144:00000000:0:0:0:FAER:Northern Forests:Faerie Ring
+D3A01041:00000000:0:0:0:FLTH:Northern Forests:Filthy Encampment
+5E710000:00000000:0:0:0:FRUT:Northern Forests:Green Fruit Tree
+B4E04410:00000000:0:0:0:IFTG:Northern Forests:Ironwood Forest, Twisted Growth
+73000008:00000010:0:0:0:QLRD:Northern Forests:Quickling Lord
+BBC01410:00004040:0:0:0:RAVF:Northern Forests:Ravaged Path Fork
+F7F05001:00000000:0:0:0:SRDF:Northern Forests:Silver River, Dank Forest Opening
+2A601504:00000000:0:0:0:SRMP:Northern Forests:Silver River, Murky Pool
+2C604410:00004040:0:0:0:SRRF:Northern Forests:Silver River, River's Fork
+F3904500:00000000:0:0:0:NSSF:Northern Forests:Silver River, Small Fork
+3D010045:00000000:0:0:0:SFAT:Northern Forests:Silverwood Forest, Ancient Tree
+E3001540:00000000:0:0:0:SILP:Northern Forests:Silvery Pool
+C8E40000:00000000:0:0:0:ELRD:Northern Forests:Woodelf Lord
+A3A00500:00000000:0:0:0:DCWS:Ocean:Damp Cavern, Wellspring
+34F10000:00000000:0:0:0:GIRT:Ocean:Giant River Turtle
+B3D00004:00000010:0:0:0:KICR:Ocean:King Crab
+AE500004:00000000:0:0:0:LARE:Ocean:Lagoon, Reef
+B5240020:00000002:0:0:0:PUTA:Ocean:Putakwa
+88F40004:00000000:0:0:0:M7DP:Ocean:River Landing, Dirt Path
+B3D41100:00000000:0:0:0:SAND:Ocean:Sandbar
+87F00010:00000000:0:0:0:SHSH:Ocean:Seher'Sahham
+3D710000:00000000:0:0:0:SCQU:Ocean:Ship Captains Quarters
+D7710000:00000000:0:0:0:SHEN:Ocean:Ship Entrance
+C1400000:00000010:0:0:0:SLLA:Ocean:Slimeworm Lair
+C1400004:00000000:0:0:0:UGLK:Ocean:Underground Lake
+31F10400:00000000:0:0:0:UGLE:Ocean:Underground Lake End
+55E00040:00000000:0:0:0:M7WS:Ocean:Wounded Sailor
+54300004:00004040:0:0:0:AADE:Rhudaur:Abandoned Asylum, Dead end
+66E00022:00000000:0:0:0:BALT:Rhudaur:Balthazar
+DA800040:00000004:0:0:0:RBNK:Rhudaur:Bank of Rhudaur
+0AB00010:00000010:0:0:0:DRED:Rhudaur:Dread Mystic
+A8B0A002:00000010:0:0:0:FLES:Rhudaur:Flesh Golem
+78000001:00000000:0:0:0:OMAN:Rhudaur:Old Man
+EBF00006:00000000:0:0:0:RHUD:Rhudaur:Rhudaur
+96300010:00000002:0:0:0:RARM:Rhudaur:Rhudaur Armour Shop
+7AD00055:00000000:0:0:0:RHUC:Rhudaur:Rhudaur Center
+79A00001:00000002:0:0:0:REXO:Rhudaur:Rhudaur Exotic Weapons
+6C500004:00000002:0:0:0:RMIS:Rhudaur:Rhudaur Missile Weapon Shop
+F3F00001:00000002:0:0:0:RMYS:Rhudaur:Rhudaur Mystical Items Store
+45B00010:00000002:0:0:0:RTEM:Rhudaur:Rhudaur Temple Healer
+61500000:00000002:0:0:0:RTHI:Rhudaur:Rhudaur Thieve's Guild
+90900004:00000002:0:0:0:RWEP:Rhudaur:Rhudaur Weapon Shop
+EC340004:00000000:0:0:0:SHAD:Rhudaur:Shadow Fist Temple
+13300055:00004040:0:0:0:STGH:Rhudaur:Shadow Fist Temple, Great Hall
+F3700008:00000000:0:0:0:STAL:Rhudaur:Shadowfist Temple, Ancient Library
+D3600051:00000000:0:0:0:STTS:Rhudaur:Shadowfist Temple, Towering Statue
+8DA00042:00000000:0:0:0:ASYL:Rhudaur:Warped Asylum
+65000010:00000002:25:0:0:AGES:Rocky Trail:Aged Titan Spells Shop
+04100040:00000000:0:0:0:BICE:Rocky Trail:Black Ice Cavern, Crystal
+04100504:00000000:0:0:0:BICT:Rocky Trail:Black Ice Cavern, Dragon Fork
+DD500410:00004040:0:0:0:BICO:Rocky Trail:Black Ice Cavern, Outside Shar' Kur
+CBF000A0:00000000:0:0:0:ANOR:Rocky Trail:Chancellor Annora
+32E01154:00000000:0:0:0:FRZN:Rocky Trail:Frozen Cavern
+32E00009:00000010:0:0:0:YETI:Rocky Trail:Frozen Cavern (Large Yeti)
+8B404000:00004040:0:0:0:DCSB:Rocky Trail:Glacial Cavern, Staircase Bottom
+D2E01000:00000010:0:0:0:GRSK:Rocky Trail:Glacial Room Sharh'Kur (druid only)
+32E00040:00000000:0:0:0:GSMN:Rocky Trail:Gypsy Spirit
+4F400100:00000000:0:0:0:WATR:Rocky Trail:Ice Lake (Water Spirit)
+54320040:00000010:0:0:0:ICEG:Rocky Trail:Ice Tower (Ice Golem)
+48900040:00000010:0:0:0:ICES:Rocky Trail:Ice Tower (Ice Sorceress)
+78E00400:00000010:0:0:0:BIFC:Rocky Trail:Massive White Dragon
+31D00508:00004040:0:0:0:MCOP:Rocky Trail:Monastery, Courtyard
+3FC00056:00000000:0:0:0:MOIG:Rocky Trail:Monastery, Inner Gate
+22E00040:00000010:0:0:0:NOMD:Rocky Trail:Nomadic Chieftain
+92510140:00004040:0:0:0:RCK1:Rocky Trail:Rocky Trail (Base of Mountain)
+92501140:00000000:0:0:0:RCK2:Rocky Trail:Rocky Trail (Titan Fork)
+E6300550:00000000:0:0:0:TCVE:Rocky Trail:Torchlit Caverns
+E6500040:00004040:0:0:0:OBTC:Rocky Trail:Torchlit Caverns Obelisk
+78500080:00000000:0:0:0:RTTB:Rocky Trail:Tower, Bedroom
+23610000:00000000:0:0:0:AFGC:Scorching Desert:Ancient Fortress, Grand Chamber
+48600080:00000000:0:0:0:AFJ1:Scorching Desert:Ancient Fortress, Jail Cell
+48610002:00000000:0:0:0:AFJC:Scorching Desert:Ancient Fortress, Jail Entrance
+4AB01005:00000000:0:0:0:DBDE:Scorching Desert:Blue Dragons Entrance
+66001140:00004040:0:0:0:SDOE:Scorching Desert:Bountiful Oasis, Eastern Entrance
+5B805002:00004040:0:0:0:SDGP:Scorching Desert:Bountiful Oasis, Golden Palace
+43300055:00000000:0:0:0:BOSP:Scorching Desert:Bountiful Oasis, Shimmering Pool
+66004001:00004040:0:0:0:SDOS:Scorching Desert:Bountiful Oasis, Southern Entrance
+93700014:00000002:0:0:0:DVCR:Scorching Desert:Dusty Village, Common Room
+F4301140:00004040:0:0:0:DVEA:Scorching Desert:Dusty Village, Eastern Entrance
+F4300104:00004040:0:0:0:DVNE:Scorching Desert:Dusty Village, Northern Entrance
+8F800004:00000000:0:0:0:DVOT:Scorching Desert:Dusty Village, Ornate Tent
+F4300005:00004040:0:0:0:DVSE:Scorching Desert:Dusty Village, South Entrance
+2DF00005:00000002:0:0:0:DVVS:Scorching Desert:Dusty Village, Village Store
+F4300050:00004040:0:0:0:SDOV:Scorching Desert:Dusty Village, Western Entrance
+2E301000:00000010:0:0:0:DBDB:Scorching Desert:Enormous Blue Dragon
+EEA00056:00000000:0:0:0:SPCW:Scorching Desert:Golden Palace Courtyard, Well
+01D00000:00000000:0:0:0:GPFP:Scorching Desert:Golden Palace, Feline Prisoner
+DAE00001:00000000:0:0:0:GPNP:Scorching Desert:Golden Palace, NPP Portal
+5FE00008:00000000:0:0:0:PKSL:Scorching Desert:Golden Palace, Secret Library
+53200001:00000010:0:0:0:GSTR:Scorching Desert:Golden Palace,Rakshasha Rajah
+35540014:00004040:0:0:0:GPES:Scorching Desert:Great Pyramid, Entrance
+35500050:00004040:0:0:0:GPLH:Scorching Desert:Great Pyramid, Level 1 Halfway Point
+355000AA:00004040:0:0:0:GPLF:Scorching Desert:Great Pyramid, Level 3 Entrance
+35500051:00004040:0:0:0:GPLP:Scorching Desert:Great Pyramid, Level 4
+35500005:00004040:0:0:0:GPLV:Scorching Desert:Great Pyramid, Level 5
+35500004:00004040:0:0:0:GPSS:Scorching Desert:Great Pyramid, Stone Sphinx Level 1
+FAF00000:00000010:0:0:0:HYDR:Scorching Desert:Hydra
+C5814100:00004040:0:0:0:LCUD:Scorching Desert:Limestone Caverns ,up to desert
+C5800010:00000000:0:0:0:LCPR:Scorching Desert:Limestone Caverns NPP Portal
+79700004:00000010:0:0:0:LCAR:Scorching Desert:Limestone Caverns, Argak the Grey
+C5814001:00004040:0:0:0:SDEA:Scorching Desert:Limestone Caverns, Exit (1)
+C5804500:00000000:0:0:0:LCMF:Scorching Desert:Limestone Caverns, Manscorpion Fork
+0B100010:00000010:0:0:0:SDMK:Scorching Desert:Limestone Caverns, Manscorpion King
+C5801001:00000000:0:0:0:LCOA:Scorching Desert:Limestone Caverns, Outside Argak
+FDA10040:00004040:0:0:0:SDWL:Scorching Desert:Limestone Caverns, Wooden Ladder
+C5804200:00000000:0:0:0:RBFH:Scorching Desert:Limetone caverns, Hydra Door
+42A04410:00000000:0:0:0:LMMS:Scorching Desert:Manscorpain Shamans Fork
+5D800140:00004040:0:0:0:SCMW:Scorching Desert:Mountain Wall, End
+5D805400:00004040:0:0:0:MWFF:Scorching Desert:Mountain Wall, Fortress Fork
+5D804500:00004040:0:0:0:MWSE:Scorching Desert:Mountain Wall, South Eastern Corner
+70E00100:00000000:0:0:0:SDMM:Scorching Desert:Mummified Miner
+43200080:00000010:0:0:0:SDBP:Scorching Desert:Red Iron Mine, Black Pit (Hideous Abomin
+68A00504:00000000:0:0:0:SCSQ:Scorching Desert:Sandstone Quarry
+C5806000:00004040:0:0:0:SDSG:Scorching Desert:Saracen Hideout Gate
+14201180:00000000:0:0:0:SHEH:Scorching Desert:Saracen Hideout, Entrance Hall
+88B00420:00000000:0:0:0:SDFG:Scorching Desert:Saracen Hideout, Fortress Gates
+5EF08800:00000000:0:0:0:SHGD:Scorching Desert:Saracen Hideout, Guardroom
+F4D0005A:00004040:0:0:0:SHGF:Scorching Desert:Saracen Hideout, Guardroom Fork
+52F01100:00000000:0:0:0:SHNP:Scorching Desert:Saracen Hideout, Narrow Precipice
+F4D05A02:00000000:0:0:0:SHNE:Scorching Desert:Saracen Hideout, Northern End
+D2600085:00000000:0:0:0:SHPH:Scorching Desert:Saracen Hideout, Plaster Hall Iron Door
+33600008:00000010:0:0:0:SHSC:Scorching Desert:Saracen Hideout, Saracen Commander
+AD540000:00000010:0:0:0:SHHP:Scorching Desert:Saracen Hideout, Saracen High Priest
+52F00080:00004040:0:0:0:NPND:Scorching Desert:Saracens Hideout, No Drawbridge
+E6701000:00004040:0:0:0:SCFB:Scorching Desert:Scorched Cavern, Firepit (2)
+E6704400:00004040:0:0:0:SCFC:Scorching Desert:Scorched Cavern, Firepit (3)
+E6700100:00004040:0:0:0:SCFD:Scorching Desert:Scorched Cavern, Firepit (4)
+E6710044:00000000:0:0:0:SFUP:Scorching Desert:Scorched Cavern, Firepit Under Pyramid
+4AE40004:00000000:0:0:0:SDAJ:Scorching Desert:Scorching Desert, Ancient Jail
+4AE05100:00004040:0:0:0:SDBO:Scorching Desert:Scorching Desert, Basalt Obelisk (1)
+4AE05001:00004040:0:0:0:SDBB:Scorching Desert:Scorching Desert, Basalt Obelisk (2)
+4AE01500:00004040:0:0:0:SDBA:Scorching Desert:Scorching Desert, Basalt Obelisk (3)
+4AE40400:00004040:0:0:0:SDLC:Scorching Desert:Scorching Desert, Limestone Entrance (1)
+4AE44010:00004040:0:0:0:SDLE:Scorching Desert:Scorching Desert, Limestone Entrance (2)
+4AE40410:00004040:0:0:0:SDLB:Scorching Desert:Scorching Desert, Limestone Entrance (3)
+48500001:00000000:0:0:0:SDNT:Scorching Desert:Scorching Desert, Nomad Tent
+60200050:00000000:0:0:0:SDSP:Scorching Desert:Small Pyramid, Entrance (Guard Sergeant)
+D4100004:00000000:0:0:0:SPSD:Scorching Desert:Small Pyramid, Seeress's Den
+45040004:00004040:0:0:0:SPSS:Scorching Desert:Small Pyramid, Stone Stairway
+3F200005:00000000:0:0:0:SPTO:Scorching Desert:Small Pyramid, Trader's Office
+3B800001:00000000:0:0:0:SPWM:Scorching Desert:Small Pyramid, Withered Old Man
+58600000:00000010:0:0:0:SDTP:Scorching Desert:Tomb of the Pharaoh
+53700050:00000000:0:0:0:CRMT:Sewers:Crumbling Tunnels
+01E00010:00000000:0:0:0:DCCW:Sewers:Dark Cave (instant regen cave worm)
+58080001:00000010:0:0:0:MADW:Sewers:Mad Wizard
+E9510005:00000000:0:0:0:STBS:Sewers:Sewer Tunnel, Brass street
+FDA10055:00000000:0:0:0:GAV1:Sewers:Sewer Tunnel, Junction (below TS)
+E9510050:00000000:0:0:0:STRS:Sewers:Sewer Tunnel, River Street
+3B800010:00000000:0:0:0:SHFD:Sewers:Shifty Dwarf
+17420005:00000000:0:0:0:SLST:Sewers:Slimy Sewer Tunnel
+B1510014:00000000:0:0:0:SSTB:Sewers:Slum Sewer Tunnel, Bend
+CBF00008:00000010:0:0:0:SMGB:Sewers:Smuggler Boss
+CCE00085:00004040:0:0:0:SMGF:Sewers:Smuggler's Hideout (Fork)
+86400010:00000010:0:0:0:WJEL:Sewers:White Jelly
+D4200014:00004040:0:0:0:SADG:Silvermere:Adventurer's Guild
+67110001:00000000:0:0:0:ARNA:Silvermere:Arena (Practice Dummy)
+67140000:00000000:0:0:0:ARN2:Silvermere:Arena (Tough Practice Dummy)
+D4E00091:00000004:0:0:0:SBNK:Silvermere:Bank of Godfrey
+7BB00001:00000002:0:0:0:BARS:Silvermere:Bard's Song Store
+30500009:00000002:0:0:0:CLKR:Silvermere:Cloakroom
+09100010:00000002:0:0:0:COLN:Silvermere:Colin's Maces
+4DE00005:00000002:0:0:0:MEIA:Silvermere:Curio Shop (Meia)
+8DA00040:00000002:0:0:0:DRUS:Silvermere:Druid Spell Shop
+F1400055:00000000:0:0:0:SFOU:Silvermere:Fountain
+31400011:00000002:0:0:0:SGEN:Silvermere:General Store (Giovanni)
+E5000015:00004040:0:0:0:GSNE:Silvermere:Guild Street, Northern End
+D9A00080:00000000:0:0:0:GUIL:Silvermere:Guildmaster
+D9C10000:00000000:0:0:0:SHOD:Silvermere:Halls of the Dead
+7D200010:00000002:0:0:0:HELF:Silvermere:Helfgrim's Blades
+07100040:00000002:0:0:0:JAEL:Silvermere:Jael's Missile Weapons
+05200015:00000000:0:0:0:SJNK:Silvermere:Junkyard, Entrance
+DEF00011:00000002:0:0:0:MAGS:Silvermere:Magic Shoppe (Aiken)
+3CA40000:00000002:0:0:0:NINS:Silvermere:Ninja Supply Shop
+B1700054:00004040:0:0:0:SNOB:Silvermere:Noble St (Slum Gates)
+72300055:00004040:0:0:0:SOAK:Silvermere:Oak St & Sovereign St
+41900005:00000002:0:0:0:BOAT:Silvermere:Pier (Boatman)
+12200040:00000000:0:0:0:RDSH:Silvermere:Realm Deeds Shop
+01B00054:00004040:0:0:0:SRST:Silvermere:River St & Guild St
+A0600010:00000002:0:0:0:SARJ:Silvermere:Sarkhee's Jewellery
+59410000:00000002:0:0:0:SEN3:Silvermere:Sentara's Clothing (Head/Feet)
+76000054:00000002:0:0:0:SEN1:Silvermere:Sentara's Clothing (Robes)
+72940040:00000002:0:0:0:SEN2:Silvermere:Sentara's Clothing (Torso/Legs/Hands)
+F6A00084:00000002:0:0:0:SKA3:Silvermere:Skali's Back Room (Shields)
+03900054:00000002:0:0:0:SKA1:Silvermere:Skali's Front Room (Accessories)
+23000011:00000002:0:0:0:SKA2:Silvermere:Skali's Show Room (Armour)
+89C00055:00004040:0:0:0:SOVN:Silvermere:Sovereign St Nth
+85400000:0000C040:0:0:0:SUPP:Silvermere:Sysop Support Chamber
+21100010:00000002:0:0:0:STMB:Silvermere:Temple Chapel (bishop)
+80400055:00004040:0:0:0:STMP:Silvermere:Temple Entrance
+24040004:00000002:0:0:0:STMH:Silvermere:Temple Healer (Wounded Messenger)
+03F00001:00000002:0:0:0:STMS:Silvermere:Temple Spell Store
+70400044:00000000:0:0:0:HOME:Silvermere:The Homely Hearth (Hooded Traveller)
+83E00010:00000002:0:0:0:THUL:Silvermere:Thuluk's Axes
+4EB00065:00000000:0:0:0:TGAT:Silvermere:Town Gates
+9D400055:00000000:0:0:0:STSQ:Silvermere:Town Square
+7B100010:00000002:0:0:0:TRAT:Silvermere:Trader Tull's (Bloodied Booth)
+F5100041:00000002:0:0:0:WAIL:Silvermere:Wailing Tavern (Nasty-Looking Man)
+60F00010:00000000:0:0:0:SLDR:Slums:Building Rooftop (Slaver Leader)
+96100008:00000002:0:0:0:GRNG:Slums:Grungy Shop
+04040004:00000000:0:0:0:ORCM:Slums:Orc Mansion
+8F500004:00000010:0:0:0:ORCW:Slums:Orc Warleader
+A0700025:00000000:0:0:0:SLMB:Slums:Outside Black House
+B4040008:00000002:0:0:0:SLMH:Slums:Shadowy healer
+ABC00055:00000000:0:0:0:SLMC:Slums:Slum Crossroads
+62400055:00000000:0:0:0:SLMQ:Slums:Slum Square
+A0700052:00004040:0:0:0:SLMG:Slums:Slum Street (Outside Grungy)
+4C200061:00000000:0:0:0:SSFG:Slums:Slum Street,Forest Gate
+51B00040:00000010:0:0:0:SMST:Slums:Spectral Mage
+88900049:00000000:0:0:0:SSME:Slums:Strange Mansion, Entrance
+4BA00010:00000002:0:0:0:SLMS:Slums:Unholy Spell Shop
+76B00095:00000000:0:0:0:SLMW:Slums:Western Door
+45700001:00000008:20:49:0:AGET:Trainers:Aged Titan
+42600400:00000008:10:10:9:BARX:Trainers:Bard Spirit
+7BB00084:0000000A:0:9:9:BART:Trainers:Bard Trainer
+42601000:00000008:10:10:4:CLEX:Trainers:Cleric Spirit
+F0400004:00000008:0:9:4:CLET:Trainers:Cleric Trainer
+7EC00050:00000018:10:10:13:DRUX:Trainers:Druid Spirit
+76000014:00000008:0:9:13:DRUT:Trainers:Druid Trainer
+10E00040:00000008:0:29:0:KTRA:Trainers:Dwarven Trainer
+10E40000:00000008:20:49:0:ETRA:Trainers:Elven Trainer
+F0540000:00000008:0:0:0:TIME:Trainers:Ethereal Prison(Timelord)
+42600004:00000008:10:10:10:GYPX:Trainers:Gypsy Spirit
+F9F00040:00000008:0:9:10:GYPT:Trainers:Gypsy Trainer
+7EC00005:00000018:10:10:12:MAGX:Trainers:Mage Spirit
+F2A00040:00000008:0:9:12:MAGT:Trainers:Mage Trainer
+7EC04100:00000018:10:10:6:MISX:Trainers:Missionary Spirit
+26F00001:00000008:0:9:6:MIST:Trainers:Missionary Trainer
+42600001:00000008:10:10:15:MYSX:Trainers:Mystic Spirit
+8A800004:00000008:0:9:15:MYST:Trainers:Mystic Trainer
+5AE00004:00000008:0:2:0:NGUI:Trainers:Newhaven Adventurer's Guild
+42604000:00000008:10:10:7:NINX:Trainers:Ninja Spirit
+73810010:00000008:0:9:7:NINT:Trainers:Ninja Trainer
+7EC01400:00000018:10:10:3:PALX:Trainers:Paladin Spirit
+6B900004:00000008:0:9:3:PALT:Trainers:Paladin Trainer
+42600100:00000008:10:10:5:PRIX:Trainers:Priest Spirit
+04200001:00000008:0:9:5:PRIT:Trainers:Priest Trainer
+B8300059:00000000:10:10:0:QEST:Trainers:Quest Hall
+42600040:00000008:10:10:14:RANX:Trainers:Ranger Spirit
+EF900001:00000008:0:9:14:RANT:Trainers:Ranger Trainer
+17C00040:00000008:0:29:0:RTRA:Trainers:Rhudaur Grizzled Trainer
+CFE00050:00000018:10:10:8:THIX:Trainers:Thief Spirit
+73200010:00000008:0:9:8:THFT:Trainers:Thief Trainer
+D8200020:00000008:11:19:0:FTRE:Trainers:Tree House (Aldreth)
+74400040:00000008:0:9:0:UNIT:Trainers:Universal Trainer
+77500055:00000008:10:10:11:WALX:Trainers:Warlock Spirit
+6FC00041:00000008:0:9:11:WALT:Trainers:Warlock Trainer
+7EC00090:00000008:10:10:1:WARX:Trainers:Warrior Spirit
+76F00004:00000008:0:9:1:WART:Trainers:Warrior Trainer
+42600010:00000008:10:10:2:WITX:Trainers:Witchunter Spirit
+23800001:00000008:0:9:2:WITT:Trainers:Witchunter Trainer
+BA740004:00000000:0:0:0:VAED:Volcano:Aged Earth Dragon Entrance
+A5D00080:00000010:0:0:0:VDPH:Volcano:Dark Phoenix
+1C700040:00000010:0:0:0:VMGL:Volcano:Fire Twins
+87B10000:00000000:0:0:0:BHGE:Volcano:Gaunt One Elder
+12900004:00000000:0:0:0:VLEF:Volcano:Lesser Efreetis
+12900021:00000000:0:0:0:VODP:Volcano:Outside Dark Phoenix
+35200020:00000010:0:0:0:VRDM:Volcano:Red Demonling
+BA714044:00000000:0:0:0:BHCF:Volcano:Undermountain Caverns, Fork
+BA711000:00000000:0:0:0:VU11:Volcano:Undermountain Caverns, Level 11
+BA710001:00000000:0:0:0:VU13:Volcano:Undermountain Caverns, Level 13
+BA701400:00000000:0:0:0:VU14:Volcano:Undermountain Caverns, Level 14
+5F900600:00000000:0:0:0:VUPK:Volcano:Use polished key
+BA701000:00000000:0:0:0:VENT:Volcano:Volcano Entrance
+16940040:00000000:0:0:0:VBWI:Volcano:Volcano, burnt witchunter
+16915000:00000000:0:0:0:VCRT:Volcano:Volcano, Cramped Tunnels
+B1440004:00000000:0:0:0:VDTD:Volcano:Volcano, Darkened Tunnels
+B1440001:00000000:0:0:0:VDTS:Volcano:Volcano, Darkened Tunnels Start
+B1408001:00000000:0:0:0:VSEL:Volcano:Volcano, start of east side loop
+B1405000:00000000:0:0:0:VSWL:Volcano:Volcano, start of west side loop

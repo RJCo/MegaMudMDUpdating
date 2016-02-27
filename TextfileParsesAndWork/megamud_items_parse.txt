@@ -1,0 +1,101 @@
+
+In the default Items.md, classes are listed:
+    0073 -- Mystic
+    00cd -- Witchunter
+    0127 -- Paladin
+    0181 -- Cleric
+    01db -- Priest
+    0235 -- Missionary
+    028f -- Ninja
+    02e9 -- Thief
+    
+    This actually looks like it could be junk data...
+
+
+------------
+
+
+Looks like header
+    0402:  0300 7501 0000 0100 ffff
+    0402:  0200 4d02 0000 ab01 ffff  (default Items.md)
+
+Item record looks to start at:
+    000040C:  d401 <item id, etc.> [in global Items.md, it's d201]
+    00004e1:  d401 <item id, etc.>
+
+040c-040d   d401 header code or something [in global Items.md, it's d201]
+
+040c is now going to be the base for the following "offset"
+
+Offset      Hex         Info
+  2         040e-0412   stringified item id next 5 bytes
+  7         0413-0417   00s
+ 12         0418        80 (128 in dec...)
+ 13         0419-041a   1027 -- 2 byte version of item ID number
+ 16         041b-0438   30 bytes, item name : looks to be null terminated, so 0438 is always null?
+            0439-0461   Bought/Sold (string, e.g. "Bard Trainer") (40 bytes, null terminated?)
+            0462-046f   If needed, do (string, e.g. "AADEASYL.mp") (13 bytes, null terminated)
+            0470-0471   Min to Keep
+            0472-0473   Max to Get
+            0474-0475   00 00 -- Clothing
+                        01 00 -- Weapon
+                        02 00 -- Projectile
+                        03 00 -- Furniture
+                        04 00 -- Food
+                        05 00 -- Drink
+                        06 00 -- Light
+                        07 00 -- Key
+                        08 00 -- Container
+                        09 00 -- Scroll
+                        0a 00 -- Special
+
+
+            0476-0477   Weight
+            0478-047b   Cost
+
+            047c-047e   02 00 00 -- Auto collect
+                        00 08 00 -- Auto-discard
+                        10 00 00 -- Auto-equip
+                        20 00 00 -- Auto-find
+                        00 10 00 -- Auto-open
+                        04 00 00 -- Auto-buy
+                        08 00 00 -- Auto-sell
+                        40 00 00 -- Cannot be taken
+                        00 02 00 -- Can use to backstab
+                        00 04 00 -- Must have minimum
+                        00 00 02 -- Loyal Item
+
+            047f        40
+
+            0480-04bb   00s
+                        0481 : Required Strength
+                        0483 : Min Damage
+                        0485 : Max Damage
+                        0487 : ??
+                        048a : Weapon Speed
+                        048c : "0a" ??
+
+                        0499-049a : Stealth modifier
+                        0499-049b : Dodge modifier
+
+            04cf-04d0 : Dropped by monster ID
+
+
+            04bc        Clothing location on body
+                        00 -- None
+                        02 -- Head
+                        03 -- Hands
+                        04 -- Finger
+                        05 -- Feet
+                        06 -- Arms
+                        07 -- Back
+                        08 -- Neck
+                        09 -- Legs
+                        0a -- Waist
+                        0b -- Torso
+                        0c -- Shield
+                        0e -- Wrist
+                        0f -- Ears
+                        10 -- Worn
+
+            04bd-04e0   00s

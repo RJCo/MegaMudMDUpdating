@@ -1,0 +1,379 @@
+
+Updated Classes.md to have 2 new Classes.  Results:
+
+
+SHOULD REDO THIS WITHOUT PLAYING AROUND!  Cleaner version would be nice
+
+            4d 44 42 32 02 00                    b                       a
+0x0000:     4D 44 42 32 02 00 65 04 75 13 02 00 04 00 65 04 01 00 00 00 06 00 65 04 E2 00 
+to                            xx xx xx xx             xx xx                   xx xx xx xx
+0x0000:     4D 44 42 32 02 00 28 00 78 B2 02 00 04 00 42 32 01 00 00 00 06 00 02 00 10 01
+to                            xx xx xx xx       xx    xx xx             xx    xx    xx 
+0x0000:     4D 44 42 32 02 00 6A 04 80 00 02 00 05 00 00 00 01 00 00 00 07 00 00 00 DA 01 
+to                            xx xx xx xx             xx xx                   xx xx xx
+0x0000:     4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 0E 02 
+to                                                                                  xx xx
+0x0000:     4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 45 02 <-- used preexisting space?
+to                                                                                  xx xx
+0x0000:     4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 7F 02 
+ 
+
+Redo of the edits, with comment, and without and playing around
+-------
+    length      
+0:  0x1c00      4D 44 42 32 02 00 65 04 75 13 02 00 04 00 65 04 01 00 00 00 06 00 65 04 E2 00 
+                4D 44 42 32 02 00 62 04 75 13 02 00 04 00 62 04 01 00 00 00 06 00 62 04 0F 01  <-- Opened it in megamud and saved it.  No idea why it changes, but...
+1:  0x1c00      4D 44 42 32 02 00 28 00 78 B2 02 00 04 00 42 32 01 00 00 00 06 00 02 00 3D 01  <-- ranger, mystic, addedone
+                4D 44 42 32 02 00 5A 04 75 13 02 00 04 00 5A 04 01 00 00 00 06 00 5A 04 3D 01  ((second pass))
+2:  0x1c00      4D 44 42 32 02 00 62 04 75 13 02 00 04 00 62 04 01 00 00 00 06 00 62 04 6E 01  <-- ranger, mystic, addedone, addedtwo
+                4D 44 42 32 02 00 5A 04 75 13 02 00 04 00 5A 04 01 00 00 00 06 00 5A 04 6E 01  ((second pass))
+3:  0x2000      4D 44 42 32 02 00 62 04 75 13 02 00 05 00 62 04 01 00 00 00 07 00 62 04 A3 01  <-- ranger, mystic, addedone, addedtwo, addedthree
+    0x2000      4D 44 42 32 02 00 5A 04 75 13 02 00 05 00 5A 04 01 00 00 00 07 00 5A 04 A3 01  ((second pass))
+4:  0x2000      4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 DA 01  <-- ranger, mystic, addedone, addedtwo, addedthree; then addedfour starts next group
+                4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 DA 01  ((second pass))
+5:  0x2000      4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 14 02  <-- .. addedfour, witchunter, addedfive
+                4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 14 02 
+6:  0x2000      4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 51 02  <-- .. addedfour, witchunter, addedfive, addedsix
+                4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 51 02 
+7:  0x2000      4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 91 02  <-- .. addedfour, witchunter, addedfive, addedsix, addedseven
+                4D 44 42 32 02 00 28 00 78 B2 02 00 05 00 42 32 01 00 00 00 07 00 02 00 91 02 
+8:  0x2400      4D 44 42 32 02 00 28 00 78 B2 02 00 06 00 42 32 01 00 00 00 08 00 02 00 D5 02  <-- .. addedfour, witchunter, addedfive, addedsix, addedseven; then addedeight starts next group
+                4D 44 42 32 02 00 28 00 78 B2 02 00 06 00 42 32 01 00 00 00 08 00 02 00 D5 02 
+                4D 44 42 32 02 00 28 00 78 B2 02 00 06 00 42 32 01 00 00 00 08 00 02 00 D5 02 
+-------
+
+0:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01       <-- "13" and "8" are strings in it,
+    0x1002      09 00 C8 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+1:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01       <-- "13" and "8" are strings in it,
+    0x1002      0A 00 6D 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+2:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01 
+    0x1002      0B 00 12 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+3:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      07 00 7E 01 00 00 01 00 03 00           <-- Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+4:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      08 00 23 01 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+5:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      09 00 C8 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+6:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01       <-- "13", "18", and "8" are strings in it,
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      0A 00 6D 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+7:  0x0402      05 00 2E 02 00 00 03 00 FF FF 
+    0x0802      01 00 9A 03 00 00 FF FF 04 00 
+    0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01 
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+    0x1402      0B 00 12 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+8:  0x0402      05 00 2E 02 00 00 03 00 FF FF 
+    0x0802      01 00 9A 03 00 00 FF FF 05 00 
+    0x0c00      01 00 04 00 C5 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0B 01 32 32 00 00 00 00 00 80 05 00 0A 01 38 00 00 00 00 00 80 01       <-- "13", "18", "22", and "8" are strings in it,
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+    0x1402      05 00 2E 02 00 00 05 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22)
+    0x1802      07 00 7D 01 00 00 01 00 04 00           <-- AddedEight(23), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+-------
+0x0c00 data
+0:  0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01       <-- "13" and "8" are strings in it,
+1:  0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01       <-- "13" and "8" are strings in it,
+2:  0x0c00      01 00 02 00 DD 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0A 01 38 00 00 00 00 00 80 01 
+3:  0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+4:  0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+5:  0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01        <-- "13", "18", and "8" are strings in it,
+6:  0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01       <-- "13", "18", and "8" are strings in it,
+7:  0x0c00      01 00 03 00 D1 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0A 01 38 00 00 00 00 00 80 01 
+8:  0x0c00      01 00 04 00 C5 03 00 00 FF FF FF FF 0B 01 31 33 00 00 00 00 00 80 03 00 0B 01 31 38 00 00 00 00 00 80 04 00 0B 01 32 32 00 00 00 00 00 80 05 00 0A 01 38 00 00 00 00 00 80 01       <-- "13", "18", "22", and "8" are strings in it,
+
+
+In the 0x0c00 data, it looks like the strings are the last ID in each "page" or whatever.  It looks to break down like this:
+    01 00 03 00 D1 03 00 00 FF FF FF FF 
+        0B 01 31 33 00 00 00 00 00 80 03 00 
+        0B 01 31 38 00 00 00 00 00 80 04 00 
+        0A 01 38    00 00 00 00 00 80 01 00
+
+
+-------
+0x0402 data
+0:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+1:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+2:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+3:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+4:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+5:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+6:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+7:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+8:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+
+05 00 -- how many records in this set?
+2e 02 -- how many bytes are *free* in this set?
+00 00 -- always zero?
+03 00 -- ??
+FF FF -- ??
+
+-------
+0x0802 data
+0:    0x0802    01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+1:    0x0802    01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+2:    0x0802    01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+3:    0x0802    01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+4:    0x0802    01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+5:    0x0802    01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+6:    0x0802    01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+7:    0x0802    01 00 9A 03 00 00 FF FF 04 00 
+8:    0x0802    01 00 9A 03 00 00 FF FF 05 00 
+
+FFFF
+03 -> 04 when "page" gets added
+04 -> 05 when "page" gets added
+
+
+-------
+0x1002 data
+    0x1002      09 00 C8 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+    0x1002      0A 00 6D 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+    0x1002      0B 00 12 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+
+
+
+
+-------
+0x1402 data
+3:  0x1402      07 00 7E 01 00 00 01 00 03 00           <-- Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+4:  0x1402      08 00 23 01 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+5:  0x1402      09 00 C8 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+6:  0x1402      0A 00 6D 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+7:  0x1402      0B 00 12 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+8:  0x1402      05 00 2E 02 00 00 05 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22)
+
+
+    0x1802      07 00 7D 01 00 00 01 00 04 00           <-- AddedEight(23), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+
+
+
+
+
+
+
+
+
+
+-------
+All non-0x0c00 data
+
+
+0:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x1002      09 00 C8 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+1:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x1002      0A 00 6D 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+2:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 03 00           <-- Bard (9)
+    0x1002      0B 00 12 00 00 00 01 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+3:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      07 00 7E 01 00 00 01 00 03 00           <-- Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+4:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      08 00 23 01 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+5:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      09 00 C8 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+6:  0x0402      05 00 2E 02 00 00 03 00 FF FF           <-- Warrior (1), Gypsy (10), Warlock (11), Mage (12), Druid (13)
+    0x0802      01 00 9A 03 00 00 FF FF 04 00           <-- Bard (9)
+    0x1002      05 00 2D 02 00 00 04 00 00 00           <-- Ranger (14), Mystic (15), AddedOne (16), AddedTwo (17), AddedThree (18)
+    0x1402      0A 00 6D 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+7:  0x0402      05 00 2E 02 00 00 03 00 FF FF 
+    0x0802      01 00 9A 03 00 00 FF FF 04 00 
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+    0x1402      0B 00 12 00 00 00 01 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+8:  0x0402      05 00 2E 02 00 00 03 00 FF FF 
+    0x0802      01 00 9A 03 00 00 FF FF 05 00 
+    0x1002      05 00 2D 02 00 00 04 00 00 00 
+    0x1402      05 00 2E 02 00 00 05 00 03 00           <-- AddedFour (19), Witchunter (2), AddedFive (20), AddedSix (21), AddedSeven (22)
+    0x1802      07 00 7D 01 00 00 01 00 04 00           <-- AddedEight(23), Paladin (3), Cleric (4), Priest (5), Missionary (6), Ninja (7), Thief (8)
+
+
+
+Last 4 bytes Analysis
+First set
+           0       1       2       3       4       5       6       7       8
+0x0402  0300    0300    0300    0300    0300    0300    0300    0300    0300    
+0x0802  FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    
+0x1002  0100    0100    0100    0400    0400    0400    0400    0400    0400    
+0x1402                          0100    0100    0100    0100    0100    0500    
+0x1802                                                                  0100
+
+Second set
+           0       1       2       3       4       5       6       7       8
+0x0402  FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    FFFF    
+0x0802  0300    0300    0300    0400    0400    0400    0400    0400    0500
+0x1002  0000    0000    0000    0000    0000    0000    0000    0000    0000    
+0x1402                          0300    0300    0300    0300    0300    0300    
+0x1802                                                                  0400
+
+
+Order of sets in terms of sorting the index:
+    0x0402, 0x1002, 0x1402, 0x1802, 0x0802
+
+
+0x0c00
+    01 00 02 00 DD 03 00 00 FF FF FF FF 
+        0B 01 31 33 00 00 00 00 00 80 03 00 
+        0A 01 38    00 00 00 00 00 80 01 00
+
+
+0x0c00      
+    01 00 03 00 D1 03 00 00 FF FF FF FF 
+        0B 01 31 33 00 00 00 00 00 80 03 00 
+        0B 01 31 38 00 00 00 00 00 80 04 00 
+        0A 01 38    00 00 00 00 00 80 01 00
+
+
+0x0c00
+    a1    b1    c1          d1
+    01 00 04 00 C5 03 00 00 FF FF FF FF 
+        a2 b2 c2                   d2 e2
+        0B 01 31 33 00 00 00 00 00 80 03 00         13  0x0402
+        0B 01 31 38 00 00 00 00 00 80 04 00         18  0x1002
+        0B 01 32 32 00 00 00 00 00 80 05 00         22  0x1402
+        0A 01 38    00 00 00 00 00 80 01 00          8  0x1802
+
+a1:  TOC ID?
+b1:  section counts following
+c1:  bytes left in this TOC
+d1:  First and last?  No idea.
+
+a2:  bytes left in this record (not counting this field)
+b2:  TOC ID?
+c2:  stringified last row's index for the record this points to
+d2:  80?  a marker of some kind?
+e2:  "First set" in the last 4 bytes of the section's header
+
+
+
+
+
+
+
+
+
+
+
+4D 44 42 32 02 00 28 00 78 B2 02 00 06 00 42 32 01 00 00 00 08 00 02 00 D5 02 
+
+
+
+
+4d 44 42 32 zz 00 xx xx xx xx yy 00 bb bb xx xx 01 00 00 00 aa aa xx xx xx xx
+
+
+
+
+a == Number of 0x0400 byte pages are in the file
+b == seems to be a-2.  Why?
+
+
+0x0465 =  1125dec / 8 = 
+0x3242 = 12866dec / 8 = 1608 bytes
+0x0028 =    40dec
+
+
+226
+272 - + 46
+474 - +202
+526 - + 52
+639 - +113
+
+
+
+
+
+Last file position: 1bff (same for 0 new, 1 new, 2)
+                    1fff when new page
+
+
+1002:   09 00 C8 00 00 00 01 00 00 00 
+to      xx    xx          
+1002:   0A 00 6D 00 00 00 01 00 00 00 
+to      xx    xx
+1002:   0B 00 12 00 00 00 01 00 00 00 
+to      xx    xx xx       xx
+1002:   05 00 2D 02 00 00 04 00 00 00 
+
+
+1 New class starts with 5A 01 31 36
+2 New class starts with 5A 01 31 37 
+3 New class starts with 5A 01 31 38
+
+
+09 -> 0A -> makes sense -- added 1 new class each step
+C8 -> 6D -> 12
+            hmm.  Goes down by 0x5b/91dec?
+            c8 = 200
+            6d = 109
+new record starts at 10c2
+Free space left per section!
+
+
+
+Switching their "01 31 29" and "01 32 30" numbers didn't make a difference
+
+
+5A 01 32 30 00 00 00 00 00 80 13 00 41 64 64 65 64 46 6F 75 72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 64 00 06 06 0A 08 09 00 00 1F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 9D FF 9D FF 9D FF 9D FF 9D FF 00 00 00 00 00 00 00 
+
+
+
+
+
+
+
+
+
+
+00001c00    Races.md:       4D 44 42 32 02 00 FC 00 05 11 02 00 04 00 FC 00 01 00 00 00 06 00 FC 00 4F 00 00 00 00 00 00 00 
+00002400    Classes:        4D 44 42 32 02 00 28 00 78 85 02 00 06 00 42 32 01 00 00 00 08 00 02 00 AF 03 
+00079c00    Spells.md:      4D 44 42 32 54 00 77 00 75 13 03 00 E3 01 77 00 01 00 00 00 E6 01 77 00 BC 03 02 00 61 63 65 6E 
+00084400    Monsters:       4D 44 42 32 55 00 ED 01 75 13 03 00 0D 02 ED 01 01 00 00 00 10 02 ED 01 A9 B2 04 00 00 00 00 00 00 80 
+000e4000    Items.md:       4D 44 42 32 53 00 5C 04 75 13 03 00 8C 03 5C 04 01 00 00 00 8F 03 5C 04 B9 12 02 00 65 72 00 72 79 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00135400    Paths.md:       4D 44 42 32 34 00 54 03 75 13 03 00 D1 04 54 03 01 00 00 00 D4 04 54 03 01 19 00 00 6F 6D 00 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

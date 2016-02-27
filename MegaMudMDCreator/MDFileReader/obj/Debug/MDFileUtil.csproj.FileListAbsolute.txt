@@ -1,0 +1,6 @@
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\obj\Debug\MDFileUtil.csprojResolveAssemblyReference.cache
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\bin\Debug\MDFileReader.pdb
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\obj\Debug\MDFileReader.pdb
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\bin\Debug\MDFileReader.dll.config
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\bin\Debug\MDFileReader.dll
+C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MegaMudMDCreator\MDFileReader\obj\Debug\MDFileReader.dll
