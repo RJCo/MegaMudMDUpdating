@@ -47,7 +47,51 @@ namespace MDFileUtil {
         }
 
         private static List<List<byte>> RoomsFileReader(string file) {
-            throw new NotImplementedException();
+            try {
+                var parsedRawData = new List<List<byte>>();
+
+                using (var fsSource = new FileStream(file, FileMode.Open, FileAccess.Read)) {
+                    // Read the source file into a byte array.
+                    byte[] bytes = new byte[fsSource.Length];
+                    int numBytesToRead = (int)fsSource.Length;
+                    int numBytesRead = 0;
+                    while (numBytesToRead > 0) {
+                        // Read may return anything from 0 to numBytesToRead.
+                        int n = fsSource.Read(bytes, numBytesRead, numBytesToRead);
+
+                        // Break when the end of the file is reached.
+                        if (n == 0)
+                            break;
+
+                        numBytesRead += n;
+                        numBytesToRead -= n;
+                    }
+
+
+                    var rowInformation = new List<byte>();
+                    for (int i = 0; i < bytes.Length - 1; i ++) {
+                        if (bytes[i] == 0x0d && bytes[i + 1] == 0x0a) {
+                            // We've hit the end of the record, so save the whole list to the return list
+                            parsedRawData.Add(rowInformation);
+
+                            // Reset the list for a new room record to start
+                            rowInformation = new List<byte>();
+
+                            // skip the next byte and continue
+                            i++;
+                            continue;
+                        }
+
+                        rowInformation.Add(bytes[i]);
+                    }
+                }
+                return parsedRawData;
+            } 
+            catch (Exception e) {
+                Console.WriteLine("Reading file {0} failed:  " + e.Message, file);
+            }
+
+            return null;
         }
 
         private static List<List<byte>> MDFileReader(string file) {

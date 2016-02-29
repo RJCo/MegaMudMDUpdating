@@ -23,4 +23,19 @@ The remaining 5 positions are for the visible exists:
 	00004 - S
 	00005 - N & S
 
-	
+	00002 - Door North
+	00006 - S & Door North 
+	00008 - Door South
+	00009 - N & Door South
+	0000A - Door North & Door South
+
+Doors double the value of the exit:
+	N:1 => DN:2
+	S:4 => DS:8
+
+
+
+
+
+
+

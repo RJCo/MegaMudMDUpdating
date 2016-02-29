@@ -18,6 +18,9 @@
   00008000 -- really special rooms?
 
 
+0:0:0 <-- MinLvl:MaxLvl:RestrictedToClassID
+
+AALY:Ancient Ruin:Ancient Ruin Dark Alley <-- Code:Group:Name
 
 
 

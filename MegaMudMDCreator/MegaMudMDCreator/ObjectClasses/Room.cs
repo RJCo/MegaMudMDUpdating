@@ -8,93 +8,66 @@ namespace MegaMudMDCreator
 {
     public class Room : IMDFileRecord
     {
-        /*
         #region Enums
-        public enum WeaponClasses
-        {
-            Unknown = 0x00,
-            AllWeapons = 0x08,
-            OneHanded = 0x04,
-            Staff = 0x09,
-            BluntOnly = 0x07,
+        public enum RoomFlags {
+            NoFlags = 0x00000000,
+            Shop = 0x00000002,
+            Bank = 0x00000004,
+            Trainer = 0x00000008,
+            StopBeforeEntering = 0x00000010,
+            AvoidThisRoomIfPossible = 0x00000020,
+            HideInGoToList = 0x00004040,
+            SpecialRoom = 0x00008000
         }
 
-        public enum ArmorClasses
-        {
-            Platemail = 0x09,
-            Scalemail = 0x08,
-            Chainmail = 0x07,
-            Leather = 0x06,
-            Ninja = 0x02,
-            Silk = 0x01,
-            Unknown = 0x00, 
-        }
-
-        public enum MagicTypes
-        {
-            None = 0x00,
-            Mage = 0x01,
-            Priest = 0x02,
-            Druid = 0x03,
-            Bard = 0x04,
-            Kai = 0x05,
-        }
-
-        public enum AbilitiesAndModifiers
-        {
-            Bash = 0x1f,
-            Stealth = 0x67,
-            Jumpkick = 0x23,
-            Dodge = 0x22,
-            Tracking = 0x26,
-            HitMagical = 0x8e,
-            AntiMagic = 0x33,
-            Thievery = 0x27,
-            Crit = 0x3a,
-            Kick = 0x1d,
-            Punch = 0x1e,
-            Picklocks = 0x25,
-            Traps = 0x28,
+        public enum Exits {
+            North           = 0x00001,
+            DoorNorth       = 0x00002,
+            South           = 0x00004,
+            DoorSouth       = 0x00008,
+            East            = 0x00010,
+            DoorEast        = 0x00020,
+            West            = 0x00040,
+            DoorWest        = 0x00080,
+            Northeast       = 0x00100,
+            DoorNortheast   = 0x00200,
+            Northwest       = 0x00400,
+            DoorNorthwest   = 0x00800,
+            Southeast       = 0x01000,
+            DoorSoutheast   = 0x02000,
+            Southwest       = 0x04000,
+            DoorSouthwest   = 0x08000,
+            Up              = 0x10000,
+            DoorUp          = 0x20000,
+            Down            = 0x40000,
+            DoorDown        = 0x80000,
         }
         #endregion
-        */
 
-        /*
-        public int ID { get; set; }
+        public string Key { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
-        public int ExperiencePercentage { get; set; }
-        public int Combat { get; set; }
-        public int HitpointPerLevelMinimum { get; set; }
-        public int HitpointPerLevelMaximum { get; set; }
-        public WeaponClasses WeaponType { get; set; }
-        public ArmorClasses ArmorType { get; set; }
-        public int MagicLevel { get; set; }
-        public MagicTypes MagicType { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
-        */
+        public string Group { get; set; }
+        public RoomFlags Flags { get; set; }
+        public Exits AvailableExits { get; set; }
+        public int MinimumLevel { get; set; }
+        public int MaximumLevel { get; set; }
+        public int RestrictedToClassID { get; set; }
 
         public new string ToString() {
-            throw new NotImplementedException();
-
-            /*
             string recordStr = string.Empty;
 
-            recordStr += string.Format("ID: {0}\t", ID);
             recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("\tCombat: {0}\n", Combat);
-            recordStr += string.Format("\tHP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            recordStr += string.Format("\tHP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            recordStr += string.Format("\tWeapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            recordStr += string.Format("\tArmor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            recordStr += string.Format("\tMagic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
-            recordStr += string.Format("\tMagic Level: {0}\n", MagicLevel);
-
-            foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
-            }
+            recordStr += string.Format("Key: {0}\t", Key);
+            recordStr += string.Format("Code: {0}\n", Code);
+            recordStr += string.Format("Group: {0}\n", Group);
+            recordStr += string.Format("MinimumLevel: {0}\n", MinimumLevel);
+            recordStr += string.Format("MaximumLevel: {0}\n", MaximumLevel);
+            recordStr += string.Format("RestrictedToClassID: {0}\n", RestrictedToClassID);
+            recordStr += string.Format("RoomFlags: {0}\n", Flags);
+            recordStr += string.Format("AvailableExits: {0}\n", AvailableExits);
+          
             return recordStr;
-            */
         }
     }
 }

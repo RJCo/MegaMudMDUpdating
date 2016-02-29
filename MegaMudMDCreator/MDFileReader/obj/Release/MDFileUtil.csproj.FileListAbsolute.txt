@@ -10,3 +10,9 @@ C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MDFileReader\
 C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MDFileReader\obj\Release\MDFileUtil.csprojResolveAssemblyReference.cache
 C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MDFileReader\obj\Release\MDFileReader.dll
 C:\Users\rjc\Dropbox\MajorMUD\MegaMud DAT Parsing\MegaMudMDCreator\MDFileReader\obj\Release\MDFileReader.pdb
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\bin\Release\MDFileReader.dll.config
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\bin\Release\MDFileReader.dll
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\bin\Release\MDFileReader.pdb
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\obj\Release\MDFileUtil.csprojResolveAssemblyReference.cache
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\obj\Release\MDFileReader.dll
+C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MDFileReader\obj\Release\MDFileReader.pdb
