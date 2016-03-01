@@ -10,7 +10,7 @@ A utility/API for updating the .MD files MegaMud uses
 - [ ] Monsters.md : Need to finalize all data/parsing
 - [ ] Rooms.md : Need to figure out 3-nibble hex room code
 - [ ] ROOMROOM.mp files : Need to figure out 3-nibble hex room code.  Also need to write file reader
-- [ ] Spell.md : Haven't started
+- [ ] Spells.md : Haven't started
 - [ ] Messages.md : Haven't started
 - [ ] Paths.md : Haven't started
 
