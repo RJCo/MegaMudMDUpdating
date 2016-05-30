@@ -29,12 +29,12 @@ namespace MegaMudMDCreator
         }
 
         public enum Priority {
+            Normal = 0x00, 
             FindFirst = 0x08,
+            Last = 0x10,
+            Low = 0x20, 
             High = 0x40,
             First = 0x80,
-            Normal = 0x00,
-            Low = 0x20,
-            Last = 0x10,
         }
 
         public enum MegamudFlags {
@@ -95,10 +95,15 @@ namespace MegaMudMDCreator
             Arena = 0x00,
         }
 
-        #endregion
-       
+        public enum AttackType {
+            None = 0,
+            Normal = 1,
+            Spell = 2,
+            Rob3 = 3,
+        }
 
-        
+        #endregion
+
         public int ID { get; set; }
         public string Name { get; set; }
         public Priority AttackPriority { get; set; }
@@ -142,25 +147,26 @@ namespace MegaMudMDCreator
         public int Experience { get; set; }
 
         // TODO:  Fill in the rest of Monsters info here.  
-
-        public int i { get; set; }
-        public int j { get; set; }
-        public int r { get; set; }
-        public int F { get; set; }
-        public int G_flags { get; set; }
-
-
-        /*
-        public int ExperiencePercentage { get; set; }
-        public int Combat { get; set; }
-        public int HitpointPerLevelMinimum { get; set; }
-        public int HitpointPerLevelMaximum { get; set; }
-        public WeaponClasses WeaponType { get; set; }
-        public ArmorClasses ArmorType { get; set; }
-        public int MagicLevel { get; set; }
-        public MagicTypes MagicType { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
-        */
+        public int BSDefense;                   // BS defense
+        public int CharmResist;                 // Charm resist
+        public int FollowChance;                // Monster follow% (agility?)
+        public int sLevelUnknown;               // HP regen? Monster level?
+        public int Undead;                      // Undead?
+        public Common.Abilities Abilities;      // max 10   // Monster abilities
+        public int AbilityValues;               // max 10   // Monster abil values
+        public Item Weapon;                     // Weapon used
+        public AttackType Attack;               // max 5    // Attack type (0=None,1=Normal,2=Spell,3=Rob3?)
+        public int AttackChance;                // max 5    // Attack chance     (only 5 used now)
+        public int AttackAccuracy;              // max 5    // Attack accuracy/spell#
+        public int AttackMinimumDamage;         // max 5    // Attack min damage/cast%
+        public int AttackMaxDamage;             // max 5    // Attack max damage/cast level
+        public int AttackEnergyCost;            // max 5    // Attack energy used
+        public int AlternateAttackHitSpells;    // max 5    // Alternate attack hit spells
+        public Spell OnDeathSpell;              // Death spell
+        public Spell OnRegenSpell;              // Regen spell
+        public Spell InBetweenRoundSpell;       // max 5    // In-between round spells
+        public int InBetweenRoundSpellChange;   // max 5    // In-between round chance %
+        public int InBetweenRoundSpellLevel;    // max 5    // In-between rount cast level
 
         public new string ToString() {
             throw new NotImplementedException();
@@ -170,17 +176,11 @@ namespace MegaMudMDCreator
 
             recordStr += string.Format("ID: {0}\t", ID);
             recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("\tCombat: {0}\n", Combat);
-            recordStr += string.Format("\tHP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            recordStr += string.Format("\tHP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            recordStr += string.Format("\tWeapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            recordStr += string.Format("\tArmor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            recordStr += string.Format("\tMagic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
-            recordStr += string.Format("\tMagic Level: {0}\n", MagicLevel);
+            recordStr += string.Format("Experience: {0}\n", ExperiencePercentage);
+            recordStr += string.Format("Weapon Type: {0}\n", Enum.GetName(typeof(WeaponClasses), WeaponType));
 
             foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+                recordStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
             }
             return recordStr;
             */

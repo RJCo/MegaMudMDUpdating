@@ -25,3 +25,11 @@ C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDC
 C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MDFileReader.dll
 C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MDFileReader.pdb
 C:\Users\rjc\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\obj\Release\MegaMudMDCreator.csprojResolveAssemblyReference.cache
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MegaMudMDCreator.exe.config
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\obj\Release\MegaMudMDCreator.exe
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\obj\Release\MegaMudMDCreator.pdb
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MegaMudMDCreator.exe
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MegaMudMDCreator.pdb
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MDFileReader.dll
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\bin\Release\MDFileReader.pdb
+E:\Dropbox\GITHUB\MegaMudMDUpdating-GitHub\MegaMudMDCreator\MegaMudMDCreator\obj\Release\MegaMudMDCreator.csprojResolveAssemblyReference.cache

@@ -8,93 +8,78 @@ namespace MegaMudMDCreator
 {
     public class Message : IMDFileRecord
     {
-        /*
         #region Enums
-        public enum WeaponClasses
+        public enum ActionToTake
         {
-            Unknown = 0x00,
-            AllWeapons = 0x08,
-            OneHanded = 0x04,
-            Staff = 0x09,
-            BluntOnly = 0x07,
+            Ignore          = 0,
+            CheckRoom       = 1,
+            WaitForItToEnd  = 2,
+            RestForHPs      = 3,
+            RestForMana     = 4,
+            RunAway         = 5,
+            Hangup          = 6,
         }
 
-        public enum ArmorClasses
+        public enum Effect
         {
-            Platemail = 0x09,
-            Scalemail = 0x08,
-            Chainmail = 0x07,
-            Leather = 0x06,
-            Ninja = 0x02,
-            Silk = 0x01,
-            Unknown = 0x00, 
+            None                = 0x00000000,
+            Blinded             = 0x00000001,
+            Confused            = 0x00000002,
+            Poisoned            = 0x00000004,
+            LosingHPs           = 0x00000008,
+            CannotMove          = 0x00000010,
+            CannotAttack        = 0x00000020,
+            Diseased            = 0x00000040,
+            RegeningHP          = 0x00000080,
+            FindAnywhereInText  = 0x00000100,
+            RegeningMana        = 0x00000200,
+            FindInConversation  = 0x00000400,
+            EndsCombat          = 0x00001000,
+            LastActionFailed    = 0x00002000,
+            UseWhenChasing      = 0x00004000,
+            Disabled            = 0x00008000,
         }
 
-        public enum MagicTypes
-        {
-            None = 0x00,
-            Mage = 0x01,
-            Priest = 0x02,
-            Druid = 0x03,
-            Bard = 0x04,
-            Kai = 0x05,
+        // Not sure here
+        public enum MessageFlag {
+            None = 0x00000000,
+            Active = 0x00000001,
+            Wait = 0x00000002,
+            Parse1 = 0x00000004,
+            Parse2 = 0x00000008,
         }
 
-        public enum AbilitiesAndModifiers
-        {
-            Bash = 0x1f,
-            Stealth = 0x67,
-            Jumpkick = 0x23,
-            Dodge = 0x22,
-            Tracking = 0x26,
-            HitMagical = 0x8e,
-            AntiMagic = 0x33,
-            Thievery = 0x27,
-            Crit = 0x3a,
-            Kick = 0x1d,
-            Punch = 0x1e,
-            Picklocks = 0x25,
-            Traps = 0x28,
-        }
         #endregion
-        */
 
-        /*
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int ExperiencePercentage { get; set; }
-        public int Combat { get; set; }
-        public int HitpointPerLevelMinimum { get; set; }
-        public int HitpointPerLevelMaximum { get; set; }
-        public WeaponClasses WeaponType { get; set; }
-        public ArmorClasses ArmorType { get; set; }
-        public int MagicLevel { get; set; }
-        public MagicTypes MagicType { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
-        */
+        public int ID { get; set;}
+        public string Name { get; set;}
+        public string MessageText { get; set;}
+        public string EndsWith { get; set;}
+        public string Reply { get; set;}
+        public List<MessageFlag> MessageFlags { get; set;}
+        public List<Effect> Effects { get; set;}
+        public ActionToTake Action { get; set;}
+
 
         public new string ToString() {
-            throw new NotImplementedException();
-
-            /*
             string recordStr = string.Empty;
 
             recordStr += string.Format("ID: {0}\t", ID);
             recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("\tCombat: {0}\n", Combat);
-            recordStr += string.Format("\tHP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            recordStr += string.Format("\tHP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            recordStr += string.Format("\tWeapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            recordStr += string.Format("\tArmor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            recordStr += string.Format("\tMagic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
-            recordStr += string.Format("\tMagic Level: {0}\n", MagicLevel);
+            recordStr += string.Format("MessageText: {0}\n", MessageText);
+            recordStr += string.Format("EndsWith: {0}\n", EndsWith);
+            recordStr += string.Format("Reply: {0}\n", Reply);
+            recordStr += string.Format("Action: {0} {1}\n", Enum.GetName(typeof(ActionToTake), Action), Action);
 
-            foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+            foreach (var flag in MessageFlags) {
+                recordStr += string.Format("MessageFlags: {0}:{1}\n", Enum.GetName(typeof(MessageFlag), flag), flag);
             }
+
+            foreach (var effect in Effects) {
+                recordStr += string.Format("Effects: {0}:{1}\n", Enum.GetName(typeof(Effect), effect), effect);
+            }
+
             return recordStr;
-            */
         }
     }
 }

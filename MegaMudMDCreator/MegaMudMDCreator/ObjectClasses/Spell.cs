@@ -8,93 +8,96 @@ namespace MegaMudMDCreator
 {
     public class Spell : IMDFileRecord
     {
-        /*
+
         #region Enums
-        public enum WeaponClasses
-        {
-            Unknown = 0x00,
-            AllWeapons = 0x08,
-            OneHanded = 0x04,
-            Staff = 0x09,
-            BluntOnly = 0x07,
+        public enum SpellType {
+            ANY = 0,
+            PRIEST1 = 1,
+            PRIEST2 = 2,
+            PRIEST3 = 3,
+            MAGE1 = 4,
+            MAGE2 = 5,
+            MAGE3 = 6,
+            DRUID1 = 7,
+            DRUID2 = 8,
+            DRUID3 = 9,
+            BARDIC = 10,
+            MYSTIC = 11
         }
 
-        public enum ArmorClasses
-        {
-            Platemail = 0x09,
-            Scalemail = 0x08,
-            Chainmail = 0x07,
-            Leather = 0x06,
-            Ninja = 0x02,
-            Silk = 0x01,
-            Unknown = 0x00, 
+        public enum SpellFlag {
+            NONE    = 0x0000,
+            UNSURE  = 0x0001,
+            TIMED   = 0x0002,
+            EVIL    = 0x0004,
+            INSTANT = 0x0008,
+            SELF    = 0x0010,
+            PLAYER  = 0x0020,
+            MONSTER = 0x0040,
+            AREA    = 0x0080,
+            LEARNT  = 0x1000,
         }
 
-        public enum MagicTypes
-        {
-            None = 0x00,
-            Mage = 0x01,
-            Priest = 0x02,
-            Druid = 0x03,
-            Bard = 0x04,
-            Kai = 0x05,
-        }
-
-        public enum AbilitiesAndModifiers
-        {
-            Bash = 0x1f,
-            Stealth = 0x67,
-            Jumpkick = 0x23,
-            Dodge = 0x22,
-            Tracking = 0x26,
-            HitMagical = 0x8e,
-            AntiMagic = 0x33,
-            Thievery = 0x27,
-            Crit = 0x3a,
-            Kick = 0x1d,
-            Punch = 0x1e,
-            Picklocks = 0x25,
-            Traps = 0x28,
+        public enum CastType {
         }
         #endregion
-        */
 
-        /*
         public int ID { get; set; }
         public string Name { get; set; }
-        public int ExperiencePercentage { get; set; }
-        public int Combat { get; set; }
-        public int HitpointPerLevelMinimum { get; set; }
-        public int HitpointPerLevelMaximum { get; set; }
-        public WeaponClasses WeaponType { get; set; }
-        public ArmorClasses ArmorType { get; set; }
-        public int MagicLevel { get; set; }
-        public MagicTypes MagicType { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
-        */
+        public string Code { get; set; }
+        public string Command { get; set; }
+        public int Mana { get; set; }
+        public int Level { get; set; }
+        public SpellType Type { get; set; }
+        public SpellFlag Flag { get; set; }
+
+        public int LevelMultiplier{ get; set; }
+        public int EnergyUsed { get; set; }
+        public int MinimumDamage { get; set; }
+        public int MaximumDamage { get; set; }
+        public int Duration { get; set; }
+        public int Chance { get; set; }
+        public bool AreaOfEffect { get; set; }
+        public int MaximumLevel;                    // Max. level
+        public int LevelDivider;                    // Level divider?
+        public int UseLevel;                        // Use level range?
+        public int IncEvery;                        // ?
+        public CastType CastingType;                // Cast type
+        public Item LearnedFromItem { get; set; }
+        public Dictionary<Common.Abilities, int> Abilities = new Dictionary<Common.Abilities, int>();    // Max 10
+
 
         public new string ToString() {
-            throw new NotImplementedException();
 
-            /*
             string recordStr = string.Empty;
 
             recordStr += string.Format("ID: {0}\t", ID);
+            recordStr += string.Format("Code: {0}\t", Code);
             recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("\tCombat: {0}\n", Combat);
-            recordStr += string.Format("\tHP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            recordStr += string.Format("\tHP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            recordStr += string.Format("\tWeapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            recordStr += string.Format("\tArmor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            recordStr += string.Format("\tMagic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
-            recordStr += string.Format("\tMagic Level: {0}\n", MagicLevel);
+            recordStr += string.Format("Command: {0}\n", Command);
+            recordStr += string.Format("Mana: {0}\t", Mana); 
+            recordStr += string.Format("Level: {0}\t", Level);
+            recordStr += string.Format("Type: {0}\t", Enum.GetName(typeof(SpellType), Type));
+            recordStr += string.Format("Flag: {0}\t", Enum.GetName(typeof(SpellFlag), Flag));
+            recordStr += string.Format("LevelMultiplier: {0}\n", LevelMultiplier);
+            recordStr += string.Format("EnergyUsed: {0}\n", EnergyUsed);
+            recordStr += string.Format("MinimumDamage: {0}\n", MinimumDamage);
+            recordStr += string.Format("MaximumDamage: {0}\n", MaximumDamage);
+            recordStr += string.Format("Duration: {0}\n", Duration);
+            recordStr += string.Format("Chance: {0}\n", Chance);
+            recordStr += string.Format("AreaOfEffect: {0}\n", AreaOfEffect);
+            recordStr += string.Format("MaximumLevel: {0}\n", MaximumLevel);
+            recordStr += string.Format("LevelDivider: {0}\n", LevelDivider);
+            recordStr += string.Format("UseLevel: {0}\n", UseLevel);
+            recordStr += string.Format("IncEvery: {0}\n", IncEvery);
+            recordStr += string.Format("CastType: {0}\t", Enum.GetName(typeof(CastType), CastingType));
+            recordStr += string.Format("LearnedFromItem: {0}\n", LearnedFromItem);
 
-            foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+            foreach (var ability in Abilities) {
+                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(Common.Abilities), ability.Key), ability.Value);
             }
+
             return recordStr;
-            */
         }
     }
 }

@@ -69,7 +69,7 @@ namespace MegaMudMDCreator {
                 var armorUseable = Class.ArmorClasses.Unknown;
                 int magicLevel = 0;
                 var magicType = Class.MagicTypes.None;
-                var abilitiesAndModifiers = new Dictionary<Class.AbilitiesAndModifiers, int>();
+                //var abilitiesAndModifiers = new Dictionary<Abilities, int>();
 
                 // Since headers on rows are variable length, we need to first get to a null and then 
                 // find the index of the first bit of data past "0x80" and know that's where we start
@@ -142,7 +142,7 @@ namespace MegaMudMDCreator {
                     var value = BitConverter.ToInt16(rawValue, 0);
 
                     if (key != 0) {
-                        abilitiesAndModifiers.Add((Class.AbilitiesAndModifiers)key, value);
+                        //abilitiesAndModifiers.Add((Class.AbilitiesAndModifiers)key, value);
                     }
                 }
 
@@ -157,7 +157,7 @@ namespace MegaMudMDCreator {
                     ArmorType = armorUseable, 
                     MagicLevel = magicLevel, 
                     MagicType = magicType, 
-                    AbilitiesAndMods = abilitiesAndModifiers
+                    //AbilitiesAndMods = abilitiesAndModifiers
                 };
 
                 UpdateOffsetsAndLengths(-headerOffset);

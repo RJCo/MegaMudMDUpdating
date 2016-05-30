@@ -9,15 +9,30 @@ namespace MegaMudMDCreator
     public class Room : IMDFileRecord
     {
         #region Enums
-        public enum RoomFlags {
-            NoFlags = 0x00000000,
-            Shop = 0x00000002,
-            Bank = 0x00000004,
-            Trainer = 0x00000008,
-            StopBeforeEntering = 0x00000010,
-            AvoidThisRoomIfPossible = 0x00000020,
-            HideInGoToList = 0x00004040,
-            SpecialRoom = 0x00008000
+        public enum Flags {
+            NoFlags = 0x0000,
+            Shop = 0x0002,
+            Bank = 0x0004,
+            Trainer = 0x0008,
+            StopBeforeEntering = 0x0010,
+            AvoidThisRoomIfPossible = 0x0020,
+            HideInGoToList = 0x4040,
+            SpecialRoom = 0x8000
+        }
+        
+        public enum PathRoomFlags {
+            None = 0x0000,
+            DarkRoom = 0x0001,
+            RestUpHere = 0x0002,
+            DoNotRestHere = 0x0004,
+            PitchBlack = 0x0008,
+            StashPoint = 0x0010,
+            DoNotAttackHere = 0x0040,
+            RelearnRoom = 0x0080,
+            SuspectUNKNOWN = 0x0100,
+            DisarmTraps = 0x0200,
+            CanPickLock = 0x0400,
+            CycledUNKNOWN = 0x8000,
         }
 
         public enum Exits {
@@ -44,11 +59,14 @@ namespace MegaMudMDCreator
         }
         #endregion
 
-        public string Key { get; set; }
         public string Code { get; set; }
+        public string Checksum { get; set; }
         public string Name { get; set; }
+        public int WCCMap { get; set; }
+        public int WCCRoom { get; set; }
         public string Group { get; set; }
-        public RoomFlags Flags { get; set; }
+        public string Map { get; set; }
+        public List<Flags> RoomFlags { get; set; }
         public Exits AvailableExits { get; set; }
         public int MinimumLevel { get; set; }
         public int MaximumLevel { get; set; }
@@ -58,15 +76,20 @@ namespace MegaMudMDCreator
             string recordStr = string.Empty;
 
             recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("Key: {0}\t", Key);
+            recordStr += string.Format("Key: {0}\t", Checksum);
             recordStr += string.Format("Code: {0}\n", Code);
+            recordStr += string.Format("WCC Map Room: {0} {1}\n", WCCMap, WCCRoom);
             recordStr += string.Format("Group: {0}\n", Group);
+            recordStr += string.Format("Map: {0}\n", Map);
             recordStr += string.Format("MinimumLevel: {0}\n", MinimumLevel);
             recordStr += string.Format("MaximumLevel: {0}\n", MaximumLevel);
             recordStr += string.Format("RestrictedToClassID: {0}\n", RestrictedToClassID);
-            recordStr += string.Format("RoomFlags: {0}\n", Flags);
             recordStr += string.Format("AvailableExits: {0}\n", AvailableExits);
-          
+
+            foreach (var flag in RoomFlags) {
+                recordStr += string.Format("Room Flag: {0}:{1}\n", Enum.GetName(typeof(Flags), flag), flag);
+            }
+
             return recordStr;
         }
     }

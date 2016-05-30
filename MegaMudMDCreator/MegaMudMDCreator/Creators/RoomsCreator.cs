@@ -60,6 +60,13 @@ namespace MegaMudMDCreator {
             var rooms = new List<Room>();
 
             throw new NotImplementedException();
+            /*
+                 // Calculate the checksum of the room name
+                int roomCheckSum = 0;
+                for (int i = 0; *(pszBuf+i); i++)
+                    roomCheckSum += (DWORD) ((int)(*(pszBuf+i)) * (i+1));
+                roomCheckSum = roomCheckSum << 20;
+            */
 
             /*
             foreach (var raw in rawData) {

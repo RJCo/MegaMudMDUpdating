@@ -39,22 +39,7 @@ namespace MegaMudMDCreator
             Kai = 0x05,
         }
 
-        public enum AbilitiesAndModifiers
-        {
-            Bash = 0x1f,
-            Stealth = 0x67,
-            Jumpkick = 0x23,
-            Dodge = 0x22,
-            Tracking = 0x26,
-            HitMagical = 0x8e,
-            AntiMagic = 0x33,
-            Thievery = 0x27,
-            Crit = 0x3a,
-            Kick = 0x1d,
-            Punch = 0x1e,
-            Picklocks = 0x25,
-            Traps = 0x28,
-        }
+
         #endregion
 
         public int ID { get; set; }
@@ -67,25 +52,24 @@ namespace MegaMudMDCreator
         public ArmorClasses ArmorType { get; set; }
         public int MagicLevel { get; set; }
         public MagicTypes MagicType { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
-
+        public Dictionary<Common.Abilities, int> AbilitiesAndMods { get; set; }
 
         public new string ToString() {
             string classStr = string.Empty;
             
             classStr += string.Format("ID: {0}\t", ID);
             classStr += string.Format("Name: {0}\n", Name);
-            classStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            classStr += string.Format("\tCombat: {0}\n", Combat);
-            classStr += string.Format("\tHP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            classStr += string.Format("\tHP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            classStr += string.Format("\tWeapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            classStr += string.Format("\tArmor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            classStr += string.Format("\tMagic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType)); 
-            classStr += string.Format("\tMagic Level: {0}\n", MagicLevel);
+            classStr += string.Format("Experience: {0}\n", ExperiencePercentage);
+            classStr += string.Format("Combat: {0}\n", Combat);
+            classStr += string.Format("HP Per Level (min): {0}\t", HitpointPerLevelMinimum);
+            classStr += string.Format("HP Per Level (max): {0}\n", HitpointPerLevelMaximum);
+            classStr += string.Format("Weapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
+            classStr += string.Format("Armor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
+            classStr += string.Format("Magic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType)); 
+            classStr += string.Format("Magic Level: {0}\n", MagicLevel);
 
             foreach (var ability in AbilitiesAndMods) {
-                classStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+                classStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(Common.Abilities), ability.Key), ability.Value);
             }
 
             return classStr;
