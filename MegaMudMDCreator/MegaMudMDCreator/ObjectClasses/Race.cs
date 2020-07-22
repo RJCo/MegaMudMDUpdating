@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MegaMudMDCreator
 {
@@ -48,7 +47,8 @@ namespace MegaMudMDCreator
         public int ExperiencePercentage { get; set; }
         public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
 
-        public new string ToString() {
+        public new string ToString()
+        {
             string recordStr = string.Empty;
 
             recordStr += string.Format("ID: {0}\t", ID);
@@ -62,7 +62,8 @@ namespace MegaMudMDCreator
             recordStr += string.Format("\tHealth: {0} to {1}\n", MinimumHealth, MaximumHealth);
             recordStr += string.Format("\tCharm: {0} to {1}\n", MinimumCharm, MaximumCharm);
 
-            foreach (var ability in AbilitiesAndMods) {
+            foreach (var ability in AbilitiesAndMods)
+            {
                 recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
             }
             return recordStr;

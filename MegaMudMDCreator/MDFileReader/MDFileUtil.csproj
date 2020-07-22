@@ -7,8 +7,8 @@
     <ProjectGuid>{5581B480-AE27-4460-A56B-EC29BFF3EA04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MDFileReader</RootNamespace>
-    <AssemblyName>MDFileReader</AssemblyName>
+    <RootNamespace>MDFileUtil</RootNamespace>
+    <AssemblyName>MDFileUtil</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Files.cs" />
     <Compile Include="Reader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

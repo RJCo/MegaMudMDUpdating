@@ -191,6 +191,57 @@ P - Spell cast on hit?
 
 
 
+sBSDefense;                  // BS defense
+short  sCharmResist;                // Charm resist
+        short  sArea;                       // Monster area
+        short  sGroupIdx;                   // Group index
+        short  sFollowCh;                   // Monster follow% (agility?)
+
+        char   cUndead;                     // Undead?
+        short  sDeathSpell;                 // Death spell
+        short  sRegenSpell;                 // Regen spell
+        short  sRoundSpells[5];             // In-between round spells
+        char   cRoundChance[5];             // In-between round chance %
+        char   cRoundCastLevel[5];          // In-between rount cast level
+
+
+
+
+        short  sAbilC [10];                 // Monster abilities
+        short  sAbilV [10];                 // Monster abil values
+        short  sWeapon;                     // Weapon used
+        char   cAttType  [5];               // Attack type (0=None,1=Normal,2=Spell,3=Rob3?)
+        char   cAttChance[5];               // Attack chance     (only 5 used now)
+        short  sAttParm1 [5];               // Attack accuracy/spell#
+        short  sHitSpells [5];              // Alternate attack hit spells
+
+
+
+h - Flags
+    02 - Not hostile
+    01 - Don't backstab
+    04 - Check if alive
+i - 00 -- constant?
+j - 40 -- constant?
+r - 00 00
+v - Accuracy
+F - ??
+G - Flags starting here?
+
+H - Attack / Spell Percentages:  8 bytes, each a different percentage
+I - Attack #1 Minimum, repeated for some reason
+M - 00 00 00 00
+N - Level per attack for attacks 1, 2, 3, 4, 5 (1 byte each)
+P - Spell cast on hit?
+
+
+
+
+
+
+
+
+
 
 
 

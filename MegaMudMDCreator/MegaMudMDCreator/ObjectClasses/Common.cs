@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿
 
-namespace MegaMudMDCreator {
-    public class Common {
-        public enum Abilities {
+namespace MegaMudMDCreator
+{
+    public class Common
+    {
+        public enum Abilities
+        {
             NoAbility = 0x0000,
             AbsoluteDamage = 0x0001,
             Defence = 0x0002,

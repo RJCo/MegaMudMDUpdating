@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MegaMudMDCreator {
-    public class RacesCreator {
+
+namespace MegaMudMDCreator
+{
+    public class RacesCreator
+    {
         public static int RaceIDOffset = 0;
         public static int RaceNameOffset = 2;
         public static int RaceNameLength = 28;
@@ -31,7 +32,8 @@ namespace MegaMudMDCreator {
         public static int AbilityKeyLength = 2;
         public static int AbilityValueLength = 2;
 
-        private static void UpdateOffsetsAndLengths(int headerOffset) {
+        private static void UpdateOffsetsAndLengths(int headerOffset)
+        {
             RaceIDOffset += headerOffset;
             RaceNameOffset += headerOffset;
             MinStrengthOffset += headerOffset;
@@ -52,12 +54,14 @@ namespace MegaMudMDCreator {
             AbilityValuesOffset += headerOffset;
         }
 
-        public static List<Race> GetAllRecords() {
+        public static List<Race> GetAllRecords()
+        {
             var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.RACES_FILE);
 
             var races = new List<Race>();
 
-            foreach (var raw in rawData) {
+            foreach (var raw in rawData)
+            {
                 //Console.WriteLine("Length of raw: {0}", raw.Count);
                 //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
                 //Console.WriteLine("RawData: {0}", data);
@@ -102,7 +106,8 @@ namespace MegaMudMDCreator {
                 raceId = BitConverter.ToInt16(id, 0);
 
                 // Race Name
-                for (int i = RaceNameOffset; (i < RaceNameOffset + RaceNameLength) && (raw[i] != 0x00); i++) {
+                for (int i = RaceNameOffset; (i < RaceNameOffset + RaceNameLength) && (raw[i] != 0x00); i++)
+                {
                     name += (char)raw[i];
                 }
 
@@ -122,22 +127,23 @@ namespace MegaMudMDCreator {
 
                 minimumIntellect = Convert.ToInt32(raw[MinIntellectOffset]);
                 maximumIntellect = Convert.ToInt32(raw[MaxIntellectOffset]);
-                
+
                 minimumWillpower = Convert.ToInt32(raw[MinWillpowerOffset]);
                 maximumWillpower = Convert.ToInt32(raw[MaxWillpowerOffset]);
-                
+
                 minimumAgility = Convert.ToInt32(raw[MinAgilityOffset]);
                 maximumAgility = Convert.ToInt32(raw[MaxAgilityOffset]);
-                
+
                 minimumHealth = Convert.ToInt32(raw[MinHealthOffset]);
                 maximumHealth = Convert.ToInt32(raw[MaxHealthOffset]);
-                
+
                 minimumCharm = Convert.ToInt32(raw[MinCharmOffset]);
                 maximumCharm = Convert.ToInt32(raw[MaxCharmOffset]);
 
 
                 // Modifiers and Abilities
-                for (int i = 0; i < MaxAbilities; i++) {
+                for (int i = 0; i < MaxAbilities; i++)
+                {
                     var rawKey = new byte[] {
                         raw[AbilityKeysOffset + (i*AbilityKeyLength)],
                         raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
@@ -151,12 +157,14 @@ namespace MegaMudMDCreator {
                     var key = BitConverter.ToInt16(rawKey, 0);
                     var value = BitConverter.ToInt16(rawValue, 0);
 
-                    if (key != 0) {
+                    if (key != 0)
+                    {
                         abilitiesAndMods.Add((Race.AbilitiesAndModifiers)key, value);
                     }
                 }
 
-                var thisRace = new Race {
+                var thisRace = new Race
+                {
                     ID = raceId,
                     Name = name,
                     MinimumStrength = minimumStrength,

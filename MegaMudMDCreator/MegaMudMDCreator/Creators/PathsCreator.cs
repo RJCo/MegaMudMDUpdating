@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MegaMudMDCreator {
-    public class PathsCreator {
+
+namespace MegaMudMDCreator
+{
+    public class PathsCreator
+    {
         /*
         public static int ClassIDOffset = 0;
         public static int ClassLength = 2;
@@ -36,7 +36,8 @@ namespace MegaMudMDCreator {
         public static int AbilityValueLength = 2;
         */
 
-        private static void UpdateOffsetsAndLengths(int headerOffset) {
+        private static void UpdateOffsetsAndLengths(int headerOffset)
+        {
             throw new NotImplementedException();
             /*
             ClassIDOffset += headerOffset;
@@ -54,7 +55,8 @@ namespace MegaMudMDCreator {
              * */
         }
 
-        public static List<Path> GetAllDefaultClasses() {
+        public static List<Path> GetAllDefaultClasses()
+        {
             var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.PATHS_FILE);
 
             var paths = new List<Path>();

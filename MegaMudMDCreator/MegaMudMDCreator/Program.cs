@@ -1,30 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MegaMudMDCreator
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
             // PrintAllClasses();
             PrintAllRaces();
         }
 
-        private static void PrintAllClasses() {
+        private static void PrintAllClasses()
+        {
             var allClasses = ClassesCreator.GetAllRecords();
 
-            foreach (var cls in allClasses) {
+            foreach (var cls in allClasses)
+            {
                 Console.WriteLine(cls.ToString());
             }
         }
 
-        private static void PrintAllRaces() {
+        private static void PrintAllRaces()
+        {
             var allRaces = RacesCreator.GetAllRecords();
 
-            foreach (var race in allRaces) {
+            foreach (var race in allRaces)
+            {
                 Console.WriteLine(race.ToString());
             }
         }

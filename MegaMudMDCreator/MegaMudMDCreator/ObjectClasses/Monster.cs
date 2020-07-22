@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MegaMudMDCreator
 {
     public class Monster : IMDFileRecord
     {
-        
+
         #region Enums
-        public enum MonsterType {
+        public enum MonsterType
+        {
             Solo = 0x00,
             Leader = 0x01,
             Follower = 0x02,
             Stationary = 0x03,
         }
 
-        public enum MonsterAlignment  {
+        public enum MonsterAlignment
+        {
             Good = 0x00,
             Evil = 0x01,
             ChoaticEvil = 0x02,
@@ -28,22 +27,25 @@ namespace MegaMudMDCreator
             Unknown = 0x07,
         }
 
-        public enum Priority {
-            Normal = 0x00, 
+        public enum Priority
+        {
+            Normal = 0x00,
             FindFirst = 0x08,
             Last = 0x10,
-            Low = 0x20, 
+            Low = 0x20,
             High = 0x40,
             First = 0x80,
         }
 
-        public enum MegamudFlags {
+        public enum MegamudFlags
+        {
             NotHostile = 0x02,
             DontBackstab = 0x01,
             CheckIfAlive = 0x04,
         }
 
-        public enum Relationship {
+        public enum Relationship
+        {
             Unknown = 0x00,
             Friend = 0x02,
             Avoid = 0x03,
@@ -52,14 +54,16 @@ namespace MegaMudMDCreator
             Hangup = 0x06,
         }
 
-        public enum Gender {
+        public enum Gender
+        {
             It = 0x00,
             Male = 0x01,
             Female = 0x02,
             Unknown = 0x03
         }
 
-        public enum LocationGroup {
+        public enum LocationGroup
+        {
             OrcMansion = 0x26,
             SpecialCreateAtUser = 0x25,
             NewhavenGraveyardAndCrypt = 0x24,
@@ -95,7 +99,8 @@ namespace MegaMudMDCreator
             Arena = 0x00,
         }
 
-        public enum AttackType {
+        public enum AttackType
+        {
             None = 0,
             Normal = 1,
             Spell = 2,
@@ -168,7 +173,8 @@ namespace MegaMudMDCreator
         public int InBetweenRoundSpellChange;   // max 5    // In-between round chance %
         public int InBetweenRoundSpellLevel;    // max 5    // In-between rount cast level
 
-        public new string ToString() {
+        public new string ToString()
+        {
             throw new NotImplementedException();
 
             /*

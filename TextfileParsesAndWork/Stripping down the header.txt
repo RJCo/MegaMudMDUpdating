@@ -1,0 +1,138 @@
+/*   cindexsb.h     external header
+
+/* define 16 bit integers as being type short - correct for most compilers */
+#ifndef INTDEF
+typedef short INT16;
+typedef int   INT32;
+#define INTDEF
+#endif
+
+/* size of objects */
+#define MAXINDXS 20             /* max indices */
+#define NUMINDXS (MAXINDXS+2)   /* number of indices */
+#define BUFSIZE 1024            /* buffer size for reading in nodes */
+#define DATAAREA 256            /* max size of key + data */
+#define MAXKLEN 100             /* maximum key length */
+#define MAXMKLEN 102            /* maximum multi-user key length (for share byte) */
+
+struct passparm {   /* file header for whole file */
+/* first check storage */
+    char magic[4];      /* will say 'MDB2' */
+
+/* parameter variables - seen by user */
+    int keyn;           /* key number */
+    char *key;          /* pointer to key */
+    long rec;           /* record number */
+    char *data;         /* pointer to data record */
+    int dlen;           /* len of data */
+
+    char status;
+/* status byte - either 'O' open or 'C' closed */
+
+    int retlen;         /* length of data found */
+    int retcde;         /* return code */
+    int errcde;         /* error code */
+
+/* file header information variables - whats on disk */ 
+    int root;       /* root node pointer */
+    int first;      /* first leaf node pointer */
+    int last;       /* last leaf node pointer */ 
+
+    int levels;     /* number of levels in tree */
+    int next;       /* next available node */
+    long nxtdrec;   /* next record for data file */
+    int endofile;   /* end of file */
+    
+/* internally used by cindex */ 
+    int fd;                     /* file descriptor */
+    int updtflag;               /* tells if header has been modified */
+
+    int checkflg;               /* 0 == don't perform check of datalist */
+
+    int dbyte;                  /* data byte */
+    char retkey[DATAAREA];      /* area for key and data */
+    int keynum[NUMINDXS];       /* current key number */
+    int ndenum[NUMINDXS];       /* current node number */
+    int curindx[NUMINDXS];      /* current index */
+    char delflag[NUMINDXS];     /* was a delete just performed ? */
+
+    char opstat;                    /* status of current operation */
+    
+//  12-1-99
+//  Updated to allow for maximum Win95 file name length - Gavin
+//  char filename[50];              /* filename */
+    char filename[256+1];           /* filename */
+    
+    int seclev;                     /* security level */
+    int extflag;                    /* extend or not (for doing upddisk) */
+    char *dbufptr;                  /* pointer to data record buffer */
+    int dbuflen;                    /* data buffer length */ 
+    char idbyte;                    /* id for data record */
+    long currec;                    /* current record number */
+    long lockrec;                   /* currently locked record number */
+    
+    char *curkyptr[NUMINDXS];   /* ptr to current key value */
+    long currcval[NUMINDXS];    /* current record number */
+    char curdbyte[NUMINDXS];    /* current data byte - used by low */
+
+    long pupdatnum;             /* last update number of header */
+    int sharenum;                   /* share number of psp */
+
+    char curlock[NUMINDXS];     /* current rec lock status of index */
+
+    char filemode;                  /* shared or exclusive use */
+    char filestat;                  /* LOCKED or UNLOCKED */
+    char readcnt;                   /* nesting of high level ops doing read */
+    char writcnt;                   /* nesting of high level ops doing write */
+
+    int srecurs;                    /* recursion flag, 1= in sema routines */
+
+    char curkyval[NUMINDXS][MAXMKLEN];  /* current key value */
+};
+
+
+#define KEYAREA 1012        /* key area */
+
+struct smallnode {  /* bcb node declaration */
+    INT16 smlevel;  /* level of node */
+    INT16 smcount;  /* key count */
+    INT16 smfree;   /* free space */
+    INT16 smp0;     /* p0 pointer */
+    INT16 smforwrd; /* forward pointer */
+    INT16 smrevrse; /* reverse pointer */
+    char smkeystr[KEYAREA]; /* area for keys */
+}; 
+
+struct bcb {            /* buffers for read and write of nodes */
+    int bfd;        /* file descriptor */
+    int bnde;       /* node number */   
+    int bstatus;        /* dirty or clean */
+    struct bcb *bnext;  /* pointer to next buffer in chain */
+    struct smallnode bbuffer;   /* buffer for node */
+};
+
+#define BUFFERS 10      /* defined by user */
+
+
+struct bcb bcbbuf[BUFFERS]; /* actual structure */
+int bcbnum = BUFFERS;       /* number of buffers */
+
+
+
+
+typedef struct passparm CFILE;      /* 10-11-84 */
+
+
+struct flddef {
+    char fldtype;       /* type of field */  
+    char keytype;       /* key type */
+    char dupflag;       /* unique or duplicate */ 
+    short fldlen;       /* length of field CHANGED: 7/2/87 (was int) */
+    char fldindex;      /* index number */
+    char *fldptr;  
+};
+
+typedef struct flddef FIELD;
+
+#define LASTFIELD ENDLIST, ENDLIST, 0, 0, 0, ""   /* last field in declaration */
+

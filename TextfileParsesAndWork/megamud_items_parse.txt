@@ -99,3 +99,4 @@ Offset      Hex         Info
                         10 -- Worn
 
             04bd-04e0   00s
+

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MegaMudMDCreator
 {
     public class Item : IMDFileRecord
     {
         #region Enums
-        public enum ItemType {
+        public enum ItemType
+        {
             Clothing = 0,
             Weapon = 1,
             Projectile = 2,
@@ -24,7 +22,8 @@ namespace MegaMudMDCreator
             Special = 10,
         }
 
-        public enum ItemEquippableSlot {
+        public enum ItemEquippableSlot
+        {
             Unknown = 0,
             None = 1,
             Weapon = 2,
@@ -43,7 +42,8 @@ namespace MegaMudMDCreator
             Ears = 15,
         }
 
-        public enum ItemEquippedOn {
+        public enum ItemEquippedOn
+        {
             None = 0,
             Unknown = 1,
             Head = 2,
@@ -54,7 +54,7 @@ namespace MegaMudMDCreator
             Arms = 6,
             Back = 7,
             Neck = 8,
-            Legs =9,
+            Legs = 9,
             Waist = 10,
             Torso = 11,
             Offhand = 12,
@@ -66,14 +66,16 @@ namespace MegaMudMDCreator
             Eyes = 19,
         }
 
-        public enum ItemWeaponType {
+        public enum ItemWeaponType
+        {
             OneHandedBlunt = 0,
             TwoHandedBlunt = 1,
             OneHandedSharp = 2,
             TwoHandedSharp = 3,
         }
 
-        public enum ItemArmorType {
+        public enum ItemArmorType
+        {
             None = 0,
             Natural = 1,
             Robes = 2,
@@ -86,7 +88,8 @@ namespace MegaMudMDCreator
             Platemail = 9,
         }
 
-        public enum ItemFlags {
+        public enum ItemFlags
+        {
             None = 0x00000000,
             Unknown = 0x00000001,
             AutoGet = 0x00000002,
@@ -140,9 +143,10 @@ namespace MegaMudMDCreator
         public int DroppedBy { get; set; }
         public int FromItem { get; set; }
         public int BasePrice { get; set; }
-        
 
-        public new string ToString() {
+
+        public new string ToString()
+        {
             throw new NotImplementedException();
 
             /*

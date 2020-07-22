@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Btrieve\BtrieveFile.cs" />
+    <Compile Include="Btrieve\BtrieveFileHeader.cs" />
+    <Compile Include="Btrieve\BtrieveRecord.cs" />
     <Compile Include="ObjectClasses\Common.cs" />
     <Compile Include="ObjectClasses\Class.cs" />
     <Compile Include="Creators\ClassesCreator.cs" />

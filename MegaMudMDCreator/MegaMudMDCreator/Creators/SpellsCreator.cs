@@ -1,177 +1,172 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MegaMudMDCreator {
-    public class SpellsCreator {
-        /*
-        public static int ClassIDOffset = 0;
-        public static int ClassLength = 2;
-        public static int ClassNameOffset = 2;
-        public static int ClassNameLength = 28;
-        public static int ExpOffset = 32;
-        public static int ExpLength = 11;
-        public static int CombatOffset = 34;
-        public static int CombatLength = 1;
-        public static int MinHPOffset = 35;
-        public static int MinHPLength = 1;
-        public static int MaxHPOffset = 36;
-        public static int MaxHPLength = 1; 
-        public static int WeaponsOffset = 37;
-        public static int WeaponsLength = 1;
-        public static int ArmorOffset = 38;
-        public static int ArmorLength = 1;
-        public static int MagicLevelOffset = 39;
-        public static int MagicLevelLength = 1;
-        public static int MagicTypeOffset = 40;
-        public static int MagicTypeLength = 11;
-        public static int AbilityKeysOffset = 41;
-        public static int AbilityKeysLength = 20;
-        public static int AbilityValuesOffset = 61;
-        public static int AbilityValuesLength = 20;
-        public static int MaxAbilities = 9;
-        public static int AbilityKeyLength = 2;
-        public static int AbilityValueLength = 2;
-        */
 
-        private static void UpdateOffsetsAndLengths(int headerOffset) {
+namespace MegaMudMDCreator
+{
+    public class SpellsCreator
+    {
+        public static int SpellIDOffset = 0;
+        public static int SpellIDLength = sizeof(short);
+        public static int SpellNameLength = 30 * sizeof(char);
+        public static int AbbrevLength = 7 * sizeof(char);
+        public static int FlagsLength = sizeof(int);
+        public static int CommandLength = 41 * sizeof(char);
+        public static int LevelLength = sizeof(char);
+        public static int LevelMultiplierLength = sizeof(char);
+        public static int ManaCostLength = sizeof(short);
+        public static int EnergyCostLength = sizeof(short);
+        public static int MinimumDamageLength = sizeof(short);
+        public static int MaximumDamageLength = sizeof(short);
+        public static int DurationInRoundsLength = sizeof(short);
+        public static int SCModifierLength = sizeof(short);
+        public static int IsAreaOfEffectLength = sizeof(char);
+        public static int TypeLength = sizeof(char);
+        public static int SpellClassLength = sizeof(char);
+
+        public static int MaxAbilityCount = 10;
+        public static int AbilityCodeLength = sizeof(short);
+        public static int AbilityValueLength = sizeof(short);
+        public static int MaximumLevelLength = sizeof(char);
+        public static int LevelDividerLength = sizeof(char);
+        public static int UseLevelRangeLength = sizeof(char);
+        public static int IncEveryLength = sizeof(char);
+        public static int CastTypeLength = sizeof(char);
+        public static int ItemSpellLearnedFromLength = sizeof(short);
+
+        private static void UpdateOffsetsAndLengths(int headerOffset)
+        {
             throw new NotImplementedException();
-            /*
-            ClassIDOffset += headerOffset;
-            ClassNameOffset += headerOffset;
-            ExpOffset += headerOffset;
-            CombatOffset += headerOffset;
-            MaxHPOffset += headerOffset;
-            MinHPOffset += headerOffset;
-            WeaponsOffset += headerOffset;
-            ArmorOffset += headerOffset;
-            MagicLevelOffset += headerOffset;
-            MagicTypeOffset += headerOffset;
-            AbilityKeysOffset += headerOffset;
-            AbilityValuesOffset += headerOffset;
-             * */
         }
 
-        public static List<Spell> GetAllRecords() {
+        public static List<Spell> GetAllRecords()
+        {
             var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.SPELLS_FILE);
-
+            int currentOffset = 0;
             var spells = new List<Spell>();
 
-            throw new NotImplementedException();
-
-            /*
-            foreach (var raw in rawData) {
+            foreach (var raw in rawData)
+            {
                 //Console.WriteLine("Length of raw: {0}", raw.Count);
                 //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
                 //Console.WriteLine("RawData: {0}", data);
 
-                int classID = -1;
-                string className = string.Empty;
-                int expBasePercent = -1;
-                int combatLevel = -1;
-                int minHPPerLevel = -1;
-                int maxHPPerLevel = -1;
-                var weaponsUseable = Class.WeaponClasses.Unknown;
-                var armorUseable = Class.ArmorClasses.Unknown;
-                int magicLevel = 0;
-                var magicType = Class.MagicTypes.None;
-                var abilitiesAndModifiers = new Dictionary<Class.AbilitiesAndModifiers, int>();
+                int ID = default(int);
+                string Name = string.Empty;
+                string Code = string.Empty;
+                string Command = string.Empty;
+                int Mana = default(int);
+                int Level = default(int);
+                var Type = Spell.SpellType.ANY;
+                var Flag = Spell.SpellFlag.NONE;
+                int LevelMultiplier = default(int);
+                int EnergyUsed = default(int);
+                int MinimumDamage = default(int);
+                int MaximumDamage = default(int);
+                int Duration = default(int);
+                int Chance = default(int);
+                bool AreaOfEffect = false;
+                int MaximumLevel = default(int);
+                int LevelDivider = default(int);
+                int UseLevel = default(int);
+                int IncEvery = default(int);
+                var CastingType = Spell.CastType.None;
+                Item LearnedFromItem = null;
+                var Abilities = new Dictionary<Common.Abilities, int>();
+
 
                 // Since headers on rows are variable length, we need to first get to a null and then 
                 // find the index of the first bit of data past "0x80" and know that's where we start
                 int firstNull = raw.IndexOf(0x00);
                 int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
-                UpdateOffsetsAndLengths(headerOffset);
 
+                currentOffset += headerOffset;
 
+                //UpdateOffsetsAndLengths(headerOffset);
 
 
                 string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("ClassIDOffset: {1}, RawData: {0}", data, ClassIDOffset);
+                //Console.WriteLine("SpellIDOffset: {0}, RawData: {1}", SpellIDOffset, data);
                 //UpdateOffsetsAndLengths(-headerOffset);
                 //continue;
 
 
-                // ClassID (reverse order because it's stored Little Endian
+                // SpellID (reverse order because it's stored Little Endian)
+                currentOffset += SpellIDOffset;
                 var id = new byte[] {
-                    raw[ClassIDOffset],
-                    raw[ClassIDOffset+1],
+                    raw[currentOffset],
+                    raw[currentOffset+1],
                 };
-                classID = BitConverter.ToInt16(id, 0);
+                ID = BitConverter.ToInt16(id, 0);
+                currentOffset += SpellIDLength;
 
-                // Class Name
-                for (int i = ClassNameOffset; (i < ClassNameOffset + ClassNameLength) && (raw[i] != 0x00); i++) {
-                    className += (char)raw[i];
+                // Spell Name
+                for (int i = currentOffset; (i < currentOffset + SpellNameLength) && (raw[i] != 0x00); i++)
+                {
+                    Name += (char)raw[i];
                 }
+                currentOffset += SpellNameLength;
 
-                // Exp
-                var exp = new byte[] {
-                    raw[ExpOffset],
-                    raw[ExpOffset+1],
-                };
-                expBasePercent = BitConverter.ToInt16(exp, 0);
 
-                // Combat Level
-                combatLevel = Convert.ToInt32(raw[CombatOffset]);
 
-                // Min HP Per Level
-                minHPPerLevel = Convert.ToInt32(raw[MinHPOffset]);
+                /*
+                    AbbrevLength
+                    FlagsLength
+                    CommandLength
+                    LevelLength
+                    LevelMultiplierLength
+                    ManaCostLength
+                    EnergyCostLength
+                    MinimumDamageLength
+                    MaximumDamageLength
+                    DurationInRoundsLength
+                    SCModifierLength
+                    IsAreaOfEffectLength
+                    TypeLength
+                    SpellClassLength
 
-                // Max HP Per Level
-                maxHPPerLevel = Convert.ToInt32(raw[MaxHPOffset]);
+                    MaxAbilityCount
 
-                // Weapons Useable
-                weaponsUseable = (Class.WeaponClasses)Convert.ToInt32(raw[WeaponsOffset]);
+                    AbilityCodeLength
+                    AbilityValueLength
+                    MaximumLevelLength
+                    LevelDividerLength
+                    UseLevelRangeLength
+                    IncEveryLength
+                    CastTypeLength
+                    ItemSpellLearnedFromLength
+                 */
 
-                // Armor Useable
-                armorUseable = (Class.ArmorClasses)Convert.ToInt32(raw[ArmorOffset]);
-
-                // Magic Level
-                magicLevel = Convert.ToInt32(raw[MagicLevelOffset]);
-
-                // Magic Type
-                magicType = (Class.MagicTypes)Convert.ToInt32(raw[MagicTypeOffset]);
-
-                // Modifiers and Abilities
-                for (int i = 0; i < MaxAbilities; i++) {
-                    var rawKey = new byte[] {
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength)],
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
-                    };
-
-                    var rawValue = new byte[] {
-                        raw[AbilityValuesOffset + (i*AbilityValueLength)],
-                        raw[AbilityValuesOffset + (i*AbilityValueLength) + 1],
-                    };
-
-                    var key = BitConverter.ToInt16(rawKey, 0);
-                    var value = BitConverter.ToInt16(rawValue, 0);
-
-                    if (key != 0) {
-                        abilitiesAndModifiers.Add((Class.AbilitiesAndModifiers)key, value);
-                    }
-                }
-
-                var thisClass = new Class {
-                    ID = classID, 
-                    Name = className, 
-                    ExperiencePercentage = expBasePercent, 
-                    Combat = combatLevel, 
-                    HitpointPerLevelMinimum = minHPPerLevel, 
-                    HitpointPerLevelMaximum = maxHPPerLevel, 
-                    WeaponType = weaponsUseable, 
-                    ArmorType = armorUseable, 
-                    MagicLevel = magicLevel, 
-                    MagicType = magicType, 
-                    AbilitiesAndMods = abilitiesAndModifiers
+                var thisSpell = new Spell
+                {
+                    ID = ID,
+                    Name = Name,
+                    Code = Code,
+                    Command = Command,
+                    Mana = Mana,
+                    Level = Level,
+                    Type = Type,
+                    Flag = Flag,
+                    LevelMultiplier = LevelMultiplier,
+                    EnergyUsed = EnergyUsed,
+                    MinimumDamage = MinimumDamage,
+                    MaximumDamage = MaximumDamage,
+                    Duration = Duration,
+                    Chance = Chance,
+                    AreaOfEffect = AreaOfEffect,
+                    MaximumLevel = MaximumLevel,
+                    LevelDivider = LevelDivider,
+                    UseLevel = UseLevel,
+                    IncEvery = IncEvery,
+                    CastingType = CastingType,
+                    LearnedFromItem = LearnedFromItem,
+                    Abilities = Abilities,
                 };
 
-                UpdateOffsetsAndLengths(-headerOffset);
-                classes.Add(thisClass);
+                // ?? // UpdateOffsetsAndLengths(-headerOffset);
+                spells.Add(thisSpell);
             }
-            */
 
             return spells;
         }

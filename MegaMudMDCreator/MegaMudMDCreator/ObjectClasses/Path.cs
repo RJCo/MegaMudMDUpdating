@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MegaMudMDCreator
 {
-    public class Path : IMDFileRecord {
+    public class Path : IMDFileRecord
+    {
         #region Enums
-        public enum Flags {
+        public enum Flags
+        {
             None = 0x00000000,
             PathIsLoop = 0x00000001,
             IgnoreItemIfPicklocks = 0x00000002,
@@ -32,7 +32,8 @@ namespace MegaMudMDCreator
         public List<Room> Rooms { get; set; }
         public List<Flags> PathFlags { get; set; }
 
-        public new string ToString() {
+        public new string ToString()
+        {
             string recordStr = string.Empty;
 
             recordStr += string.Format("Name: {0}\n", Name);
@@ -47,11 +48,13 @@ namespace MegaMudMDCreator
             recordStr += string.Format("LastExpRate: {0}\n", LastExpRate);
             recordStr += string.Format("StepCount: {0}\n", StepCount);
 
-            foreach (var room in Rooms) {
+            foreach (var room in Rooms)
+            {
                 recordStr += string.Format("Room: {0}\n", room.Name);
             }
 
-            foreach (var flag in PathFlags) {
+            foreach (var flag in PathFlags)
+            {
                 recordStr += string.Format("Path Flag: {0}:{1}\n", Enum.GetName(typeof(Flags), flag), flag);
             }
 

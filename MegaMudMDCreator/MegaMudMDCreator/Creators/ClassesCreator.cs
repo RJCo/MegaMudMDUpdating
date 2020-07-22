@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MegaMudMDCreator {
-    public class ClassesCreator {
+
+namespace MegaMudMDCreator
+{
+    public class ClassesCreator
+    {
         public static int ClassIDOffset = 0;
         public static int ClassLength = 2;
         public static int ClassNameOffset = 2;
@@ -17,7 +18,7 @@ namespace MegaMudMDCreator {
         public static int MinHPOffset = 35;
         public static int MinHPLength = 1;
         public static int MaxHPOffset = 36;
-        public static int MaxHPLength = 1; 
+        public static int MaxHPLength = 1;
         public static int WeaponsOffset = 37;
         public static int WeaponsLength = 1;
         public static int ArmorOffset = 38;
@@ -34,7 +35,8 @@ namespace MegaMudMDCreator {
         public static int AbilityKeyLength = 2;
         public static int AbilityValueLength = 2;
 
-        private static void UpdateOffsetsAndLengths(int headerOffset) {
+        private static void UpdateOffsetsAndLengths(int headerOffset)
+        {
             ClassIDOffset += headerOffset;
             ClassNameOffset += headerOffset;
             ExpOffset += headerOffset;
@@ -49,12 +51,14 @@ namespace MegaMudMDCreator {
             AbilityValuesOffset += headerOffset;
         }
 
-        public static List<Class> GetAllRecords() {
+        public static List<Class> GetAllRecords()
+        {
             var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.CLASSES_FILE);
 
             var classes = new List<Class>();
 
-            foreach (var raw in rawData) {
+            foreach (var raw in rawData)
+            {
                 //Console.WriteLine("Length of raw: {0}", raw.Count);
                 //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
                 //Console.WriteLine("RawData: {0}", data);
@@ -76,9 +80,7 @@ namespace MegaMudMDCreator {
                 int firstNull = raw.IndexOf(0x00);
                 int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
                 UpdateOffsetsAndLengths(headerOffset);
-
-
-
+                               
 
                 string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
                 //Console.WriteLine("ClassIDOffset: {1}, RawData: {0}", data, ClassIDOffset);
@@ -94,7 +96,8 @@ namespace MegaMudMDCreator {
                 classID = BitConverter.ToInt16(id, 0);
 
                 // Class Name
-                for (int i = ClassNameOffset; (i < ClassNameOffset + ClassNameLength) && (raw[i] != 0x00); i++) {
+                for (int i = ClassNameOffset; (i < ClassNameOffset + ClassNameLength) && (raw[i] != 0x00); i++)
+                {
                     className += (char)raw[i];
                 }
 
@@ -127,7 +130,8 @@ namespace MegaMudMDCreator {
                 magicType = (Class.MagicTypes)Convert.ToInt32(raw[MagicTypeOffset]);
 
                 // Modifiers and Abilities
-                for (int i = 0; i < MaxAbilities; i++) {
+                for (int i = 0; i < MaxAbilities; i++)
+                {
                     var rawKey = new byte[] {
                         raw[AbilityKeysOffset + (i*AbilityKeyLength)],
                         raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
@@ -141,22 +145,24 @@ namespace MegaMudMDCreator {
                     var key = BitConverter.ToInt16(rawKey, 0);
                     var value = BitConverter.ToInt16(rawValue, 0);
 
-                    if (key != 0) {
+                    if (key != 0)
+                    {
                         //abilitiesAndModifiers.Add((Class.AbilitiesAndModifiers)key, value);
                     }
                 }
 
-                var thisClass = new Class {
-                    ID = classID, 
-                    Name = className, 
-                    ExperiencePercentage = expBasePercent, 
-                    Combat = combatLevel, 
-                    HitpointPerLevelMinimum = minHPPerLevel, 
-                    HitpointPerLevelMaximum = maxHPPerLevel, 
-                    WeaponType = weaponsUseable, 
-                    ArmorType = armorUseable, 
-                    MagicLevel = magicLevel, 
-                    MagicType = magicType, 
+                var thisClass = new Class
+                {
+                    ID = classID,
+                    Name = className,
+                    ExperiencePercentage = expBasePercent,
+                    Combat = combatLevel,
+                    HitpointPerLevelMinimum = minHPPerLevel,
+                    HitpointPerLevelMaximum = maxHPPerLevel,
+                    WeaponType = weaponsUseable,
+                    ArmorType = armorUseable,
+                    MagicLevel = magicLevel,
+                    MagicType = magicType,
                     //AbilitiesAndMods = abilitiesAndModifiers
                 };
 
