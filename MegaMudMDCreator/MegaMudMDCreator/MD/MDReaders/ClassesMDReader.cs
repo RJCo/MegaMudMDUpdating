@@ -55,7 +55,7 @@ namespace MegaMudMDCreator
 
         public override List<T> GetAllRecords()
         {
-            List<List<byte>> rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.CLASSES_FILE);
+            List<List<byte>> rawData = MDFileReader.FileReader(MDFiles.CLASSES_FILE);
 
             var classes = new List<T>();
 

@@ -44,7 +44,7 @@ namespace MegaMudMDCreator
 
         public override List<T> GetAllRecords()
         {
-            List<List<byte>> rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.SPELLS_FILE);
+            List<List<byte>> rawData = MDFileReader.FileReader(MDFiles.SPELLS_FILE);
             int currentOffset = 0;
             var spells = new List<T>();
 

@@ -10,7 +10,7 @@ namespace MegaMudMDCreator
     {
         public override List<T> GetAllRecords()
         {
-            List<string> roomLines = MDFileUtil.Reader.RoomsFileReader(MDFileUtil.Reader.ROOMS_FILE);
+            List<string> roomLines = MDFileReader.RoomsFileReader(MDFiles.ROOMS_FILE);
 
             var rooms = new List<T>();
 

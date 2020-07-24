@@ -51,7 +51,7 @@ namespace MDFileUtil
             }
             catch (Exception e)
             {
-                Console.WriteLine("Reading file {0} failed:  " + e.Message, file);
+                Console.WriteLine($"Reading file {file} failed:  {e.Message}");
             }
 
             return null;
@@ -110,7 +110,7 @@ namespace MDFileUtil
                             var rowInformation = new List<byte>();
                             for (int j = 0; j < rowLength; j++)
                             {
-                                hexOutput += String.Format("{0:X2} ", bytes[nextLocation + j]);
+                                hexOutput += string.Format("{0:X2} ", bytes[nextLocation + j]);
                                 rowInformation.Add(bytes[nextLocation + j]);
                             }
 
@@ -125,7 +125,7 @@ namespace MDFileUtil
             }
             catch (Exception e)
             {
-                Console.WriteLine("Reading file {0} failed:  " + e.Message, file);
+                Console.WriteLine($"Reading file {file} failed:  {e.Message}");
             }
 
             return null;

@@ -13,7 +13,7 @@ namespace MegaMudMDCreator
 
         public override byte[] Serialize(T rec)
         {
-            Class classToWrite = rec as Class;
+            Class classToWrite = rec;
             if (rec == null)
                 throw new Exception($"Got a record that isn't a Class.  Type is {rec.GetType()}");
 

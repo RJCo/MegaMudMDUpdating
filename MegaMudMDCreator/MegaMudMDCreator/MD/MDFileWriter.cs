@@ -1,38 +1,15 @@
-﻿using Records;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq.Expressions;
 
-namespace MDFileUtil
+
+namespace MegaMudMDCreator
 {
-    public class Writer
+    public class MDFileWriter
     {
-        public static void Main(string[] args)
-        {
-            /*
-             *  Classes.md
-             *  Items.md
-             *  Messages.md
-             *  Monsters.md
-             *  Paths.md
-             *  Races.md
-             *  Spells.md
-             *  Rooms.md <-- different format
-             */
-            //FileWriter(Files.CLASSES_FILE);
-            //FileWriter(Files.ITEMS_FILE);
-            //FileWriter(Files.MESSAGES_FILE);
-            //FileWriter(Files.MONSTERS_FILE);
-            //FileWriter(Files.PATHS_FILE);
-            //FileWriter(Files.RACES_FILE);
-            //FileWriter(Files.SPELLS_FILE);
-            //RoomsFileWriter(Files.ROOMS_FILE);
-        }
-
         public static bool FileWriter(string file, byte[] content)
         {
-            return MDFileWriter(file, content);
+            return WriteToMDFile(file, content);
         }
 
         public static bool RoomsFileWriter(string file, byte[] content)
@@ -58,7 +35,7 @@ namespace MDFileUtil
             return false;
         }
 
-        private static bool MDFileWriter(string file, byte[] content)
+        private static bool WriteToMDFile(string file, byte[] content)
         {
             try
             {

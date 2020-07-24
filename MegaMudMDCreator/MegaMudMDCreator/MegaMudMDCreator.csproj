@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MDFileReader">
-      <HintPath>..\MDFileReader\bin\Release\MDFileReader.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,6 +47,7 @@
     <Compile Include="Btrieve\BtrieveFile.cs" />
     <Compile Include="Btrieve\BtrieveFileHeader.cs" />
     <Compile Include="Btrieve\BtrieveRecord.cs" />
+    <Compile Include="MD\MDFiles.cs" />
     <Compile Include="MD\MDReaders\ClassesMDReader.cs" />
     <Compile Include="MD\MDReaders\RoomsMDReader.cs" />
     <Compile Include="MD\MDReaders\SpellsMDReader.cs" />
@@ -59,6 +57,8 @@
     <Compile Include="MD\MDReaders\MessagesMDReader.cs" />
     <Compile Include="MD\MDReaders\ItemsMDReader.cs" />
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />
+    <Compile Include="MD\MDFileReader.cs" />
+    <Compile Include="MD\MDFileWriter.cs" />
     <Compile Include="ReaderFactories\IReaderFactory.cs" />
     <Compile Include="ReaderFactories\MDReaderFactory.cs" />
     <Compile Include="ReaderFactories\RaceReaderFactory.cs" />
