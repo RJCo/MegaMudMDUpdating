@@ -1,6 +1,6 @@
 ﻿using Records;
 using System;
-
+using System.Collections.Generic;
 
 namespace MegaMudMDCreator
 {
@@ -9,7 +9,17 @@ namespace MegaMudMDCreator
         static void Main(string[] args)
         {
             // PrintAllClasses();
-            PrintAllRaces();
+            // PrintAllRaces();
+            var classReader = new ClassesMDReader<Class>();
+            var classWriter = new ClassesMDWriter<Class>();
+
+            List<Class> allClasses = classReader.GetAllRecords();
+            List<byte[]> classesToWrite = new List<byte[]>(allClasses.Count);
+
+            foreach (Class c in allClasses)
+                classesToWrite.Add(classWriter.Serialize(c));
+
+            // TODO:  Write to MD file using MDFileUtil
         }
 
         private static void PrintAllClasses()

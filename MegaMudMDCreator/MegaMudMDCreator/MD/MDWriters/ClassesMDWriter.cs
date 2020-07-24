@@ -6,10 +6,11 @@ using System.Text;
 
 namespace MegaMudMDCreator
 {
-    public class ClassMDWriter<T> : MDWriterFactory<T>
+    public class ClassesMDWriter<T> : MDWriterFactory<T>
         where T : Class
     {
         private const ushort _recordLengthWithoutID = 88;  // 0x58
+
         public override byte[] Serialize(T rec)
         {
             Class classToWrite = rec as Class;
