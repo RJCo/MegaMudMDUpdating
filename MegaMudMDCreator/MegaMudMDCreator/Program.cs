@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 
 
 namespace MegaMudMDCreator
@@ -13,7 +14,8 @@ namespace MegaMudMDCreator
 
         private static void PrintAllClasses()
         {
-            var allClasses = ClassesCreator.GetAllRecords();
+            var classMDReader = new ClassesMDReader<Class>();
+            var allClasses = classMDReader.GetAllRecords();
 
             foreach (var cls in allClasses)
             {
@@ -23,7 +25,8 @@ namespace MegaMudMDCreator
 
         private static void PrintAllRaces()
         {
-            var allRaces = RacesCreator.GetAllRecords();
+            var racesMDReader = new RacesMDReader<Race>();
+            var allRaces = racesMDReader.GetAllRecords();
 
             foreach (var race in allRaces)
             {
