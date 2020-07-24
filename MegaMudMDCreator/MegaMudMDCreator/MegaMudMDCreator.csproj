@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MegaMudMDCreator</RootNamespace>
     <AssemblyName>MegaMudMDCreator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -50,18 +50,8 @@
     <Compile Include="Btrieve\BtrieveFile.cs" />
     <Compile Include="Btrieve\BtrieveFileHeader.cs" />
     <Compile Include="Btrieve\BtrieveRecord.cs" />
-    <Compile Include="ObjectClasses\Common.cs" />
-    <Compile Include="ObjectClasses\Class.cs" />
     <Compile Include="Creators\ClassesCreator.cs" />
-    <Compile Include="ObjectClasses\Message.cs" />
-    <Compile Include="ObjectClasses\Room.cs" />
-    <Compile Include="ObjectClasses\Spell.cs" />
-    <Compile Include="ObjectClasses\Race.cs" />
-    <Compile Include="ObjectClasses\Path.cs" />
-    <Compile Include="ObjectClasses\Monster.cs" />
-    <Compile Include="ObjectClasses\Item.cs" />
     <Compile Include="Creators\ICreator.cs" />
-    <Compile Include="ObjectClasses\IMDFileRecord.cs" />
     <Compile Include="Creators\RoomsCreator.cs" />
     <Compile Include="Creators\SpellsCreator.cs" />
     <Compile Include="Creators\RacesCreator.cs" />
@@ -74,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Records\Records.csproj">
+      <Project>{982d424f-81a3-4d37-999d-9accd85cc2ba}</Project>
+      <Name>Records</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

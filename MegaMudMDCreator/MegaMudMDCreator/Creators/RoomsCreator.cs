@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 using System.Collections.Generic;
 
 
@@ -8,13 +9,12 @@ namespace MegaMudMDCreator
     {
         public static List<Room> GetAllRecords()
         {
-            var roomLines = MDFileUtil.Reader.RoomsFileReader(MDFileUtil.Reader.ROOMS_FILE);
+            List<string> roomLines = MDFileUtil.Reader.RoomsFileReader(MDFileUtil.Reader.ROOMS_FILE);
 
             var rooms = new List<Room>();
 
             foreach (string roomLine in roomLines)
             {
-
                 // Room format:  CAB00180:00004040:0:0:0:AALY:Ancient Ruin:Ancient Ruin Dark Alley
                 var roomParts = roomLine.Split(':');
                 string ChecksumAndExits = roomParts[0];

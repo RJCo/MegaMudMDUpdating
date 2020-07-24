@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 using System.Collections.Generic;
 
 
@@ -55,11 +56,11 @@ namespace MegaMudMDCreator
              * */
         }
 
-        public static List<Path> GetAllDefaultClasses()
+        public static List<Paths> GetAllDefaultClasses()
         {
-            var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.PATHS_FILE);
+            List<List<byte>> rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.PATHS_FILE);
 
-            var paths = new List<Path>();
+            var paths = new List<Paths>();
 
             throw new NotImplementedException();
 
@@ -86,8 +87,6 @@ namespace MegaMudMDCreator
                 int firstNull = raw.IndexOf(0x00);
                 int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
                 UpdateOffsetsAndLengths(headerOffset);
-
-
 
 
                 string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));

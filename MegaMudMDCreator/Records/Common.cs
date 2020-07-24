@@ -1,6 +1,5 @@
 ﻿
-
-namespace MegaMudMDCreator
+namespace Records
 {
     public class Common
     {

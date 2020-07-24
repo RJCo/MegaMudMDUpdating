@@ -64,11 +64,14 @@ namespace MDFileUtil
             try
             {
                 File.WriteAllBytes(file, content);
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Reading file {0} failed:  " + e.Message, file);
             }
+
+            return false;
         }
     }
 }

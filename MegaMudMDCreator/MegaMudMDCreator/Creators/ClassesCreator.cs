@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -53,7 +54,7 @@ namespace MegaMudMDCreator
 
         public static List<Class> GetAllRecords()
         {
-            var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.CLASSES_FILE);
+            List<List<byte>> rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.CLASSES_FILE);
 
             var classes = new List<Class>();
 
@@ -89,7 +90,8 @@ namespace MegaMudMDCreator
 
 
                 // ClassID (reverse order because it's stored Little Endian
-                var id = new byte[] {
+                var id = new byte[] 
+                {
                     raw[ClassIDOffset],
                     raw[ClassIDOffset+1],
                 };
@@ -102,7 +104,8 @@ namespace MegaMudMDCreator
                 }
 
                 // Exp
-                var exp = new byte[] {
+                var exp = new byte[] 
+                {
                     raw[ExpOffset],
                     raw[ExpOffset+1],
                 };
@@ -132,18 +135,20 @@ namespace MegaMudMDCreator
                 // Modifiers and Abilities
                 for (int i = 0; i < MaxAbilities; i++)
                 {
-                    var rawKey = new byte[] {
+                    var rawKey = new byte[]
+                    {
                         raw[AbilityKeysOffset + (i*AbilityKeyLength)],
                         raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
                     };
 
-                    var rawValue = new byte[] {
+                    var rawValue = new byte[] 
+                    {
                         raw[AbilityValuesOffset + (i*AbilityValueLength)],
                         raw[AbilityValuesOffset + (i*AbilityValueLength) + 1],
                     };
 
-                    var key = BitConverter.ToInt16(rawKey, 0);
-                    var value = BitConverter.ToInt16(rawValue, 0);
+                    short key = BitConverter.ToInt16(rawKey, 0);
+                    short value = BitConverter.ToInt16(rawValue, 0);
 
                     if (key != 0)
                     {

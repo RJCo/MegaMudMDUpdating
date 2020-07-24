@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,11 +57,11 @@ namespace MegaMudMDCreator
 
         public static List<Race> GetAllRecords()
         {
-            var rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.RACES_FILE);
+            List<List<byte>> rawData = MDFileUtil.Reader.FileReader(MDFileUtil.Reader.RACES_FILE);
 
             var races = new List<Race>();
 
-            foreach (var raw in rawData)
+            foreach (List<byte> raw in rawData)
             {
                 //Console.WriteLine("Length of raw: {0}", raw.Count);
                 //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
@@ -112,7 +113,8 @@ namespace MegaMudMDCreator
                 }
 
                 // Exp
-                var exp = new byte[] {
+                var exp = new byte[]
+                {
                     raw[ExpOffset],
                     raw[ExpOffset+1],
                 };
@@ -144,12 +146,14 @@ namespace MegaMudMDCreator
                 // Modifiers and Abilities
                 for (int i = 0; i < MaxAbilities; i++)
                 {
-                    var rawKey = new byte[] {
+                    var rawKey = new byte[] 
+                    {
                         raw[AbilityKeysOffset + (i*AbilityKeyLength)],
                         raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
                     };
 
-                    var rawValue = new byte[] {
+                    var rawValue = new byte[] 
+                    {
                         raw[AbilityValuesOffset + (i*AbilityValueLength)],
                         raw[AbilityValuesOffset + (i*AbilityValueLength) + 1],
                     };
