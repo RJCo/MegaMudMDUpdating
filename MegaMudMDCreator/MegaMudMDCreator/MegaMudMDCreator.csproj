@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Btrieve\BtrieveFile.cs" />
-    <Compile Include="Btrieve\BtrieveFileHeader.cs" />
+    <Compile Include="MD\MDFileData.cs" />
     <Compile Include="Btrieve\BtrieveRecord.cs" />
     <Compile Include="MD\MDFiles.cs" />
     <Compile Include="MD\MDReaders\ClassesMDReader.cs" />

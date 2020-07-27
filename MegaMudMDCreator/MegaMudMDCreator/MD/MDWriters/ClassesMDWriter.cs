@@ -17,8 +17,8 @@ namespace MegaMudMDCreator
             if (rec == null)
                 throw new Exception($"Got a record that isn't a Class.  Type is {rec.GetType()}");
 
-            ushort myLength = (ushort)(_recordLengthWithoutID + Convert.ToUInt16(classToWrite.ID.ToString().Length));
-            byte[] record = new byte[myLength];
+            ushort _recordLength = (ushort)(_recordLengthWithoutID + Convert.ToUInt16(classToWrite.ID.ToString().Length));
+            byte[] record = new byte[_recordLength];
             /* 
              e.g. Warrior:
                 59 01 31 00 00 00 00 00 80 01 00 57 61 72 72 69 
@@ -30,7 +30,7 @@ namespace MegaMudMDCreator
             */
 
             int i = 0;
-            record[i++] = UshortToByte(myLength);
+            record[i++] = UshortToByte(_recordLength);
             record[i++] = 0x01;
 
             foreach (byte x in Encoding.ASCII.GetBytes(classToWrite.ID.ToString()))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Records;
+using System;
 using System.Collections.Generic;
 
 
@@ -6,21 +7,21 @@ namespace MegaMudMDCreator.Btrieve
 {
     public class BtrieveFile
     {
-        private BtrieveFileHeader _header;
-        private List<BtrieveRecord> _records;
+        private MDFileData _header;
+        private List<IRecord> _records;
 
-        private uint _currentPage = 0;
+        private uint _currentPage;
 
-        private string FileName = "";
+        private string _fileName;
 
         public BtrieveFile(string fileName)
         {
             _currentPage = 0;
-            FileName = fileName;
+            _fileName = fileName;
 
             // Open file & read it in!
-            setupHeaderInformation();
-            loadAllRecords();
+            // SetupHeaderInformation();
+            // LoadAllRecords();
         }
 
         public bool Open()
@@ -33,15 +34,15 @@ namespace MegaMudMDCreator.Btrieve
             throw new NotImplementedException("BtrieveFile.Close not implemented");
         }
 
-        private void setupHeaderInformation()
+        private void SetupHeaderInformation()
         {
             // _header = new BtrieveFileHeader();
             throw new NotImplementedException("BtrieveFile.setupHeaderInformation not implemented");
         }
 
-        private void loadAllRecords()
+        private void LoadAllRecords()
         {
-            _records = new List<BtrieveRecord>();
+            _records = new List<IRecord>();
             throw new NotImplementedException("BtrieveFile.loadAllRecords not implemented");
         }
 
