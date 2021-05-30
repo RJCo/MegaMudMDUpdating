@@ -78,7 +78,7 @@ namespace MegaMudMDCreator
                 record[j] = 0x00;
             }
 
-            foreach (KeyValuePair<Common.Abilities, int> kvp in classToWrite.AbilitiesAndMods)
+            foreach (KeyValuePair<Common.Abilities, short> kvp in classToWrite.AbilitiesAndMods)
             {
                 byte[] abilityCode = UshortToByteArray((ushort)kvp.Key);
                 byte[] abilityValue = UshortToByteArray((ushort)kvp.Value);

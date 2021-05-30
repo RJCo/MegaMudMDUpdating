@@ -9,188 +9,92 @@ namespace MegaMudMDCreator
     public class RacesMDReader<T> : MDReaderFactory<T>
         where T : Race
     {
-        public static int RaceIDOffset = 0;
-        public static int RaceNameOffset = 2;
-        public static int RaceNameLength = 28;
-        public static int MinStrengthOffset = 32;
-        public static int MinIntellectOffset = 33;
-        public static int MinWillpowerOffset = 34;
-        public static int MinAgilityOffset = 35;
-        public static int MinHealthOffset = 36;
-        public static int MinCharmOffset = 37;
-        public static int MaxStrengthOffset = 38;
-        public static int MaxIntellectOffset = 39;
-        public static int MaxWillpowerOffset = 40;
-        public static int MaxAgilityOffset = 41;
-        public static int MaxHealthOffset = 42;
-        public static int MaxCharmOffset = 43;
-        public static int HPPerLevelOffset = 44;
-        public static int ExpOffset = 45;
-        public static int AbilityKeysOffset = 47;
-        public static int AbilityKeysLength = 20;
-        public static int AbilityValuesOffset = 67;
-        public static int AbilityValuesLength = 20;
-        public static int MaxAbilities = 9;
-        public static int AbilityKeyLength = 2;
-        public static int AbilityValueLength = 2;
-
-        private static void UpdateOffsetsAndLengths(int headerOffset)
-        {
-            RaceIDOffset += headerOffset;
-            RaceNameOffset += headerOffset;
-            MinStrengthOffset += headerOffset;
-            MinIntellectOffset += headerOffset;
-            MinWillpowerOffset += headerOffset;
-            MinAgilityOffset += headerOffset;
-            MinHealthOffset += headerOffset;
-            MinCharmOffset += headerOffset;
-            MaxStrengthOffset += headerOffset;
-            MaxIntellectOffset += headerOffset;
-            MaxWillpowerOffset += headerOffset;
-            MaxAgilityOffset += headerOffset;
-            MaxHealthOffset += headerOffset;
-            MaxCharmOffset += headerOffset;
-            HPPerLevelOffset += headerOffset;
-            ExpOffset += headerOffset;
-            AbilityKeysOffset += headerOffset;
-            AbilityValuesOffset += headerOffset;
-        }
-
         public override List<T> GetAllRecords()
         {
-            List<List<byte>> rawData = MDFileReader.FileReader(MDFiles.RACES_FILE);
-
             var races = new List<T>();
 
-            foreach (List<byte> raw in rawData)
+            List<RaceMD> rawData = MDFileReader.FileReader<RaceMD>(MDFiles.RACES_FILE);
+            if (rawData == null)
             {
-                //Console.WriteLine("Length of raw: {0}", raw.Count);
-                //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("RawData: {0}", data);
-
-                int raceId = -1;
-                string name = string.Empty;
-                int minimumStrength = -1;
-                int maximumStrength = -1;
-                int minimumIntellect = -1;
-                int maximumIntellect = -1;
-                int minimumWillpower = -1;
-                int maximumWillpower = -1;
-                int minimumAgility = -1;
-                int maximumAgility = -1;
-                int minimumHealth = -1;
-                int maximumHealth = -1;
-                int minimumCharm = -1;
-                int maximumCharm = -1;
-                int hitpointModifierPerLevel = -1;
-                int experiencePercentage = -1;
-                var abilitiesAndMods = new Dictionary<Race.AbilitiesAndModifiers, int>();
+                Console.WriteLine($"Unable to read file {MDFiles.RACES_FILE} - not parsing Items");
+                return races;
+            }
 
 
-                // Since headers on rows are variable length, we need to first get to a null and then 
-                // find the index of the first bit of data past "0x80" and know that's where we start
-                int firstNull = raw.IndexOf(0x00);
-                int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
-                UpdateOffsetsAndLengths(headerOffset);
-
-
-                string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("RaceIDOffset: {1}, RawData: {0}", data, RaceIDOffset);
-                //UpdateOffsetsAndLengths(-headerOffset);
-                //continue;
-
-
-                // RaceID (reverse order because it's stored Little Endian
-                var id = new byte[] {
-                    raw[RaceIDOffset],
-                    raw[RaceIDOffset+1],
-                };
-                raceId = BitConverter.ToInt16(id, 0);
-
-                // Race Name
-                for (int i = RaceNameOffset; (i < RaceNameOffset + RaceNameLength) && (raw[i] != 0x00); i++)
+            foreach (RaceMD race in rawData)
+            {
+                Race newRace = new Race()
                 {
-                    name += (char)raw[i];
-                }
-
-                // Exp
-                var exp = new byte[]
-                {
-                    raw[ExpOffset],
-                    raw[ExpOffset+1],
-                };
-                experiencePercentage = BitConverter.ToInt16(exp, 0);
-
-                // HP modifier per level
-                hitpointModifierPerLevel = Convert.ToInt32(raw[HPPerLevelOffset]);
-
-                // Min/Max Stats
-                minimumStrength = Convert.ToInt32(raw[MinStrengthOffset]);
-                maximumStrength = Convert.ToInt32(raw[MaxStrengthOffset]);
-
-                minimumIntellect = Convert.ToInt32(raw[MinIntellectOffset]);
-                maximumIntellect = Convert.ToInt32(raw[MaxIntellectOffset]);
-
-                minimumWillpower = Convert.ToInt32(raw[MinWillpowerOffset]);
-                maximumWillpower = Convert.ToInt32(raw[MaxWillpowerOffset]);
-
-                minimumAgility = Convert.ToInt32(raw[MinAgilityOffset]);
-                maximumAgility = Convert.ToInt32(raw[MaxAgilityOffset]);
-
-                minimumHealth = Convert.ToInt32(raw[MinHealthOffset]);
-                maximumHealth = Convert.ToInt32(raw[MaxHealthOffset]);
-
-                minimumCharm = Convert.ToInt32(raw[MinCharmOffset]);
-                maximumCharm = Convert.ToInt32(raw[MaxCharmOffset]);
-
-
-                // Modifiers and Abilities
-                for (int i = 0; i < MaxAbilities; i++)
-                {
-                    var rawKey = new byte[] 
-                    {
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength)],
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
-                    };
-
-                    var rawValue = new byte[] 
-                    {
-                        raw[AbilityValuesOffset + (i*AbilityValueLength)],
-                        raw[AbilityValuesOffset + (i*AbilityValueLength) + 1],
-                    };
-
-                    var key = BitConverter.ToInt16(rawKey, 0);
-                    var value = BitConverter.ToInt16(rawValue, 0);
-
-                    if (key != 0)
-                    {
-                        abilitiesAndMods.Add((Race.AbilitiesAndModifiers)key, value);
-                    }
-                }
-
-                var thisRace = new Race
-                {
-                    ID = raceId,
-                    Name = name,
-                    MinimumStrength = minimumStrength,
-                    MaximumStrength = maximumStrength,
-                    MinimumIntellect = minimumIntellect,
-                    MaximumIntellect = maximumIntellect,
-                    MinimumWillpower = minimumWillpower,
-                    MaximumWillpower = maximumWillpower,
-                    MinimumAgility = minimumAgility,
-                    MaximumAgility = maximumAgility,
-                    MinimumHealth = minimumHealth,
-                    MaximumHealth = maximumHealth,
-                    MinimumCharm = minimumCharm,
-                    MaximumCharm = maximumCharm,
-                    HitpointModifierPerLevel = hitpointModifierPerLevel,
-                    ExperiencePercentage = experiencePercentage,
-                    AbilitiesAndMods = abilitiesAndMods,
+                    ID = race.RaceId,
+                    Name = race.RaceName,
+                    MinimumStrength = race.MinimumStrength,
+                    MaximumStrength = race.MaximumStrength,
+                    MinimumIntellect = race.MinimumIntellect,
+                    MaximumIntellect = race.MaximumIntellect,
+                    MinimumWillpower = race.MinimumWillpower,
+                    MaximumWillpower = race.MaximumWillpower,
+                    MinimumAgility = race.MinimumAgility,
+                    MaximumAgility = race.MaximumAgility,
+                    MinimumHealth = race.MinimumHealth,
+                    MaximumHealth = race.MaximumHealth,
+                    MinimumCharm = race.MinimumCharm,
+                    MaximumCharm = race.MaximumCharm,
+                    HitpointModifierPerLevel = race.HitpointModifierPerLevel,
+                    ExperiencePercentage = race.ExperiencePercentage,
+                    AbilitiesAndMods = new Dictionary<Race.AbilitiesAndModifiers, short>(),
                 };
 
-                UpdateOffsetsAndLengths(-headerOffset);
-                races.Add((T)thisRace);
+                Array.Reverse(race.Ability1Key);
+                Array.Reverse(race.Ability2Key);
+                Array.Reverse(race.Ability3Key);
+                Array.Reverse(race.Ability4Key);
+                Array.Reverse(race.Ability5Key);
+                Array.Reverse(race.Ability6Key);
+                Array.Reverse(race.Ability7Key);
+                Array.Reverse(race.Ability8Key);
+
+                Array.Reverse(race.Ability1Value);
+                Array.Reverse(race.Ability2Value);
+                Array.Reverse(race.Ability3Value);
+                Array.Reverse(race.Ability4Value);
+                Array.Reverse(race.Ability5Value);
+                Array.Reverse(race.Ability6Value);
+                Array.Reverse(race.Ability7Value);
+                Array.Reverse(race.Ability8Value);
+
+                ushort ability1Key = BitConverter.ToUInt16(race.Ability1Key, 0);
+                if (ability1Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability1Key, BitConverter.ToInt16(race.Ability1Value, 0));
+
+                ushort ability2Key = BitConverter.ToUInt16(race.Ability2Key, 0);
+                if (ability2Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability2Key, BitConverter.ToInt16(race.Ability2Value, 0));
+
+                ushort ability3Key = BitConverter.ToUInt16(race.Ability3Key, 0);
+                if (ability3Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability3Key, BitConverter.ToInt16(race.Ability3Value, 0));
+
+                ushort ability4Key = BitConverter.ToUInt16(race.Ability4Key, 0);
+                if (ability4Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability4Key, BitConverter.ToInt16(race.Ability4Value, 0));
+
+                ushort ability5Key = BitConverter.ToUInt16(race.Ability5Key, 0);
+                if (ability5Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability5Key, BitConverter.ToInt16(race.Ability5Value, 0));
+
+                ushort ability6Key = BitConverter.ToUInt16(race.Ability6Key, 0);
+                if (ability6Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability6Key, BitConverter.ToInt16(race.Ability6Value, 0));
+
+                ushort ability7Key = BitConverter.ToUInt16(race.Ability7Key, 0);
+                if (ability7Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability7Key, BitConverter.ToInt16(race.Ability7Value, 0));
+
+                ushort ability8Key = BitConverter.ToUInt16(race.Ability8Key, 0);
+                if (ability8Key != 0)
+                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability8Key, BitConverter.ToInt16(race.Ability8Value, 0));
+
+                races.Add((T)newRace);
             }
 
             return races;

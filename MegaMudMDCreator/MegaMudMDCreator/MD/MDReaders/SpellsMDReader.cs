@@ -1,7 +1,6 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace MegaMudMDCreator
@@ -44,128 +43,131 @@ namespace MegaMudMDCreator
 
         public override List<T> GetAllRecords()
         {
-            List<List<byte>> rawData = MDFileReader.FileReader(MDFiles.SPELLS_FILE);
-            int currentOffset = 0;
-            var spells = new List<T>();
+            throw new NotImplementedException();
 
-            foreach (List<byte> raw in rawData)
-            {
-                //Console.WriteLine("Length of raw: {0}", raw.Count);
-                //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("RawData: {0}", data);
+            //List<SpellMD> rawData = MDFileReader.FileReader<SpellMD>(MDFiles.SPELLS_FILE);
+            
+            //var spells = new List<T>();
 
-                int ID = default;
-                string Name = string.Empty;
-                string Code = string.Empty;
-                string Command = string.Empty;
-                int Mana = default;
-                int Level = default;
-                var Type = Spell.SpellType.ANY;
-                var Flag = Spell.SpellFlag.NONE;
-                int LevelMultiplier = default;
-                int EnergyUsed = default;
-                int MinimumDamage = default;
-                int MaximumDamage = default;
-                int Duration = default;
-                int Chance = default;
-                bool AreaOfEffect = false;
-                int MaximumLevel = default;
-                int LevelDivider = default;
-                int UseLevel = default;
-                int IncEvery = default;
-                var CastingType = Spell.CastType.None;
-                Item LearnedFromItem = null;
-                var Abilities = new Dictionary<Common.Abilities, int>();
+            //int currentOffset = 0;
+            //foreach (List<byte> raw in rawData)
+            //{
+            //    //Console.WriteLine("Length of raw: {0}", raw.Count);
+            //    //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
+            //    //Console.WriteLine("RawData: {0}", data);
 
-                // Since headers on rows are variable length, we need to first get to a null and then 
-                // find the index of the first bit of data past "0x80" and know that's where we start
-                int firstNull = raw.IndexOf(0x00);
-                int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
+            //    int ID = default;
+            //    string Name = string.Empty;
+            //    string Code = string.Empty;
+            //    string Command = string.Empty;
+            //    int Mana = default;
+            //    int Level = default;
+            //    var Type = Spell.SpellType.ANY;
+            //    var Flag = Spell.SpellFlag.NONE;
+            //    int LevelMultiplier = default;
+            //    int EnergyUsed = default;
+            //    int MinimumDamage = default;
+            //    int MaximumDamage = default;
+            //    int Duration = default;
+            //    int Chance = default;
+            //    bool AreaOfEffect = false;
+            //    int MaximumLevel = default;
+            //    int LevelDivider = default;
+            //    int UseLevel = default;
+            //    int IncEvery = default;
+            //    var CastingType = Spell.CastType.None;
+            //    Item LearnedFromItem = null;
+            //    var Abilities = new Dictionary<Common.Abilities, int>();
 
-                currentOffset += headerOffset;
+            //    // Since headers on rows are variable length, we need to first get to a null and then 
+            //    // find the index of the first bit of data past "0x80" and know that's where we start
+            //    int firstNull = raw.IndexOf(0x00);
+            //    int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
 
-                //UpdateOffsetsAndLengths(headerOffset);
+            //    currentOffset += headerOffset;
 
-                string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("SpellIDOffset: {0}, RawData: {1}", SpellIDOffset, data);
-                //UpdateOffsetsAndLengths(-headerOffset);
-                //continue;
+            //    //UpdateOffsetsAndLengths(headerOffset);
 
-                // SpellID (reverse order because it's stored Little Endian)
-                currentOffset += SpellIDOffset;
-                var id = new byte[] {
-                    raw[currentOffset],
-                    raw[currentOffset+1],
-                };
-                ID = BitConverter.ToInt16(id, 0);
-                currentOffset += SpellIDLength;
+            //    string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
+            //    //Console.WriteLine("SpellIDOffset: {0}, RawData: {1}", SpellIDOffset, data);
+            //    //UpdateOffsetsAndLengths(-headerOffset);
+            //    //continue;
 
-                // Spell Name
-                for (int i = currentOffset; (i < currentOffset + SpellNameLength) && (raw[i] != 0x00); i++)
-                {
-                    Name += (char)raw[i];
-                }
-                currentOffset += SpellNameLength;
+            //    // SpellID (reverse order because it's stored Little Endian)
+            //    currentOffset += SpellIDOffset;
+            //    var id = new byte[] {
+            //        raw[currentOffset],
+            //        raw[currentOffset+1],
+            //    };
+            //    ID = BitConverter.ToInt16(id, 0);
+            //    currentOffset += SpellIDLength;
 
-                /*
-                    AbbrevLength
-                    FlagsLength
-                    CommandLength
-                    LevelLength
-                    LevelMultiplierLength
-                    ManaCostLength
-                    EnergyCostLength
-                    MinimumDamageLength
-                    MaximumDamageLength
-                    DurationInRoundsLength
-                    SCModifierLength
-                    IsAreaOfEffectLength
-                    TypeLength
-                    SpellClassLength
+            //    // Spell Name
+            //    for (int i = currentOffset; (i < currentOffset + SpellNameLength) && (raw[i] != 0x00); i++)
+            //    {
+            //        Name += (char)raw[i];
+            //    }
+            //    currentOffset += SpellNameLength;
 
-                    MaxAbilityCount
+            //    /*
+            //        AbbrevLength
+            //        FlagsLength
+            //        CommandLength
+            //        LevelLength
+            //        LevelMultiplierLength
+            //        ManaCostLength
+            //        EnergyCostLength
+            //        MinimumDamageLength
+            //        MaximumDamageLength
+            //        DurationInRoundsLength
+            //        SCModifierLength
+            //        IsAreaOfEffectLength
+            //        TypeLength
+            //        SpellClassLength
 
-                    AbilityCodeLength
-                    AbilityValueLength
-                    MaximumLevelLength
-                    LevelDividerLength
-                    UseLevelRangeLength
-                    IncEveryLength
-                    CastTypeLength
-                    ItemSpellLearnedFromLength
-                 */
+            //        MaxAbilityCount
 
-                var thisSpell = new Spell
-                {
-                    ID = ID,
-                    Name = Name,
-                    Code = Code,
-                    Command = Command,
-                    Mana = Mana,
-                    Level = Level,
-                    Type = Type,
-                    Flag = Flag,
-                    LevelMultiplier = LevelMultiplier,
-                    EnergyUsed = EnergyUsed,
-                    MinimumDamage = MinimumDamage,
-                    MaximumDamage = MaximumDamage,
-                    Duration = Duration,
-                    Chance = Chance,
-                    AreaOfEffect = AreaOfEffect,
-                    MaximumLevel = MaximumLevel,
-                    LevelDivider = LevelDivider,
-                    UseLevel = UseLevel,
-                    IncEvery = IncEvery,
-                    CastingType = CastingType,
-                    LearnedFromItem = LearnedFromItem,
-                    Abilities = Abilities,
-                };
+            //        AbilityCodeLength
+            //        AbilityValueLength
+            //        MaximumLevelLength
+            //        LevelDividerLength
+            //        UseLevelRangeLength
+            //        IncEveryLength
+            //        CastTypeLength
+            //        ItemSpellLearnedFromLength
+            //     */
 
-                // ?? // UpdateOffsetsAndLengths(-headerOffset);
-                spells.Add((T)thisSpell);
-            }
+            //    Spell newSpell = new Spell
+            //    {
+            //        ID = ID,
+            //        Name = Name,
+            //        Code = Code,
+            //        Command = Command,
+            //        Mana = Mana,
+            //        Level = Level,
+            //        Type = Type,
+            //        Flag = Flag,
+            //        LevelMultiplier = LevelMultiplier,
+            //        EnergyUsed = EnergyUsed,
+            //        MinimumDamage = MinimumDamage,
+            //        MaximumDamage = MaximumDamage,
+            //        Duration = Duration,
+            //        Chance = Chance,
+            //        AreaOfEffect = AreaOfEffect,
+            //        MaximumLevel = MaximumLevel,
+            //        LevelDivider = LevelDivider,
+            //        UseLevel = UseLevel,
+            //        IncEvery = IncEvery,
+            //        CastingType = CastingType,
+            //        LearnedFromItem = LearnedFromItem,
+            //        Abilities = Abilities,
+            //    };
 
-            return spells;
+            //    // ?? // UpdateOffsetsAndLengths(-headerOffset);
+            //    spells.Add((T)thisSpell);
+            //}
+
+            //return spells;
         }
     }
 }

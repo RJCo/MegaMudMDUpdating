@@ -1,7 +1,6 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace MegaMudMDCreator
@@ -9,171 +8,85 @@ namespace MegaMudMDCreator
     public class ClassesMDReader<T> : MDReaderFactory<T>
         where T : Class
     {
-        public static int ClassIDOffset = 0;
-        public static int ClassLength = 2;
-        public static int ClassNameOffset = 2;
-        public static int ClassNameLength = 28;
-        public static int ExpOffset = 32;
-        public static int ExpLength = 11;
-        public static int CombatOffset = 34;
-        public static int CombatLength = 1;
-        public static int MinHPOffset = 35;
-        public static int MinHPLength = 1;
-        public static int MaxHPOffset = 36;
-        public static int MaxHPLength = 1;
-        public static int WeaponsOffset = 37;
-        public static int WeaponsLength = 1;
-        public static int ArmorOffset = 38;
-        public static int ArmorLength = 1;
-        public static int MagicLevelOffset = 39;
-        public static int MagicLevelLength = 1;
-        public static int MagicTypeOffset = 40;
-        public static int MagicTypeLength = 11;
-        public static int AbilityKeysOffset = 41;
-        public static int AbilityKeysLength = 20;
-        public static int AbilityValuesOffset = 61;
-        public static int AbilityValuesLength = 20;
-        public static int MaxAbilities = 9;
-        public static int AbilityKeyLength = 2;
-        public static int AbilityValueLength = 2;
-
-        private static void UpdateOffsetsAndLengths(int headerOffset)
-        {
-            ClassIDOffset += headerOffset;
-            ClassNameOffset += headerOffset;
-            ExpOffset += headerOffset;
-            CombatOffset += headerOffset;
-            MaxHPOffset += headerOffset;
-            MinHPOffset += headerOffset;
-            WeaponsOffset += headerOffset;
-            ArmorOffset += headerOffset;
-            MagicLevelOffset += headerOffset;
-            MagicTypeOffset += headerOffset;
-            AbilityKeysOffset += headerOffset;
-            AbilityValuesOffset += headerOffset;
-        }
-
         public override List<T> GetAllRecords()
         {
-            List<List<byte>> rawData = MDFileReader.FileReader(MDFiles.CLASSES_FILE);
-
             var classes = new List<T>();
 
-            foreach (var raw in rawData)
+            List<ClassMD> rawData = MDFileReader.FileReader<ClassMD>(MDFiles.CLASSES_FILE);
+            if (rawData == null)
             {
-                //Console.WriteLine("Length of raw: {0}", raw.Count);
-                //string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("RawData: {0}", data);
+                Console.WriteLine($"Unable to read file {MDFiles.CLASSES_FILE} - not parsing Items");
+                return classes;
+            }
 
-                int classID = -1;
-                string className = string.Empty;
-                int expBasePercent = -1;
-                int combatLevel = -1;
-                int minHPPerLevel = -1;
-                int maxHPPerLevel = -1;
-                var weaponsUseable = Class.WeaponClasses.Unknown;
-                var armorUseable = Class.ArmorClasses.Unknown;
-                int magicLevel = 0;
-                var magicType = Class.MagicTypes.None;
-                //var abilitiesAndModifiers = new Dictionary<Abilities, int>();
-
-                // Since headers on rows are variable length, we need to first get to a null and then 
-                // find the index of the first bit of data past "0x80" and know that's where we start
-                int firstNull = raw.IndexOf(0x00);
-                int headerOffset = raw.IndexOf(0x80, firstNull) + 1;
-                UpdateOffsetsAndLengths(headerOffset);
-                               
-
-                string data = raw.Aggregate(string.Empty, (current, byt) => current + string.Format("{0:X2} ", byt));
-                //Console.WriteLine("ClassIDOffset: {1}, RawData: {0}", data, ClassIDOffset);
-                //UpdateOffsetsAndLengths(-headerOffset);
-                //continue;
-
-
-                // ClassID (reverse order because it's stored Little Endian
-                var id = new byte[] 
+            foreach (ClassMD cls in rawData)
+            {
+                Class newClass = new Class()
                 {
-                    raw[ClassIDOffset],
-                    raw[ClassIDOffset+1],
-                };
-                classID = BitConverter.ToInt16(id, 0);
-
-                // Class Name
-                for (int i = ClassNameOffset; (i < ClassNameOffset + ClassNameLength) && (raw[i] != 0x00); i++)
-                {
-                    className += (char)raw[i];
-                }
-
-                // Exp
-                var exp = new byte[] 
-                {
-                    raw[ExpOffset],
-                    raw[ExpOffset+1],
-                };
-                expBasePercent = BitConverter.ToInt16(exp, 0);
-
-                // Combat Level
-                combatLevel = Convert.ToInt32(raw[CombatOffset]);
-
-                // Min HP Per Level
-                minHPPerLevel = Convert.ToInt32(raw[MinHPOffset]);
-
-                // Max HP Per Level
-                maxHPPerLevel = Convert.ToInt32(raw[MaxHPOffset]);
-
-                // Weapons Useable
-                weaponsUseable = (Class.WeaponClasses)Convert.ToInt32(raw[WeaponsOffset]);
-
-                // Armor Useable
-                armorUseable = (Class.ArmorClasses)Convert.ToInt32(raw[ArmorOffset]);
-
-                // Magic Level
-                magicLevel = Convert.ToInt32(raw[MagicLevelOffset]);
-
-                // Magic Type
-                magicType = (Class.MagicTypes)Convert.ToInt32(raw[MagicTypeOffset]);
-
-                // Modifiers and Abilities
-                for (int i = 0; i < MaxAbilities; i++)
-                {
-                    var rawKey = new byte[]
-                    {
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength)],
-                        raw[AbilityKeysOffset + (i*AbilityKeyLength) + 1],
-                    };
-
-                    var rawValue = new byte[] 
-                    {
-                        raw[AbilityValuesOffset + (i*AbilityValueLength)],
-                        raw[AbilityValuesOffset + (i*AbilityValueLength) + 1],
-                    };
-
-                    short key = BitConverter.ToInt16(rawKey, 0);
-                    short value = BitConverter.ToInt16(rawValue, 0);
-
-                    if (key != 0)
-                    {
-                        //abilitiesAndModifiers.Add((Class.AbilitiesAndModifiers)key, value);
-                    }
-                }
-
-                var thisClass = new Class
-                {
-                    ID = classID,
-                    Name = className,
-                    ExperiencePercentage = expBasePercent,
-                    Combat = combatLevel,
-                    HitpointPerLevelMinimum = minHPPerLevel,
-                    HitpointPerLevelMaximum = maxHPPerLevel,
-                    WeaponType = weaponsUseable,
-                    ArmorType = armorUseable,
-                    MagicLevel = magicLevel,
-                    MagicType = magicType,
-                    //AbilitiesAndMods = abilitiesAndModifiers
+                    ID = cls.ClassId,
+                    Name = cls.ClassName,
+                    ExperiencePercentage = BitConverter.ToUInt16(cls.ExperienceBase, 0),
+                    Combat = cls.CombatLevel,
+                    HitpointPerLevelMinimum = cls.MinHPPerLevel,
+                    HitpointPerLevelMaximum = cls.MaxHPPerLevel,
+                    WeaponType = (Class.WeaponClasses)cls.WeaponsUsable,
+                    ArmorType = (Class.ArmorClasses)cls.ArmorUseable,
+                    MagicLevel = cls.MagicLevel,
+                    MagicType = (Class.MagicTypes)cls.MagicLevel,
+                    AbilitiesAndMods = new Dictionary<Common.Abilities, short>()
                 };
 
-                UpdateOffsetsAndLengths(-headerOffset);
-                classes.Add((T)thisClass);
+                Array.Reverse(cls.Ability1Key);
+                Array.Reverse(cls.Ability2Key);
+                Array.Reverse(cls.Ability3Key);
+                Array.Reverse(cls.Ability4Key);
+                Array.Reverse(cls.Ability5Key);
+                Array.Reverse(cls.Ability6Key);
+                Array.Reverse(cls.Ability7Key);
+                Array.Reverse(cls.Ability8Key);
+
+                Array.Reverse(cls.Ability1Value);
+                Array.Reverse(cls.Ability2Value);
+                Array.Reverse(cls.Ability3Value);
+                Array.Reverse(cls.Ability4Value);
+                Array.Reverse(cls.Ability5Value);
+                Array.Reverse(cls.Ability6Value);
+                Array.Reverse(cls.Ability7Value);
+                Array.Reverse(cls.Ability8Value);
+
+                ushort ability1Key = BitConverter.ToUInt16(cls.Ability1Key, 0);
+                if (ability1Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability1Key, BitConverter.ToInt16(cls.Ability1Value, 0));
+
+                ushort ability2Key = BitConverter.ToUInt16(cls.Ability2Key, 0);
+                if (ability2Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability2Key, BitConverter.ToInt16(cls.Ability2Value, 0));
+
+                ushort ability3Key = BitConverter.ToUInt16(cls.Ability3Key, 0);
+                if (ability3Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability3Key, BitConverter.ToInt16(cls.Ability3Value, 0));
+
+                ushort ability4Key = BitConverter.ToUInt16(cls.Ability4Key, 0);
+                if (ability4Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability4Key, BitConverter.ToInt16(cls.Ability4Value, 0));
+
+                ushort ability5Key = BitConverter.ToUInt16(cls.Ability5Key, 0);
+                if (ability5Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability5Key, BitConverter.ToInt16(cls.Ability5Value, 0));
+
+                ushort ability6Key = BitConverter.ToUInt16(cls.Ability6Key, 0);
+                if (ability6Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability6Key, BitConverter.ToInt16(cls.Ability6Value, 0));
+
+                ushort ability7Key = BitConverter.ToUInt16(cls.Ability7Key, 0);
+                if (ability7Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability7Key, BitConverter.ToInt16(cls.Ability7Value, 0));
+
+                ushort ability8Key = BitConverter.ToUInt16(cls.Ability8Key, 0);
+                if (ability8Key != 0)
+                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability8Key, BitConverter.ToInt16(cls.Ability8Value, 0));
+
+                classes.Add((T)newClass);
             }
 
             return classes;

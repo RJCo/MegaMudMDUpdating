@@ -56,6 +56,9 @@
     <Compile Include="MD\MDReaders\MonstersMDReader.cs" />
     <Compile Include="MD\MDReaders\MessagesMDReader.cs" />
     <Compile Include="MD\MDReaders\ItemsMDReader.cs" />
+    <Compile Include="MD\MDRecords\ClassMD.cs" />
+    <Compile Include="MD\MDRecords\RaceMD.cs" />
+    <Compile Include="MD\MDRecords\SpellMD.cs" />
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />
     <Compile Include="MD\MDFileReader.cs" />
     <Compile Include="MD\MDFileWriter.cs" />

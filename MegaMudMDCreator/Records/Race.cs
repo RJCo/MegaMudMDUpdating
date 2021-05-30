@@ -44,7 +44,7 @@ namespace Records
         public int MaximumCharm { get; set; }
         public int HitpointModifierPerLevel { get; set; }
         public int ExperiencePercentage { get; set; }
-        public Dictionary<AbilitiesAndModifiers, int> AbilitiesAndMods { get; set; }
+        public Dictionary<AbilitiesAndModifiers, short> AbilitiesAndMods { get; set; }
 
         public new string ToString()
         {
@@ -61,7 +61,7 @@ namespace Records
             recordStr += string.Format("\tHealth: {0} to {1}\n", MinimumHealth, MaximumHealth);
             recordStr += string.Format("\tCharm: {0} to {1}\n", MinimumCharm, MaximumCharm);
 
-            foreach (KeyValuePair<AbilitiesAndModifiers, int> ability in AbilitiesAndMods)
+            foreach (KeyValuePair<AbilitiesAndModifiers, short> ability in AbilitiesAndMods)
             {
                 recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
             }

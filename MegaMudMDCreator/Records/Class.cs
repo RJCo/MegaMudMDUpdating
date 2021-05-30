@@ -48,7 +48,7 @@ namespace Records
         public ArmorClasses ArmorType { get; set; }
         public int MagicLevel { get; set; }
         public MagicTypes MagicType { get; set; }
-        public Dictionary<Common.Abilities, int> AbilitiesAndMods { get; set; }
+        public Dictionary<Common.Abilities, short> AbilitiesAndMods { get; set; }
 
         public new string ToString()
         {
@@ -65,7 +65,7 @@ namespace Records
             classStr += string.Format("Magic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
             classStr += string.Format("Magic Level: {0}\n", MagicLevel);
 
-            foreach (KeyValuePair<Common.Abilities, int> ability in AbilitiesAndMods)
+            foreach (KeyValuePair<Common.Abilities, short> ability in AbilitiesAndMods)
             {
                 classStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(Common.Abilities), ability.Key), ability.Value);
             }
