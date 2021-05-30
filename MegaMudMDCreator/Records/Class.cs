@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace Records
 {
@@ -52,25 +52,25 @@ namespace Records
 
         public new string ToString()
         {
-            string classStr = string.Empty;
+            StringBuilder sb = new StringBuilder();
 
-            classStr += string.Format("ID: {0}\t", ID);
-            classStr += string.Format("Name: {0}\n", Name);
-            classStr += string.Format("Experience: {0}\n", ExperiencePercentage);
-            classStr += string.Format("Combat: {0}\n", Combat);
-            classStr += string.Format("HP Per Level (min): {0}\t", HitpointPerLevelMinimum);
-            classStr += string.Format("HP Per Level (max): {0}\n", HitpointPerLevelMaximum);
-            classStr += string.Format("Weapon Type: {0}\t", Enum.GetName(typeof(WeaponClasses), WeaponType));
-            classStr += string.Format("Armor Type: {0}\n", Enum.GetName(typeof(ArmorClasses), ArmorType));
-            classStr += string.Format("Magic Type: {0}\t", Enum.GetName(typeof(MagicTypes), MagicType));
-            classStr += string.Format("Magic Level: {0}\n", MagicLevel);
+            sb.Append($"ID: {ID}\t");
+            sb.Append($"Name: {Name}\n");
+            sb.Append($"Experience: {ExperiencePercentage}\n");
+            sb.Append($"Combat: {Combat}\n");
+            sb.Append($"HP Per Level (min): {HitpointPerLevelMinimum}\t");
+            sb.Append($"HP Per Level (max): {HitpointPerLevelMaximum}\n");
+            sb.Append($"Weapon Type: {Enum.GetName(typeof(WeaponClasses), WeaponType)}\t");
+            sb.Append($"Armor Type: {Enum.GetName(typeof(ArmorClasses), ArmorType)}\n");
+            sb.Append($"Magic Type: {Enum.GetName(typeof(MagicTypes), MagicType)}\t");
+            sb.Append($"Magic Level: {MagicLevel}\n");
 
             foreach (KeyValuePair<Common.Abilities, short> ability in AbilitiesAndMods)
             {
-                classStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(Common.Abilities), ability.Key), ability.Value);
+                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
             }
 
-            return classStr;
+            return sb.ToString();
         }
     }
 }

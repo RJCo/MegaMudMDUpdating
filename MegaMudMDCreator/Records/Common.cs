@@ -193,6 +193,15 @@ namespace Records
             DoNotAttackIfItem = 0x00B9,
             PerfectStealth = 0x00BA,
             Meditate = 0x00BB,
+
+            ClassStealthGypsy = 0x0167,
+            ClassStealthMissionary = 0x0267,
+            ClassStealthBard = 0x0467,
+            ClassStealthMystic = 0x0567,
+
+            BashMagely = 0x011F,
+            BashPriestly = 0x021F,
+            BashDruidly = 0x031F,
         }
 
         // CLASS constants

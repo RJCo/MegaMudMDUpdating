@@ -1,7 +1,6 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace MegaMudMDCreator
@@ -43,24 +42,6 @@ namespace MegaMudMDCreator
                     ExperiencePercentage = race.ExperiencePercentage,
                     AbilitiesAndMods = new Dictionary<Race.AbilitiesAndModifiers, short>(),
                 };
-
-                Array.Reverse(race.Ability1Key);
-                Array.Reverse(race.Ability2Key);
-                Array.Reverse(race.Ability3Key);
-                Array.Reverse(race.Ability4Key);
-                Array.Reverse(race.Ability5Key);
-                Array.Reverse(race.Ability6Key);
-                Array.Reverse(race.Ability7Key);
-                Array.Reverse(race.Ability8Key);
-
-                Array.Reverse(race.Ability1Value);
-                Array.Reverse(race.Ability2Value);
-                Array.Reverse(race.Ability3Value);
-                Array.Reverse(race.Ability4Value);
-                Array.Reverse(race.Ability5Value);
-                Array.Reverse(race.Ability6Value);
-                Array.Reverse(race.Ability7Value);
-                Array.Reverse(race.Ability8Value);
 
                 ushort ability1Key = BitConverter.ToUInt16(race.Ability1Key, 0);
                 if (ability1Key != 0)

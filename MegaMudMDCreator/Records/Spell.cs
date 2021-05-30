@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace Records
 {
@@ -69,36 +69,36 @@ namespace Records
 
         public override string ToString()
         {
-            string recordStr = string.Empty;
+            StringBuilder sb = new StringBuilder();
 
-            recordStr += string.Format("ID: {0}\t", ID);
-            recordStr += string.Format("Code: {0}\t", Code);
-            recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("Command: {0}\n", Command);
-            recordStr += string.Format("Mana: {0}\t", Mana);
-            recordStr += string.Format("Level: {0}\t", Level);
-            recordStr += string.Format("Type: {0}\t", Enum.GetName(typeof(SpellType), Type));
-            recordStr += string.Format("Flag: {0}\t", Enum.GetName(typeof(SpellFlag), Flag));
-            recordStr += string.Format("LevelMultiplier: {0}\n", LevelMultiplier);
-            recordStr += string.Format("EnergyUsed: {0}\n", EnergyUsed);
-            recordStr += string.Format("MinimumDamage: {0}\n", MinimumDamage);
-            recordStr += string.Format("MaximumDamage: {0}\n", MaximumDamage);
-            recordStr += string.Format("Duration: {0}\n", Duration);
-            recordStr += string.Format("Chance: {0}\n", Chance);
-            recordStr += string.Format("AreaOfEffect: {0}\n", AreaOfEffect);
-            recordStr += string.Format("MaximumLevel: {0}\n", MaximumLevel);
-            recordStr += string.Format("LevelDivider: {0}\n", LevelDivider);
-            recordStr += string.Format("UseLevel: {0}\n", UseLevel);
-            recordStr += string.Format("IncEvery: {0}\n", IncEvery);
-            recordStr += string.Format("CastType: {0}\t", Enum.GetName(typeof(CastType), CastingType));
-            recordStr += string.Format("LearnedFromItem: {0}\n", LearnedFromItem);
+            sb.Append($"ID: {ID}\t");
+            sb.Append($"Code: {Code}\t");
+            sb.Append($"Name: {Name}\n");
+            sb.Append($"Command: {Command}\n");
+            sb.Append($"Mana: {Mana}\t");
+            sb.Append($"Level: {Level}\t");
+            sb.Append($"Type: {Enum.GetName(typeof(SpellType), Type)}\t");
+            sb.Append($"Flag: {Enum.GetName(typeof(SpellFlag), Flag)}\t");
+            sb.Append($"LevelMultiplier: {LevelMultiplier}\n");
+            sb.Append($"EnergyUsed: {EnergyUsed}\n");
+            sb.Append($"MinimumDamage: {MinimumDamage}\n");
+            sb.Append($"MaximumDamage: {MaximumDamage}\n");
+            sb.Append($"Duration: {Duration}\n");
+            sb.Append($"Chance: {Chance}\n");
+            sb.Append($"AreaOfEffect: {AreaOfEffect}\n");
+            sb.Append($"MaximumLevel: {MaximumLevel}\n");
+            sb.Append($"LevelDivider: {LevelDivider}\n");
+            sb.Append($"UseLevel: {UseLevel}\n");
+            sb.Append($"IncEvery: {IncEvery}\n");
+            sb.Append($"CastType: {Enum.GetName(typeof(CastType), CastingType)}\t");
+            sb.Append($"LearnedFromItem: {LearnedFromItem}\n");
 
             foreach (KeyValuePair<Common.Abilities, int> ability in Abilities)
             {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(Common.Abilities), ability.Key), ability.Value);
+                sb.Append($"\tAbility/Modifier: {ability.Key} {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
             }
 
-            return recordStr;
+            return sb.ToString();
         }
     }
 }

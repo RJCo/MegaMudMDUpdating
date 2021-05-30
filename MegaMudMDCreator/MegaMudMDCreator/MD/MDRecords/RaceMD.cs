@@ -7,10 +7,11 @@ namespace MegaMudMDCreator
     [StructLayout(LayoutKind.Sequential, Size = 0, Pack = 1)]
     public struct RaceMD
     {
+        public byte UnusedByte;
+
         public ushort RaceId;
 
-        // TODO:  Size
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]
         public string RaceName;
 
         public byte MinimumStrength;
@@ -26,9 +27,8 @@ namespace MegaMudMDCreator
         public byte MinimumCharm;
         public byte MaximumCharm;
         public byte HitpointModifierPerLevel;
-        public byte ExperiencePercentage;
+        public ushort ExperiencePercentage;
         
-        // TODO:  Below is copied from ClassMD - probably not the same for Race
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
         public byte[] Ability1Key;
 
@@ -54,7 +54,7 @@ namespace MegaMudMDCreator
         public byte[] Ability8Key;
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public byte[] UnusedByteArray;
+        public byte[] UnusedByteArray1;
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
         public byte[] Ability1Value;
@@ -80,6 +80,7 @@ namespace MegaMudMDCreator
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
         public byte[] Ability8Value;
 
-        public byte EndChar;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        public byte[] UnusedByteArray2;
     }
 }

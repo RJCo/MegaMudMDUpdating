@@ -105,12 +105,12 @@ namespace MegaMudMDCreator
                             byte[] bytes = new byte[recordSize];
                             Array.Copy(currentBlock, structStarts, bytes, 0, recordSize);
 
-                            Console.WriteLine($"bytes:");
-                            for (int j = 0; j < bytes.Length; j++)
-                            {
-                                Console.Write($"{bytes[j]:X2} ");
-                            }
-                            Console.WriteLine("");
+                            //Console.WriteLine($"bytes:");
+                            //for (int j = 0; j < bytes.Length; j++)
+                            //{
+                            //    Console.Write($"{bytes[j]:X2} ");
+                            //}
+                            //Console.WriteLine("");
 
                             GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
                             T item = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));

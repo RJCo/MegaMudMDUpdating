@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace Records
 {
@@ -30,7 +30,7 @@ namespace Records
 
         public int ID { get; set; }
         public string Name { get; set; }
-        public int MinimumStrength { get; set; }
+        public short MinimumStrength { get; set; }
         public int MaximumStrength { get; set; }
         public int MinimumIntellect { get; set; }
         public int MaximumIntellect { get; set; }
@@ -48,25 +48,25 @@ namespace Records
 
         public new string ToString()
         {
-            string recordStr = string.Empty;
+            StringBuilder sb = new StringBuilder();
 
-            recordStr += string.Format("ID: {0}\t", ID);
-            recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("\tExperience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("\tHitpoints Per Level: {0}\n", HitpointModifierPerLevel);
-            recordStr += string.Format("\tStrength: {0} to {1}\n", MinimumStrength, MaximumStrength);
-            recordStr += string.Format("\tIntellect: {0} to {1}\n", MinimumIntellect, MaximumIntellect);
-            recordStr += string.Format("\tWillpower: {0} to {1}\n", MinimumWillpower, MaximumWillpower);
-            recordStr += string.Format("\tAgility: {0} to {1}\n", MinimumAgility, MaximumAgility);
-            recordStr += string.Format("\tHealth: {0} to {1}\n", MinimumHealth, MaximumHealth);
-            recordStr += string.Format("\tCharm: {0} to {1}\n", MinimumCharm, MaximumCharm);
+            sb.Append($"ID: {ID}\t");
+            sb.Append($"Name: {Name}\n");
+            sb.Append($"\tExperience: {ExperiencePercentage}\n");
+            sb.Append($"\tHitpoints Per Level: {HitpointModifierPerLevel}\n");
+            sb.Append($"\tStrength: {MinimumStrength} to {MaximumStrength}\n");
+            sb.Append($"\tIntellect: {MinimumIntellect} to {MaximumIntellect}\n");
+            sb.Append($"\tWillpower: {MinimumWillpower} to {MaximumWillpower}\n");
+            sb.Append($"\tAgility: {MinimumAgility} to {MaximumAgility}\n");
+            sb.Append($"\tHealth: {MinimumHealth} to {MaximumHealth}\n");
+            sb.Append($"\tCharm: {MinimumCharm} to {MaximumCharm}\n");
 
             foreach (KeyValuePair<AbilitiesAndModifiers, short> ability in AbilitiesAndMods)
             {
-                recordStr += string.Format("\tAbility/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+                sb.Append($"\tAbility/Modifier: {Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key)}:{ability.Value}\n");
             }
 
-            return recordStr;
+            return sb.ToString();
         }
     }
 }
