@@ -25,9 +25,9 @@ namespace MegaMudMDCreator
         private static void PrintAllClasses()
         {
             var classMDReader = new ClassesMDReader<Class>();
-            var allClasses = classMDReader.GetAllRecords();
+            List<Class> allClasses = classMDReader.GetAllRecords();
 
-            foreach (var cls in allClasses)
+            foreach (Class cls in allClasses)
             {
                 Console.WriteLine(cls.ToString());
             }
@@ -36,9 +36,9 @@ namespace MegaMudMDCreator
         private static void PrintAllRaces()
         {
             var racesMDReader = new RacesMDReader<Race>();
-            var allRaces = racesMDReader.GetAllRecords();
+            List<Race> allRaces = racesMDReader.GetAllRecords();
 
-            foreach (var race in allRaces)
+            foreach (Race race in allRaces)
             {
                 Console.WriteLine(race.ToString());
             }

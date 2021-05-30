@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MegaMudMDCreator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MegaMudRootPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Program Files (x86)\Megamud</Value>
+    </Setting>
+    <Setting Name="DefaultRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Default</Value>
+    </Setting>
+    <Setting Name="BBSRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BBS</Value>
+    </Setting>
+    <Setting Name="CharactersRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Chars</Value>
+    </Setting>
+    <Setting Name="ClassesFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Classes.md</Value>
+    </Setting>
+    <Setting Name="ItemsFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Items.md</Value>
+    </Setting>
+    <Setting Name="MessagesFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Messages.md</Value>
+    </Setting>
+    <Setting Name="MonstersFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Monsters.md</Value>
+    </Setting>
+    <Setting Name="PathsFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Paths.md</Value>
+    </Setting>
+    <Setting Name="RacesFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Races.md</Value>
+    </Setting>
+    <Setting Name="SpellsFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Spells.md</Value>
+    </Setting>
+    <Setting Name="RoomsFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rooms.md</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

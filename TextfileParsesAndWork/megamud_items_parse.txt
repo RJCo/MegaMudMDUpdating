@@ -30,6 +30,7 @@ Item record looks to start at:
 Offset      Hex         Info
   2         040e-0412   stringified item id next 5 bytes
   7         0413-0417   00s
+  ^looks like this is actually 3 bytes not 5?
  12         0418        80 (128 in dec...)
  13         0419-041a   1027 -- 2 byte version of item ID number
  16         041b-0438   30 bytes, item name : looks to be null terminated, so 0438 is always null?

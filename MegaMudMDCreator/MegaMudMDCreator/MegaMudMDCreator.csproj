@@ -59,6 +59,11 @@
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />
     <Compile Include="MD\MDFileReader.cs" />
     <Compile Include="MD\MDFileWriter.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ReaderFactories\IReaderFactory.cs" />
     <Compile Include="ReaderFactories\MDReaderFactory.cs" />
     <Compile Include="ReaderFactories\RaceReaderFactory.cs" />
@@ -70,6 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Records\Records.csproj">
