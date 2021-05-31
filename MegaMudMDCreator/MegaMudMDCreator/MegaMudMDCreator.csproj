@@ -58,6 +58,7 @@
     <Compile Include="MD\MDReaders\ItemsMDReader.cs" />
     <Compile Include="MD\MDRecords\ClassMD.cs" />
     <Compile Include="MD\MDRecords\ItemMD.cs" />
+    <Compile Include="MD\MDRecords\MonsterMD.cs" />
     <Compile Include="MD\MDRecords\RaceMD.cs" />
     <Compile Include="MD\MDRecords\SpellMD.cs" />
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />

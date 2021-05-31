@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Text;
 
 namespace Records
 {
@@ -107,8 +108,8 @@ namespace Records
         }
         #endregion
 
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int MonsterId { get; set; }
+        public string MonsterName { get; set; }
         public Priority AttackPriority { get; set; }
         public MegamudFlags Flags { get; set; }
         public MonsterAlignment Alignment { get; set; }
@@ -124,7 +125,7 @@ namespace Records
         public int MagicResistance { get; set; }
         public int Accuracy { get; set; }
         public int ArmorClass { get; set; }
-        public int DamageResistance { get; set; }
+        public int DamageReduction { get; set; }
         public int EnslaveLevel { get; set; }
         public LocationGroup Group { get; set; }
         public MonsterType Type { get; set; }
@@ -155,7 +156,7 @@ namespace Records
         public int FollowChance;                // Monster follow% (agility?)
         public int sLevelUnknown;               // HP regen? Monster level?
         public int Undead;                      // Undead?
-        public Common.Abilities Abilities;      // max 10   // Monster abilities
+        public Dictionary<Common.Abilities, short> Abilities = new Dictionary<Common.Abilities, short>();      // max 10   // Monster abilities
         public int AbilityValues;               // max 10   // Monster abil values
         public Item Weapon;                     // Weapon used
         public AttackType Attack;               // max 5    // Attack type (0=None,1=Normal,2=Spell,3=Rob3?)
@@ -173,21 +174,72 @@ namespace Records
 
         public new string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
 
-            /*
-            string recordStr = string.Empty;
+            sb.Append($"MonsterId: {MonsterId}\n");
+            sb.Append($"MonsterName: {MonsterName}\n");
+            sb.Append($"AttackPriority: {AttackPriority}\n");
+            sb.Append($"Flags: {Flags}\n");
+            sb.Append($"Alignment: {Alignment}\n");
+            sb.Append($"MonsterRelationship: {MonsterRelationship}\n");
+            sb.Append($"PreAttackSpell: {PreAttackSpell}\n");
+            sb.Append($"AttackSpell: {AttackSpell}\n");
+            sb.Append($"PreAttackSpellMaxCast: {PreAttackSpellMaxCast}\n");
+            sb.Append($"AttackSpellMaxCast: {AttackSpellMaxCast}\n");
+            sb.Append($"Sex: {Sex}\n");
+            sb.Append($"Level: {Level}\n");
+            sb.Append($"Hitpoints: {Hitpoints}\n");
+            sb.Append($"Energy: {Energy}\n");
+            sb.Append($"MagicResistance: {MagicResistance}\n");
+            sb.Append($"Accuracy: {Accuracy}\n");
+            sb.Append($"ArmorClass: {ArmorClass}\n");
+            sb.Append($"DamageResistance: {DamageReduction}\n");
+            sb.Append($"EnslaveLevel: {EnslaveLevel}\n");
+            sb.Append($"Group: {Group}\n");
+            sb.Append($"Type: {Type}\n");
+            sb.Append($"GameMax: {GameMax}\n");
+            sb.Append($"RegenInHours: {RegenInHours}\n");
+            sb.Append($"LocationMap: {LocationMap}\n");
+            sb.Append($"LocationRoom: {LocationRoom}\n");
 
-            recordStr += string.Format("ID: {0}\t", ID);
-            recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("Experience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("Weapon Type: {0}\n", Enum.GetName(typeof(WeaponClasses), WeaponType));
+            var cashDrop = (CashDrop_Runic * 1_000_000) + (CashDrop_Platinum * 10_000) + (CashDrop_Gold * 100) + (CashDrop_Silver * 10) + (CashDrop_Copper);
 
-            foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+            sb.Append($"CashDrop: {cashDrop}\n");
+            sb.Append($"Experience: {Experience}\n");
+            sb.Append($"BSDefense: {BSDefense}\n");
+            sb.Append($"CharmResist: {CharmResist}\n");
+            sb.Append($"FollowChance: {FollowChance}\n");
+            sb.Append($"sLevelUnknown: {sLevelUnknown}\n");
+            sb.Append($"Undead: {Undead}\n");
+            sb.Append($"AbilityValues: {AbilityValues}\n");
+            sb.Append($"Weapon: {Weapon}\n");
+            sb.Append($"Attack: {Attack}\n");
+            sb.Append($"AttackChance: {AttackChance}\n");
+            sb.Append($"AttackAccuracy: {AttackAccuracy}\n");
+            sb.Append($"AttackMinimumDamage: {AttackMinimumDamage}\n");
+            sb.Append($"AttackMaxDamage: {AttackMaxDamage}\n");
+            sb.Append($"AttackEnergyCost: {AttackEnergyCost}\n");
+            sb.Append($"AlternateAttackHitSpells: {AlternateAttackHitSpells}\n");
+            sb.Append($"OnDeathSpell: {OnDeathSpell}\n");
+            sb.Append($"OnRegenSpell: {OnRegenSpell}\n");
+
+            sb.Append("Item Drops:\n");
+            sb.Append($"\tItemId: {ItemDrop1_ItemID} @ {ItemDrop1_DropRate}\n");
+            sb.Append($"\tItemId: {ItemDrop2_ItemID} @ {ItemDrop2_DropRate}\n");
+            sb.Append($"\tItemId: {ItemDrop3_ItemID} @ {ItemDrop3_DropRate}\n");
+            sb.Append($"\tItemId: {ItemDrop4_ItemID} @ {ItemDrop4_DropRate}\n");
+            sb.Append($"\tItemId: {ItemDrop5_ItemID} @ {ItemDrop5_DropRate}\n");
+
+            sb.Append($"InBetweenRoundSpell: {InBetweenRoundSpell}\n");
+            sb.Append($"InBetweenRoundSpellLevel: {InBetweenRoundSpellLevel}\n");
+            sb.Append($"InBetweenRoundSpellChange: {InBetweenRoundSpellChange}\n");
+
+            foreach (KeyValuePair<Common.Abilities, short> ability in Abilities)
+            {
+                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
             }
-            return recordStr;
-            */
+
+            return sb.ToString();
         }
     }
 }
