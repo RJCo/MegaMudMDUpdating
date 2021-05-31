@@ -15,7 +15,7 @@ namespace MegaMudMDCreator
             List<ClassMD> rawData = MDFileReader.FileReader<ClassMD>(MDFiles.CLASSES_FILE);
             if (rawData == null)
             {
-                Console.WriteLine($"Unable to read file {MDFiles.CLASSES_FILE} - not parsing Items");
+                Console.WriteLine($"Unable to read file {MDFiles.CLASSES_FILE} - not parsing Classes");
                 return classes;
             }
 

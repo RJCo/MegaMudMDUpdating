@@ -15,10 +15,9 @@ namespace MegaMudMDCreator
             List<RaceMD> rawData = MDFileReader.FileReader<RaceMD>(MDFiles.RACES_FILE);
             if (rawData == null)
             {
-                Console.WriteLine($"Unable to read file {MDFiles.RACES_FILE} - not parsing Items");
+                Console.WriteLine($"Unable to read file {MDFiles.RACES_FILE} - not parsing Races");
                 return races;
             }
-
 
             foreach (RaceMD race in rawData)
             {

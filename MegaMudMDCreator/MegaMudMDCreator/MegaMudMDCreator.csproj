@@ -72,7 +72,6 @@
     <Compile Include="ReaderFactories\RaceReaderFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MD\MDReaders\RaceMDReader.cs" />
     <Compile Include="WriterFactories\IWriterFactory.cs" />
     <Compile Include="WriterFactories\MDWriterFactory.cs" />
   </ItemGroup>

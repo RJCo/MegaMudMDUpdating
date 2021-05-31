@@ -74,6 +74,11 @@ namespace MegaMudMDCreator
                         int nextLocation = i + 12;
                         while (nextLocation > 0)
                         {
+                            if (nextLocation >= CHUNK_SIZE)
+                            {
+                                break;
+                            }
+
                             if (currentBlock[nextLocation] == 0x00)
                             {
                                 nextLocation = 0;
@@ -105,12 +110,12 @@ namespace MegaMudMDCreator
                             byte[] bytes = new byte[recordSize];
                             Array.Copy(currentBlock, structStarts, bytes, 0, recordSize);
 
-                            //Console.WriteLine($"bytes:");
-                            //for (int j = 0; j < bytes.Length; j++)
-                            //{
-                            //    Console.Write($"{bytes[j]:X2} ");
-                            //}
-                            //Console.WriteLine("");
+                            Console.WriteLine($"bytes:");
+                            for (int j = 0; j < bytes.Length; j++)
+                            {
+                                Console.Write($"{bytes[j]:X2} ");
+                            }
+                            Console.WriteLine("");
 
                             GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
                             T item = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));

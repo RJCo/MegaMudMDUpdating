@@ -65,7 +65,6 @@ namespace Records
         public int IncEvery;                        // ?
         public CastType CastingType;                // Cast type
         public Item LearnedFromItem { get; set; }
-        public Dictionary<Common.Abilities, int> Abilities = new Dictionary<Common.Abilities, int>();    // Max 10
 
         public override string ToString()
         {
@@ -77,8 +76,8 @@ namespace Records
             sb.Append($"Command: {Command}\n");
             sb.Append($"Mana: {Mana}\t");
             sb.Append($"Level: {Level}\t");
-            sb.Append($"Type: {Enum.GetName(typeof(SpellType), Type)}\t");
-            sb.Append($"Flag: {Enum.GetName(typeof(SpellFlag), Flag)}\t");
+            sb.Append($"Type: {Enum.GetName(typeof(SpellType), Type)}\n");
+            sb.Append($"Flag: {Flag} {Enum.GetName(typeof(SpellFlag), Flag)}\n");
             sb.Append($"LevelMultiplier: {LevelMultiplier}\n");
             sb.Append($"EnergyUsed: {EnergyUsed}\n");
             sb.Append($"MinimumDamage: {MinimumDamage}\n");
@@ -92,11 +91,6 @@ namespace Records
             sb.Append($"IncEvery: {IncEvery}\n");
             sb.Append($"CastType: {Enum.GetName(typeof(CastType), CastingType)}\t");
             sb.Append($"LearnedFromItem: {LearnedFromItem}\n");
-
-            foreach (KeyValuePair<Common.Abilities, int> ability in Abilities)
-            {
-                sb.Append($"\tAbility/Modifier: {ability.Key} {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
-            }
 
             return sb.ToString();
         }

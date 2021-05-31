@@ -8,8 +8,9 @@ namespace MegaMudMDCreator
     {
         static void Main(string[] args)
         {
-            PrintAllClasses();
-            PrintAllRaces();
+            //PrintAllClasses();
+            //PrintAllRaces();
+            PrintAllSpells();
             
             //var classReader = new ClassesMDReader<Class>();
             //var classWriter = new ClassesMDWriter<Class>();
@@ -28,6 +29,7 @@ namespace MegaMudMDCreator
 
         private static void PrintAllClasses()
         {
+            Console.WriteLine("----------- CLASSES START -----------");
             var classMDReader = new ClassesMDReader<Class>();
             List<Class> allClasses = classMDReader.GetAllRecords();
 
@@ -35,10 +37,12 @@ namespace MegaMudMDCreator
             {
                 Console.WriteLine(cls.ToString());
             }
+            Console.WriteLine("----------- CLASSES END -----------");
         }
 
         private static void PrintAllRaces()
         {
+            Console.WriteLine("----------- RACES START -----------");
             var racesMDReader = new RacesMDReader<Race>();
             List<Race> allRaces = racesMDReader.GetAllRecords();
 
@@ -46,6 +50,20 @@ namespace MegaMudMDCreator
             {
                 Console.WriteLine(race.ToString());
             }
+            Console.WriteLine("----------- RACES END -----------");
+        }
+
+        private static void PrintAllSpells()
+        {
+            Console.WriteLine("----------- SPELLS START -----------");
+            var spellsMDReader = new SpellsMDReader<Spell>();
+            List<Spell> allSpells = spellsMDReader.GetAllRecords();
+
+            foreach (Spell spell in allSpells)
+            {
+                Console.WriteLine(spell.ToString());
+            }
+            Console.WriteLine("----------- SPELLS END -----------");
         }
     }
 }
