@@ -15,7 +15,6 @@ namespace MegaMudMDCreator
             {
                 Common.Abilities k = (Common.Abilities)abilityKeyUshort;
                 short v = BitConverter.ToInt16(abilityValue, 0);
-                Console.WriteLine($"Adding ability {k} = {v}");
 
                 if (k == Common.Abilities.ClassItemInclusion)
                 {
@@ -23,10 +22,29 @@ namespace MegaMudMDCreator
                     return;
                 }
 
-                if (newItem.Abilities.ContainsKey(k))
+                if (k == Common.Abilities.LinkToSpell)
                 {
-                    Console.WriteLine($"DUPLICATE KVP: {k} {v}");
-                    Console.ReadLine();
+                    // Default, only `black tome` and `blackened skin-bound book` teach more than 1 spell
+                    newItem.LinkToSpell.Add(v);
+                    return;
+                }
+
+                if (k == Common.Abilities.Casts)
+                {
+                    newItem.Casts.Add(v);
+                    return;
+                }
+
+                if (k == Common.Abilities.AlterBSMinimum && newItem.ItemName == "jeweled dirk")
+                {
+                    // Known issue in the default MegaMud MD files - two BS Minimums for jeweled dirk
+                    return;
+                }
+
+                if (newItem.Abilities.TryGetValue(k, out var currentValue))
+                {
+                    // TODO:  When we stop logging to the console, what do we want to do here?
+                    Console.WriteLine($"{newItem.ItemName} -- DUPLICATE KEY: {k} oldVaue={currentValue} but newValue={v}");
                     return;
                 }
                 newItem.Abilities.Add(k, v);
@@ -72,8 +90,6 @@ namespace MegaMudMDCreator
                 //<int> NegatesSpells = new List<int>();   // Max 5 spell IDs
                 //<int> Classes { get; set; }              // Allowed classes, max 10
                 //<int> Races { get; set; }                // Allowed races, max 10
-
-                Console.WriteLine($"Item={item.ItemName}");
 
                 AbilityHelper(item.Ability1Key, item.Ability1Value, newItem);
                 AbilityHelper(item.Ability2Key, item.Ability2Value, newItem);

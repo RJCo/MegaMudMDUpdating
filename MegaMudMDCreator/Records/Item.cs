@@ -136,9 +136,12 @@ namespace Records
         public int WeaponNumberOfHandsNeeded { get; set; }
         public int Material { get; set; }                   // TODO:  What is this?  WeaponType and ArmorType?
         public int Body { get; set; }
-        public List<int> NegatesSpells = new List<int>();   // Max 5 spell IDs
-        public List<int> Classes { get; set; } = new List<int>();   // Allowed classes, max 10
-        public List<int> Races { get; set; } = new List<int>();     // Allowed races, max 10
+        public HashSet<int> NegatesSpells = new HashSet<int>();   // Max 5 spell IDs
+        public HashSet<int> Classes { get; set; } = new HashSet<int>();   // Allowed classes, max 10
+        public HashSet<int> Races { get; set; } = new HashSet<int>();     // Allowed races, max 10
+        public HashSet<int> Casts { get; set; } = new HashSet<int>();
+        public HashSet<int> LinkToSpell { get; set; } = new HashSet<int>();  // `black tome` teaches two spells, so we create a collection
+
         public int DroppedBy { get; set; }
         public int FromItem { get; set; }
         public int BasePrice { get; set; }

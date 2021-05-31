@@ -48,7 +48,7 @@ namespace Records
             FindTraps = 0x0028,
             DisarmTraps = 0x0029,
             LinkToSpell = 0x002A,
-            OnetimeCast = 0x002B,
+            Casts = 0x002B,
             AlterIntellect = 0x002C,
             AlterWisdom = 0x002D,
             AlterStrength = 0x002E,
