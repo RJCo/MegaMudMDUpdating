@@ -10,7 +10,8 @@ namespace MegaMudMDCreator
         {
             //PrintAllClasses();
             //PrintAllRaces();
-            PrintAllSpells();
+            //PrintAllSpells();
+            PrintAllItems();
             
             //var classReader = new ClassesMDReader<Class>();
             //var classWriter = new ClassesMDWriter<Class>();
@@ -64,6 +65,19 @@ namespace MegaMudMDCreator
                 Console.WriteLine(spell.ToString());
             }
             Console.WriteLine("----------- SPELLS END -----------");
+        }
+
+        private static void PrintAllItems()
+        {
+            Console.WriteLine("----------- ITEMS START -----------");
+            var itemsMDReader = new ItemsMDReader<Item>();
+            List<Item> allItems = itemsMDReader.GetAllRecords();
+
+            foreach (Item item in allItems)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("----------- ITEMS END -----------");
         }
     }
 }

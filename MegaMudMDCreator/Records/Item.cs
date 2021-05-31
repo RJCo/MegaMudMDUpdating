@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace Records
 {
@@ -111,15 +111,14 @@ namespace Records
         }
         #endregion
 
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
         public ItemType Type { get; set; }
         public ItemEquippableSlot Slot { get; set; }
         public ItemEquippedOn CurrentEquippedOn { get; set; }
         public int MinimumToKeep { get; set; }
         public int MaximumToGet { get; set; }
         public long Price { get; set; }
-        public long Value { get; set; }
         public int MaximumInGame { get; set; }
         public string Shop { get; set; }
         public string Path { get; set; }
@@ -133,13 +132,13 @@ namespace Records
         public int Speed { get; set; }
         public int ArmorClass { get; set; }
         public int DamageReduction { get; set; }
-        public Dictionary<Common.Abilities, int> Abilities = new Dictionary<Common.Abilities, int>(); // Max 10
+        public Dictionary<Common.Abilities, short> Abilities = new Dictionary<Common.Abilities, short>(); // Max 10
         public int WeaponNumberOfHandsNeeded { get; set; }
         public int Material { get; set; }                   // TODO:  What is this?  WeaponType and ArmorType?
         public int Body { get; set; }
         public List<int> NegatesSpells = new List<int>();   // Max 5 spell IDs
-        public List<int> Classes { get; set; }              // Allowed classes, max 10
-        public List<int> Races { get; set; }                // Allowed races, max 10
+        public List<int> Classes { get; set; } = new List<int>();   // Allowed classes, max 10
+        public List<int> Races { get; set; } = new List<int>();     // Allowed races, max 10
         public int DroppedBy { get; set; }
         public int FromItem { get; set; }
         public int BasePrice { get; set; }
@@ -147,21 +146,45 @@ namespace Records
 
         public new string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"ID: {ItemId}\n");
+            sb.Append($"Name: {ItemName}\n");
+            sb.Append($"Type: {Type}\n");
+            sb.Append($"Slot: {Slot}\n");
+            sb.Append($"CurrentEquippedOn: {CurrentEquippedOn}\n");
+            sb.Append($"MinimumToKeep: {MinimumToKeep}\n");
+            sb.Append($"MaximumToGet: {MaximumToGet}\n");
+            sb.Append($"Price: {Price}\n");
+            sb.Append($"MaximumInGame: {MaximumInGame}\n");
+            sb.Append($"Shop: {Shop}\n");
+            sb.Append($"Path: {Path}\n");
+            sb.Append($"Weight: {Weight}\n");
+            sb.Append($"Flags: {Flags}\n");
+            sb.Append($"MaximumUses: {MaximumUses}\n");
+            sb.Append($"MinimumStrengthToUse: {MinimumStrengthToUse}\n");
+            sb.Append($"MinimumDamage: {MinimumDamage}\n");
+            sb.Append($"MaximumDamage: {MaximumDamage}\n");
+            sb.Append($"Accuracy: {Accuracy}\n");
+            sb.Append($"Speed: {Speed}\n");
+            sb.Append($"ArmorClass: {ArmorClass}\n");
+            sb.Append($"DamageReduction: {DamageReduction}\n");
+            sb.Append($"WeaponNumberOfHandsNeeded: {WeaponNumberOfHandsNeeded}\n");
+            sb.Append($"Material: {Material}\n");
+            sb.Append($"Body: {Body}\n");
+            sb.Append($"DroppedBy: {DroppedBy}\n");
+            sb.Append($"FromItem: {FromItem}\n");
+            sb.Append($"BasePrice: {BasePrice}\n");
 
-            /*
-            string recordStr = string.Empty;
+            sb.Append($"NegatesSpells: {string.Join(", ", NegatesSpells)}");
+            sb.Append($"Classes: {string.Join(", ", Classes)}");
+            sb.Append($"Races: {string.Join(", ", Races)}");
 
-            recordStr += string.Format("ID: {0}\t", ID);
-            recordStr += string.Format("Name: {0}\n", Name);
-            recordStr += string.Format("Experience: {0}\n", ExperiencePercentage);
-            recordStr += string.Format("Weapon Type: {0}\n", Enum.GetName(typeof(WeaponClasses), WeaponType));
-
-            foreach (var ability in AbilitiesAndMods) {
-                recordStr += string.Format("Ability/Modifier: {0}:{1}\n", Enum.GetName(typeof(AbilitiesAndModifiers), ability.Key), ability.Value);
+            foreach (KeyValuePair<Common.Abilities, short> ability in Abilities)
+            {
+                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
             }
-            return recordStr;
-            */
+
+            return sb.ToString();
         }
     }
 }

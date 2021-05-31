@@ -39,7 +39,7 @@ namespace Records
             recordStr += string.Format("Name: {0}\n", Name);
             recordStr += string.Format("Author: {0}\n", Author);
             recordStr += string.Format("Filename: {0}\n", Filename);
-            recordStr += string.Format("ItemNeeded: {0}\n", ItemNeeded.Name);
+            recordStr += string.Format("ItemNeeded: {0}\n", ItemNeeded.ItemName);
             recordStr += string.Format("OnFailDo: {0}\n", OnFailDo.Filename);
             recordStr += string.Format("OnFinishDo: {0}\n", OnFinishDo.Filename);
             recordStr += string.Format("StartingRoom: {0}\n", StartingRoom.Name);
