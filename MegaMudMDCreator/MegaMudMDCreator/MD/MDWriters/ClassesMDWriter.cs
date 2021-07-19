@@ -24,7 +24,7 @@ namespace MegaMudMDCreator
 
             foreach (Class cls in sortedClasses)
             {
-                Console.WriteLine($"Doing class {cls.ID}");
+                Console.WriteLine($"Doing classID {cls.ID}");
                 byte[] serializedClass = Serialize(cls);
                 classesBytes.Add(serializedClass);
             }
@@ -46,7 +46,9 @@ namespace MegaMudMDCreator
 
             classMD.ClassId = (ushort)rec.ID;
             classMD.ClassName = rec.Name;
-            classMD.ExperienceBase = IntToByteArray(rec.ExperiencePercentage);
+            classMD.ExperienceBase = UshortToByteArray((ushort)rec.ExperiencePercentage);
+            Array.Reverse(classMD.ExperienceBase);
+
             classMD.CombatLevel = (byte)rec.Combat;
             classMD.MinHPPerLevel = (byte)rec.HitpointPerLevelMinimum;
             classMD.MaxHPPerLevel = (byte)rec.HitpointPerLevelMaximum;
