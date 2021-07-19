@@ -25,7 +25,7 @@ namespace MegaMudMDCreator.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Megamud")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\justi\\Desktop\\megamud")]
         public string MegaMudRootPath {
             get {
                 return ((string)(this["MegaMudRootPath"]));
@@ -128,6 +128,24 @@ namespace MegaMudMDCreator.Properties {
         public string RoomsFile {
             get {
                 return ((string)(this["RoomsFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\justi\\Desktop\\megamud")]
+        public string OutputRootPath {
+            get {
+                return ((string)(this["OutputRootPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"C:\\Program Files (x86)\\MMUD Explorer\\realm1.mdb\"")]
+        public string MMUDExplorerMDBPath {
+            get {
+                return ((string)(this["MMUDExplorerMDBPath"]));
             }
         }
     }

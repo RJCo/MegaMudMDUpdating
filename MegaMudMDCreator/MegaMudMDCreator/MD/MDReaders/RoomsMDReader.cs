@@ -17,7 +17,7 @@ namespace MegaMudMDCreator
             foreach (string roomLine in roomLines)
             {
                 // Room format:  CAB00180:00004040:0:0:0:AALY:Ancient Ruin:Ancient Ruin Dark Alley
-                var roomParts = roomLine.Split(':');
+                string[] roomParts = roomLine.Split(':');
                 string ChecksumAndExits = roomParts[0];
                 string RoomFlags = roomParts[1];
                 string MinimumLevel = roomParts[2];

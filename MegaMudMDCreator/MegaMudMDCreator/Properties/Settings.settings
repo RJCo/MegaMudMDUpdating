@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="MegaMudRootPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Program Files (x86)\Megamud</Value>
+      <Value Profile="(Default)">C:\Users\justi\Desktop\megamud</Value>
     </Setting>
     <Setting Name="DefaultRelativePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Default</Value>
@@ -37,6 +37,12 @@
     </Setting>
     <Setting Name="RoomsFile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Rooms.md</Value>
+    </Setting>
+    <Setting Name="OutputRootPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\justi\Desktop\megamud</Value>
+    </Setting>
+    <Setting Name="MMUDExplorerMDBPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">"C:\Program Files (x86)\MMUD Explorer\realm1.mdb"</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,6 +1,7 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MegaMudMDCreator
 {
@@ -8,12 +9,12 @@ namespace MegaMudMDCreator
     {
         static void Main(string[] args)
         {
-            //PrintAllClasses();
+            PrintAllClasses();
             //PrintAllRaces();
             //PrintAllSpells();
             //PrintAllItems();
-            PrintAllMonsters();
-            
+            //PrintAllMonsters();
+
             //var classReader = new ClassesMDReader<Class>();
             //var classWriter = new ClassesMDWriter<Class>();
 
@@ -40,6 +41,11 @@ namespace MegaMudMDCreator
                 Console.WriteLine(cls.ToString());
             }
             Console.WriteLine("----------- CLASSES END -----------");
+
+            Console.WriteLine("----------- CLASSES START SERIALIZE-----------");
+            var classMDWriter = new ClassesMDWriter<Class>(allClasses);
+            classMDWriter.WriteFile();
+            Console.WriteLine("----------- CLASSES END SERIALIZE-----------");
         }
 
         private static void PrintAllRaces()

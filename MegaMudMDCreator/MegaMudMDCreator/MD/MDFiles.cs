@@ -4,7 +4,9 @@ namespace MegaMudMDCreator
 {
     public static class MDFiles
     {
+        public static string OUTPUT_PATH = Properties.Settings.Default.OutputRootPath;
         public static string MEGAMUD_PATH = Properties.Settings.Default.MegaMudRootPath;
+
         public static string DEFAULT_PATH = Path.Combine(MEGAMUD_PATH, Properties.Settings.Default.DefaultRelativePath);
         public static string BBS_PATH = Path.Combine(MEGAMUD_PATH, Properties.Settings.Default.BBSRelativePath);
         public static string CHARS_PATH = Path.Combine(MEGAMUD_PATH, Properties.Settings.Default.CharactersRelativePath);
@@ -17,5 +19,14 @@ namespace MegaMudMDCreator
         public static string RACES_FILE = Path.Combine(DEFAULT_PATH, Properties.Settings.Default.RacesFile);
         public static string SPELLS_FILE = Path.Combine(DEFAULT_PATH, Properties.Settings.Default.SpellsFile);
         public static string ROOMS_FILE = Path.Combine(DEFAULT_PATH, Properties.Settings.Default.RoomsFile);
+
+        public static string CLASSES_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.ClassesFile);
+        public static string ITEMS_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.ItemsFile);
+        public static string MESSAGES_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.MessagesFile);
+        public static string MONSTERS_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.MonstersFile);
+        public static string PATHS_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.PathsFile);
+        public static string RACES_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.RacesFile);
+        public static string SPELLS_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.SpellsFile);
+        public static string ROOMS_OUTPUT_FILE = Path.Combine(OUTPUT_PATH, Properties.Settings.Default.RoomsFile);
     }
 }

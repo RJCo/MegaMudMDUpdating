@@ -1,7 +1,7 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace MegaMudMDCreator
 {
@@ -36,55 +36,24 @@ namespace MegaMudMDCreator
                     AbilitiesAndMods = new Dictionary<Common.Abilities, short>()
                 };
 
-                Array.Reverse(cls.Ability1Key);
-                Array.Reverse(cls.Ability2Key);
-                Array.Reverse(cls.Ability3Key);
-                Array.Reverse(cls.Ability4Key);
-                Array.Reverse(cls.Ability5Key);
-                Array.Reverse(cls.Ability6Key);
-                Array.Reverse(cls.Ability7Key);
-                Array.Reverse(cls.Ability8Key);
+                // Abilities and Mods
+                for (int i = 0; i < 8; i++)
+                {
+                    byte[] abilityBytes = cls.AbilityKeys.Skip(i * 2).Take(2).ToArray();
+                    byte[] abilityValuesBytes = cls.AbilityValues.Skip(i * 2).Take(2).ToArray();
 
-                Array.Reverse(cls.Ability1Value);
-                Array.Reverse(cls.Ability2Value);
-                Array.Reverse(cls.Ability3Value);
-                Array.Reverse(cls.Ability4Value);
-                Array.Reverse(cls.Ability5Value);
-                Array.Reverse(cls.Ability6Value);
-                Array.Reverse(cls.Ability7Value);
-                Array.Reverse(cls.Ability8Value);
+                    Array.Reverse(abilityBytes);
+                    Array.Reverse(abilityValuesBytes);
 
-                ushort ability1Key = BitConverter.ToUInt16(cls.Ability1Key, 0);
-                if (ability1Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability1Key, BitConverter.ToInt16(cls.Ability1Value, 0));
+                    var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
+                    var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
 
-                ushort ability2Key = BitConverter.ToUInt16(cls.Ability2Key, 0);
-                if (ability2Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability2Key, BitConverter.ToInt16(cls.Ability2Value, 0));
-
-                ushort ability3Key = BitConverter.ToUInt16(cls.Ability3Key, 0);
-                if (ability3Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability3Key, BitConverter.ToInt16(cls.Ability3Value, 0));
-
-                ushort ability4Key = BitConverter.ToUInt16(cls.Ability4Key, 0);
-                if (ability4Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability4Key, BitConverter.ToInt16(cls.Ability4Value, 0));
-
-                ushort ability5Key = BitConverter.ToUInt16(cls.Ability5Key, 0);
-                if (ability5Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability5Key, BitConverter.ToInt16(cls.Ability5Value, 0));
-
-                ushort ability6Key = BitConverter.ToUInt16(cls.Ability6Key, 0);
-                if (ability6Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability6Key, BitConverter.ToInt16(cls.Ability6Value, 0));
-
-                ushort ability7Key = BitConverter.ToUInt16(cls.Ability7Key, 0);
-                if (ability7Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability7Key, BitConverter.ToInt16(cls.Ability7Value, 0));
-
-                ushort ability8Key = BitConverter.ToUInt16(cls.Ability8Key, 0);
-                if (ability8Key != 0)
-                    newClass.AbilitiesAndMods.Add((Common.Abilities)ability8Key, BitConverter.ToInt16(cls.Ability8Value, 0));
+                    // If the ability is zero, the value is zero or garbage, so ignore it
+                    if (abilityCode != 0)
+                    {
+                        newClass.AbilitiesAndMods.Add((Common.Abilities)abilityCode, abilityValueCode);
+                    }
+                }
 
                 classes.Add((T)newClass);
             }

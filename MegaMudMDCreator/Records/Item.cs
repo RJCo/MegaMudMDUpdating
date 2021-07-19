@@ -49,7 +49,6 @@ namespace Records
             Head = 2,
             Hands = 3,
             Finger = 4,
-            Finger2 = 13,
             Feet = 5,
             Arms = 6,
             Back = 7,
@@ -58,10 +57,11 @@ namespace Records
             Waist = 10,
             Torso = 11,
             Offhand = 12,
+            Finger2 = 13,
             Wrist = 14,
-            Wrist2 = 17,
             Ears = 15,
             Worn = 16,
+            Wrist2 = 17,
             Face = 18,
             Eyes = 19,
         }
@@ -132,7 +132,7 @@ namespace Records
         public int Speed { get; set; }
         public int ArmorClass { get; set; }
         public int DamageReduction { get; set; }
-        public Dictionary<Common.Abilities, short> Abilities = new Dictionary<Common.Abilities, short>(); // Max 10
+        public Dictionary<Common.Abilities, short> Abilities = new Dictionary<Common.Abilities, short>(10); // Max 10
         public int WeaponNumberOfHandsNeeded { get; set; }
         public int Material { get; set; }                   // TODO:  What is this?  WeaponType and ArmorType?
         public int Body { get; set; }

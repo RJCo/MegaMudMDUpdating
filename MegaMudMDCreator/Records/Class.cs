@@ -9,11 +9,16 @@ namespace Records
         #region Enums
         public enum WeaponClasses
         {
-            Unknown = 0x00,
-            AllWeapons = 0x08,
+            OneHandedBlunt = 0x00,
+            TwoHandedBlunt = 0x01, 
+            OneHandedSharp = 0x02,
+            TwoHandedSharp = 0x03,
             OneHanded = 0x04,
-            Staff = 0x09,
+            TwoHanded = 0x05,
+            AnySharp = 0x06,
             BluntOnly = 0x07,
+            AllWeapons = 0x08,
+            Staff = 0x09,
         }
 
         public enum ArmorClasses
@@ -48,7 +53,7 @@ namespace Records
         public ArmorClasses ArmorType { get; set; }
         public int MagicLevel { get; set; }
         public MagicTypes MagicType { get; set; }
-        public Dictionary<Common.Abilities, short> AbilitiesAndMods { get; set; }
+        public Dictionary<Common.Abilities, short> AbilitiesAndMods { get; set; } = new Dictionary<Common.Abilities, short>(10); // MajorMud only has at most 10 abilities/mods for Classes
 
         public new string ToString()
         {

@@ -46,10 +46,10 @@ namespace MegaMudMDCreator.Btrieve
             throw new NotImplementedException("BtrieveFile.loadAllRecords not implemented");
         }
 
-        public int GetPageSize()
-        {
-            return _header.PageSize;
-        }
+        //public int GetPageSize()
+        //{
+        //    return _header.PageSize;
+        //}
 
         public BtrieveRecord GetRecord(int index)
         {
@@ -77,10 +77,10 @@ namespace MegaMudMDCreator.Btrieve
             */
         }
 
-        public int GetRecordSize()
-        {
-            return _header.RecordLength;
-        }
+        //public int GetRecordSize()
+        //{
+        //    return _header.RecordLength;
+        //}
 
         public bool ReadFirstPage()
         {

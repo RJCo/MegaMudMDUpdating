@@ -93,7 +93,7 @@ namespace MegaMudMDCreator
                                 // Find the location of 0x80 -- the struct starts next
                                 if (currentBlock[j] == 0x80)
                                 {
-                                    structStarts = j;
+                                    structStarts = j + 1;
                                     break;
                                 }
                             }

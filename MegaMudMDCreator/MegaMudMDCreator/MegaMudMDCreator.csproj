@@ -64,6 +64,7 @@
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />
     <Compile Include="MD\MDFileReader.cs" />
     <Compile Include="MD\MDFileWriter.cs" />
+    <Compile Include="MMEAccess\Readers\ClassesMMEReader.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

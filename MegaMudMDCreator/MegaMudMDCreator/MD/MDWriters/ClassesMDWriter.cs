@@ -1,100 +1,111 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
-
 
 namespace MegaMudMDCreator
 {
     public class ClassesMDWriter<T> : MDWriterFactory<T>
         where T : Class
     {
-        private const ushort _recordLengthWithoutID = 88;  // 0x58
-
-        public override byte[] Serialize(T rec)
+        private readonly List<Class> _classes;
+        public ClassesMDWriter(List<Class> classes)
         {
-            Class classToWrite = rec;
-            if (rec == null)
-                throw new Exception($"Got a record that isn't a Class.  Type is {rec.GetType()}");
+            _classes = classes;
+        }
 
-            ushort _recordLength = (ushort)(_recordLengthWithoutID + Convert.ToUInt16(classToWrite.ID.ToString().Length));
-            byte[] record = new byte[_recordLength];
-            /* 
-             e.g. Warrior:
-                59 01 31 00 00 00 00 00 80 01 00 57 61 72 72 69 
-                6F 72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-                00 00 00 00 00 00 00 00 00 64 00 06 06 0A 08 09 
-                00 00 1F 00 00 00 00 00 00 00 00 00 00 00 00 00 
-                00 00 00 00 00 00 00 00 9D FF 9D FF 9D FF 9D FF 
-                9D FF 00 00 00 00 00 00 00 20
-            */
+        public override List<byte[]> GetListOfRecordBytes()
+        {
+            List<byte[]> classesBytes = new List<byte[]>(_classes.Count);
+
+            List<Class> sortedClasses = _classes.OrderBy(o => o.ID.ToString()).ToList();
+
+            foreach (Class cls in sortedClasses)
+            {
+                Console.WriteLine($"Doing class {cls.ID}");
+                byte[] serializedClass = Serialize(cls);
+                classesBytes.Add(serializedClass);
+            }
+
+            return classesBytes;
+        }
+
+        public override void WriteFile()
+        {
+            string filename = MDFiles.CLASSES_OUTPUT_FILE;
+
+            var file = new MDFileData(filename, GetListOfRecordBytes());
+            file.WriteToFile();
+        }
+
+        private byte[] Serialize(Class rec)
+        {
+            ClassMD classMD = default;
+
+            classMD.ClassId = (ushort)rec.ID;
+            classMD.ClassName = rec.Name;
+            classMD.ExperienceBase = IntToByteArray(rec.ExperiencePercentage);
+            classMD.CombatLevel = (byte)rec.Combat;
+            classMD.MinHPPerLevel = (byte)rec.HitpointPerLevelMinimum;
+            classMD.MaxHPPerLevel = (byte)rec.HitpointPerLevelMaximum;
+            classMD.WeaponsUsable = (byte)rec.WeaponType;
+            classMD.ArmorUseable = (byte)rec.ArmorType;
+            classMD.MagicLevel = (byte)rec.MagicLevel;
+
+            classMD.AbilityKeys = new byte[16];
+            classMD.AbilityValues = new byte[16];
 
             int i = 0;
-            record[i++] = UshortToByte(_recordLength);
-            record[i++] = 0x01;
-
-            foreach (byte x in Encoding.ASCII.GetBytes(classToWrite.ID.ToString()))
+            foreach (KeyValuePair<Common.Abilities, short> kvp in rec.AbilitiesAndMods)
             {
-                record[i++] = x;
+                Common.Abilities ability = kvp.Key;
+                short abilityMod = kvp.Value;
+
+                byte[] k = BitConverter.GetBytes((short)ability);
+                byte[] v = BitConverter.GetBytes(abilityMod);
+
+                classMD.AbilityKeys[i] = k[1];
+                classMD.AbilityKeys[i + 1] = k[0];
+
+                classMD.AbilityValues[i] = v[1];
+                classMD.AbilityValues[i + 1] = v[0];
+
+                i += 2;
             }
+            classMD.EndChars = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x20 };
 
-            record[i++] = 0x00;
-            record[i++] = 0x00;
-            record[i++] = 0x00;
-            record[i++] = 0x00;
-            record[i++] = 0x00;
-            record[i++] = 0x80;
+            byte[] unusedByte = { 0x01 }; // Always 0x01
+            byte[] classIdAsCharacters = Encoding.ASCII.GetBytes(classMD.ClassId.ToString());
+            byte[] padding = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 };
 
-            byte[] idAsBytes = UshortToByteArray((ushort)classToWrite.ID);
-            record[i++] = idAsBytes[0];
-            record[i++] = idAsBytes[1];
+            byte length = UshortToByteArray((ushort)(unusedByte.Length + classIdAsCharacters.Length + padding.Length + Marshal.SizeOf(classMD)))[1];
 
-            foreach (byte x in Encoding.ASCII.GetBytes(classToWrite.Name))
+            var classHeaderParts = new List<byte[]>(4)
             {
-                record[i++] = x;
-            }
+                new byte[] { length },
+                unusedByte,
+                classIdAsCharacters,
+                padding
+            };
 
-            for (int j = 0; j < Common.CLASS_NAME_LEN /*30*/ - classToWrite.Name.Length; j++)
-            {
-                record[i++] = 0x00;
-            }
+            byte[] classHeader = classHeaderParts.SelectMany(t => t).ToArray();
+            byte[] classRecord = GetBytes(classMD);
 
-            byte[] exp = UshortToByteArray((ushort)classToWrite.ExperiencePercentage);
-            record[i++] = exp[0];
-            record[i++] = exp[1];
+            return CombineArrays(classHeader, classRecord);
+        }
 
-            record[i++] = IntToByte(classToWrite.Combat);
-            record[i++] = IntToByte(classToWrite.HitpointPerLevelMinimum);
-            record[i++] = IntToByte(classToWrite.HitpointPerLevelMaximum);
-            record[i++] = (byte)classToWrite.WeaponType;
-            record[i++] = (byte)classToWrite.ArmorType;
-            record[i++] = (byte)classToWrite.MagicLevel;
-            record[i++] = (byte)classToWrite.MagicType;
+        internal byte[] GetBytes(ClassMD str)
+        {
+            int size = Marshal.SizeOf(str);
+            byte[] arr = new byte[size];
 
-            int abilitiesStartIndex = i;
-            // Initialize the abilities & mods section with 0x00; to the end of the record
-            for (int j = abilitiesStartIndex; j < record.Length; j++)
-            {
-                record[j] = 0x00;
-            }
-
-            foreach (KeyValuePair<Common.Abilities, short> kvp in classToWrite.AbilitiesAndMods)
-            {
-                byte[] abilityCode = UshortToByteArray((ushort)kvp.Key);
-                byte[] abilityValue = UshortToByteArray((ushort)kvp.Value);
-
-                // NOTE:  20 is  the offset between the abilities list and their values
-                record[i] = abilityCode[0];
-                record[i + 20] = abilityValue[0];
-                i++;
-
-                record[i] = abilityCode[1];
-                record[i + 20] = abilityValue[1];
-                i++;
-            }
-
-            record[record.Length - 1] = 0x20;
-            return record;
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            Marshal.StructureToPtr(str, ptr, true);
+            Marshal.Copy(ptr, arr, 0, size);
+            Marshal.FreeHGlobal(ptr);
+            return arr;
         }
     }
 }

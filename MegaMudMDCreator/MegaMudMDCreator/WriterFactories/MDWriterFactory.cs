@@ -1,18 +1,30 @@
-﻿using Records;
-using System;
+﻿using System;
+using System.Collections.Generic;
+
 
 namespace MegaMudMDCreator
 {
-    public abstract class MDWriterFactory<T> : IWriterFactory<T>
+    public abstract class MDWriterFactory<T> : IWriterFactory<T> 
+        where T : class
     {
-        public abstract byte[] Serialize(T record);
+        public abstract List<byte[]> GetListOfRecordBytes();
+        public abstract void WriteFile();
 
-        internal byte IntToByte(int intValue)
+        public static byte[] CombineArrays(byte[] a1, byte[] a2)
+        {
+            byte[] newArray = new byte[a1.Length + a2.Length];
+            Array.Copy(a1, newArray, a1.Length);
+            Array.Copy(a2, 0, newArray, a1.Length, a2.Length);
+            return newArray;
+        }
+
+        // TODO:  This seems wrong?
+        internal static byte IntToByte(int intValue)
         {
             return UshortToByte((ushort)intValue);
         }
 
-        internal byte UshortToByte(ushort ushortValue)
+        internal static byte UshortToByte(ushort ushortValue)
         {
             byte[] shortBytes = BitConverter.GetBytes(ushortValue);
             if (BitConverter.IsLittleEndian)
@@ -21,7 +33,7 @@ namespace MegaMudMDCreator
             return result[0];
         }
 
-        internal byte[] UshortToByteArray(ushort ushortValue)
+        internal static byte[] UshortToByteArray(ushort ushortValue)
         {
             byte[] shortBytes = BitConverter.GetBytes(ushortValue);
             if (BitConverter.IsLittleEndian)
@@ -30,7 +42,7 @@ namespace MegaMudMDCreator
             return result;
         }
 
-        internal byte[] IntToByteArray(int intValue)
+        internal static byte[] IntToByteArray(int intValue)
         {
             byte[] intBytes = BitConverter.GetBytes(intValue);
             if (BitConverter.IsLittleEndian)
