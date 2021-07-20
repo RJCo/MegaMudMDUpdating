@@ -6,71 +6,15 @@ namespace MegaMudMDCreator
 {
     public class MDFileData
     {
-        #region Header information
-        /*
-        char  szFiller1 [8];     // 4D 44 42 32 02 00 00 00
-        WORD  wPageSize;         // 6A 02                    (618) DDF page size
-        WORD  wStartOffset;      // 00 04
-        char  szFiller2 [8];     // FF FF FF FF FF FF FF FF
-        WORD  wNumKeys;          // 01 00                    (1)    Number of keys
-        WORD  wDataSize;         // 30 04                    (1072) Data   length
-        WORD  wRecSize;          // 32 04                    (1074) Record length
-        char  szFiller4 [2];     // 00 00
-        DWORD dwRecCount;        // 00 00 00 00              (1892) No. of records
-        char  szFiller5 [8];     // 00 00 FF FF 01 00 00 00
-        char  szFiller6 [9];     // 03 00 00 00 00 00 00 00
-        */
         private static byte[] header = new byte[0x400];
-
-        //private static readonly byte[] _filler1 = new byte[11]
-        //{
-        //    0x4D, 0x44, 0x42, 0x32, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // MDB2....
-        //};
-
-        //// private readonly ushort _pageSize; -- not needed?
-        //private readonly ushort _startOffset = 0x0400;  // Definitely needed
-
-        //private static readonly byte[] _filler2 = new byte[8] 
-        //{ 
-        //    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-        //};
-        //private readonly ushort _numberOfKeys;
-        //private readonly ushort _dataLength;
-        //private readonly ushort _recordLength;
-        //private static readonly byte[] _filler4 = new byte[] { 0x00, 0x00 };
-        //private readonly uint _recordCount;
-        //private static readonly byte[] _filler5 = new byte[] { 0x00, 0x00, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0x00 };
-        //// Note:  filler6 could be either 8 or 9 bytes in length.  Not sure yet.
-        //private static readonly byte[] _filler6 = new byte[] { 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-        //
-        #endregion Header information
 
         public string Filename { get; }
         private List<byte[]> _records;
-
-        //public ushort PageSize => _pageSize;
-        //public ushort RecordLength => _recordLength;
 
         public MDFileData(string filename, List<byte[]> records)
         {
             Filename = filename;
             _records = records;
-            //_pageSize = 0x1000; // TODO:  Any reason to not hardcode this at 4k?
-            //_startOffset = 0x4000;  // TODO:  Any reason to not hardcode this at 16k?
-            //_numberOfKeys = (ushort)records.Count;
-            //_dataLength = 0;
-            //_recordLength = 0;
-            SetHeader();
-        }
-
-        public MDFileData(ushort pageSize, ushort startOffset, ushort numberOfKeys, ushort dataLength, ushort recordLength, ushort recordCount)
-        {
-            //_pageSize = pageSize;
-            //_startOffset = startOffset;
-            //_numberOfKeys = numberOfKeys;
-            //_dataLength = dataLength;
-            //_recordLength = recordLength;
-            //_recordCount = recordCount;
             SetHeader();
         }
 
@@ -92,20 +36,6 @@ namespace MegaMudMDCreator
         {
             var contents = new List<byte[]> { header };
 
-            // Page header #0:  00 00 05 00 2E 02 00 00 03 00 FF FF
-            // Page header #1:  00 00 01 00 9A 03 00 00 FF FF 03 00
-            // Page header #2:  01 (unused page)
-            // Page header #3:  00 00 09 00 C8 00 00 00 01 00 00 00
-
-            /*
-             struct smallnode {  /* bcb node declaration * /
-                INT16 smlevel;  /* level of node * / -- 0x0000 seems like all good values have
-                INT16 smcount;  /* key count * / -- # of records in page
-                INT16 smfree;   /* free space * / -- can just leave as 0x0000
-                INT16 smp0;     /* p0 pointer * / -- can just leave as 0x0000
-                INT16 smforwrd; /* forward pointer * /
-                INT16 smrevrse; /* reverse pointer * /
-            */
             ushort currentPageNumber = 0;
             int currentPageSize = 0;
             ushort currentPageRecordCount = 0;
@@ -153,10 +83,10 @@ namespace MegaMudMDCreator
 
             var pageHeaderList = new List<byte[]>
                 {
-                    new byte[] { 0x00, 0x00 },
+                    new byte[] { 0x00, 0x00 }, // level of node - unused?  All top level nodes aka no leafs?
                     recordCount,
                     new byte[] { 0x00, 0x00 }, // [2] is placeholder for sizeRemaining
-                    new byte[] { 0x00, 0x00 },
+                    new byte[] { 0x00, 0x00 }, // p0 pointer - unused?
                     forwardPointer,
                     backwardPointer,
                 };
