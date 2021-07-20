@@ -1,7 +1,7 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace MegaMudMDCreator
 {
@@ -42,37 +42,24 @@ namespace MegaMudMDCreator
                     AbilitiesAndMods = new Dictionary<Race.AbilitiesAndModifiers, short>(),
                 };
 
-                ushort ability1Key = BitConverter.ToUInt16(race.Ability1Key, 0);
-                if (ability1Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability1Key, BitConverter.ToInt16(race.Ability1Value, 0));
+                // Abilities and Mods
+                for (int i = 0; i < 8; i++)
+                {
+                    byte[] abilityBytes = race.AbilityKeys.Skip(i * 2).Take(2).ToArray();
+                    byte[] abilityValuesBytes = race.AbilityValues.Skip(i * 2).Take(2).ToArray();
 
-                ushort ability2Key = BitConverter.ToUInt16(race.Ability2Key, 0);
-                if (ability2Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability2Key, BitConverter.ToInt16(race.Ability2Value, 0));
+                    Array.Reverse(abilityBytes);
+                    Array.Reverse(abilityValuesBytes);
 
-                ushort ability3Key = BitConverter.ToUInt16(race.Ability3Key, 0);
-                if (ability3Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability3Key, BitConverter.ToInt16(race.Ability3Value, 0));
+                    var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
+                    var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
 
-                ushort ability4Key = BitConverter.ToUInt16(race.Ability4Key, 0);
-                if (ability4Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability4Key, BitConverter.ToInt16(race.Ability4Value, 0));
-
-                ushort ability5Key = BitConverter.ToUInt16(race.Ability5Key, 0);
-                if (ability5Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability5Key, BitConverter.ToInt16(race.Ability5Value, 0));
-
-                ushort ability6Key = BitConverter.ToUInt16(race.Ability6Key, 0);
-                if (ability6Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability6Key, BitConverter.ToInt16(race.Ability6Value, 0));
-
-                ushort ability7Key = BitConverter.ToUInt16(race.Ability7Key, 0);
-                if (ability7Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability7Key, BitConverter.ToInt16(race.Ability7Value, 0));
-
-                ushort ability8Key = BitConverter.ToUInt16(race.Ability8Key, 0);
-                if (ability8Key != 0)
-                    newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)ability8Key, BitConverter.ToInt16(race.Ability8Value, 0));
+                    // If the ability is zero, the value is zero or garbage, so ignore it
+                    if (abilityCode != 0)
+                    {
+                        newRace.AbilitiesAndMods.Add((Race.AbilitiesAndModifiers)abilityCode, abilityValueCode);
+                    }
+                }
 
                 races.Add((T)newRace);
             }

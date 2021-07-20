@@ -61,6 +61,7 @@
     <Compile Include="MD\MDRecords\MonsterMD.cs" />
     <Compile Include="MD\MDRecords\RaceMD.cs" />
     <Compile Include="MD\MDRecords\SpellMD.cs" />
+    <Compile Include="MD\MDWriters\RacesMDWriter.cs" />
     <Compile Include="MD\MDWriters\ClassesMDWriter.cs" />
     <Compile Include="MD\MDFileReader.cs" />
     <Compile Include="MD\MDFileWriter.cs" />

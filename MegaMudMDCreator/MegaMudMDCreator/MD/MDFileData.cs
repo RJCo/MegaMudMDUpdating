@@ -148,18 +148,27 @@ namespace MegaMudMDCreator
             Array.Reverse(forwardPointer);
             Array.Reverse(backwardPointer);
 
+            byte[] recordCount = UshortToByteArray(currentPageRecordCount);
+            Array.Reverse(recordCount);
+
             var pageHeaderList = new List<byte[]>
                 {
-                    new byte[] { 0x00, },
-                    UshortToByteArray(currentPageRecordCount),
-                    new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00},
+                    new byte[] { 0x00, 0x00 },
+                    recordCount,
+                    new byte[] { 0x00, 0x00 }, // [2] is placeholder for sizeRemaining
+                    new byte[] { 0x00, 0x00 },
                     forwardPointer,
                     backwardPointer,
                 };
 
             byte[] pageHeader = pageHeaderList.SelectMany(t => t).ToArray();
+            ushort sizeRemaining = (ushort)(0x400 - currentPageSize - pageHeader.Length /* always 12? */);
 
-            int sizeRemaining = 0x400 - currentPageSize - pageHeader.Length;
+            // Not sure we actually need page size remaining, but adding it anyway
+            byte[] sizeRemain = UshortToByteArray(sizeRemaining);
+            pageHeader[4] = sizeRemain[1];
+            pageHeader[5] = sizeRemain[0];
+
             byte[] endOfPagePadding = new byte[sizeRemaining];
             page.Add(endOfPagePadding);
 
@@ -175,40 +184,6 @@ namespace MegaMudMDCreator
             byte[] result = shortBytes;
             return result;
         }
-
-        //private byte[] GetHeader()
-        //{
-        //    /*
-        //    char  szFiller1 [8];     // 46 43 00 00 01 00 00 00
-        //    WORD  wPageSize;         // 00 10                    (4096) DDF page size
-        //    WORD  wStartOffset;      // 00 40
-        //    char  szFiller2 [8];     // FF FF FF FF FF FF FF FF
-        //    WORD  wNumKeys;          // 01 00                    (1)    Number of keys
-        //    WORD  wDataSize;         // 30 04                    (1072) Data   length
-        //    WORD  wRecSize;          // 32 04                    (1074) Record length
-        //    char  szFiller4 [2];     // 00 00
-        //    DWORD dwRecCount;        // 00 00 00 00              (1892) No. of records
-        //    char  szFiller5 [8];     // 00 00 FF FF 01 00 00 00
-        //    char  szFiller6 [9];     // 03 00 00 00 00 00 00 00
-
-
-        //    private static readonly byte[] _filler1 = new byte[] { 0x46, 0x43, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
-        //    private readonly ushort _pageSize;
-        //    private readonly ushort _startOffset;
-        //    private static readonly byte[] _filler2 = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-        //    private readonly ushort _numberOfKeys;
-        //    private readonly ushort _dataLength;
-        //    private readonly ushort _recordLength;
-        //    private static readonly byte[] _filler4 = new byte[] { 0x00, 0x00 };
-        //    private readonly uint _recordCount;
-        //    private static readonly byte[] _filler5 = new byte[] { 0x00, 0x00, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0x00 };
-        //    // Note:  filler6 could be either 8 or 9 bytes in length.  Not sure yet.
-        //    private static readonly byte[] _filler6 = new byte[] { 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-        //    */
-
-        //    List<byte[]> header = new List<byte[]>();
-
-        //}
 
         public void WriteToFile()
         {
