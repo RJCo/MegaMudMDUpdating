@@ -6,7 +6,7 @@ namespace MegaMudMDCreator
 {
     public class MDFileData
     {
-        private static byte[] header = new byte[0x400];
+        private static readonly byte[] _header = new byte[0x400];
 
         public string Filename { get; }
         private List<byte[]> _records;
@@ -20,11 +20,11 @@ namespace MegaMudMDCreator
 
         private void SetHeader()
         {
-            header[0] = 0x4D;
-            header[1] = 0x44;
-            header[2] = 0x42;
-            header[3] = 0x32;
-            header[4] = 0x02;
+            _header[0] = 0x4D;
+            _header[1] = 0x44;
+            _header[2] = 0x42;
+            _header[3] = 0x32;
+            _header[4] = 0x02;
         }
 
         public override string ToString()
@@ -34,7 +34,7 @@ namespace MegaMudMDCreator
 
         private byte[] GetContent()
         {
-            var contents = new List<byte[]> { header };
+            var contents = new List<byte[]> { _header };
 
             ushort currentPageNumber = 0;
             int currentPageSize = 0;
