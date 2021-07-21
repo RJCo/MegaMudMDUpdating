@@ -8,11 +8,15 @@ namespace MegaMudMDCreator
     {
         static void Main(string[] args)
         {
-            PrintAllClasses();
-            PrintAllRaces();
+            // MegaMud MD input, MegaMud MD output
+            //PrintAllClasses();
+            //PrintAllRaces();
             //PrintAllSpells();
             //PrintAllItems();
             //PrintAllMonsters();
+
+            // MME (MajorMUD Explorer) input, MegaMud MD output
+            PrintAllMMEClasses();
             // Rooms?
             // Paths?
 
@@ -24,6 +28,24 @@ namespace MegaMudMDCreator
             Console.WriteLine("----------- CLASSES START -----------");
             var classMDReader = new ClassesMDReader<Class>();
             List<Class> allClasses = classMDReader.GetAllRecords();
+
+            foreach (Class cls in allClasses)
+            {
+                Console.WriteLine(cls.ToString());
+            }
+            Console.WriteLine("----------- CLASSES END -----------");
+
+            Console.WriteLine("----------- CLASSES START SERIALIZE-----------");
+            var classMDWriter = new ClassesMDWriter<Class>(allClasses);
+            classMDWriter.WriteFile();
+            Console.WriteLine("----------- CLASSES END SERIALIZE-----------");
+        }
+
+        private static void PrintAllMMEClasses()
+        {
+            Console.WriteLine("----------- CLASSES START -----------");
+            var classMMEReader = new ClassesMMEReader<Class>();
+            List<Class> allClasses = classMMEReader.GetAllRecords();
 
             foreach (Class cls in allClasses)
             {

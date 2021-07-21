@@ -23,8 +23,10 @@ namespace MegaMudMDCreator
             using (var connection = new OleDbConnection(connString))
             {
                 connection.Open();
-                using (var command = new OleDbCommand(getAllClasses))
+              
+                using (var command = connection.CreateCommand())
                 {
+                    command.CommandText = getAllClasses;
                     OleDbDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
