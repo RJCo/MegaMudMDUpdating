@@ -65,6 +65,12 @@ namespace MegaMudMDCreator
                 Common.Abilities ability = kvp.Key;
                 short abilityMod = kvp.Value;
 
+                if (i >= 16)
+                {
+                    Console.WriteLine($"{GetType().Name}.{nameof(Serialize)}: Got more than {classMD.AbilityKeys.Length / 2} abilities for {rec.Name}!  Can't add {ability}={abilityMod}");
+                    continue;
+                }
+
                 byte[] k = BitConverter.GetBytes((short)ability);
                 byte[] v = BitConverter.GetBytes(abilityMod);
 
