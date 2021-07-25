@@ -88,26 +88,27 @@ namespace Records
             Platemail = 9,
         }
 
+        [Flags]
         public enum ItemFlags
         {
-            None = 0x00000000,
-            Unknown = 0x00000001,
-            AutoGet = 0x00000002,
-            AutoBuy = 0x00000004,
-            AutoSell = 0x00000008,
-            AutoEquip = 0x00000010,
-            AutoFind = 0x00000020,
-            CantBeTaken = 0x00000040,
-            CanUseToBackstab = 0x00000200,
-            MinToKeep = 0x00000400,
-            AutoDrop = 0x00000800,
-            AutoOpen = 0x00001000,
-            IsAWeapon = 0x00010000,
-            IsLoyal = 0x00020000,
-            MustGet = 0x00100000,
-            TriedGet = 0x00200000,
-            NoStock = 0x00400000,
-            Cash = 0x00800000,
+            None = 0x000000,
+            Unknown = 0x000001,
+            AutoGet = 0x000002,
+            AutoBuy = 0x000004,
+            AutoSell = 0x000008,
+            AutoEquip = 0x000010,
+            AutoFind = 0x000020,
+            CantBeTaken = 0x000040,
+            CanUseToBackstab = 0x000200,
+            MinToKeep = 0x000400,
+            AutoDrop = 0x000800,
+            AutoOpen = 0x001000,
+            IsAWeapon = 0x010000,
+            IsLoyal = 0x020000,
+            MustGet = 0x100000,
+            TriedGet = 0x200000,
+            NoStock = 0x400000,
+            Cash = 0x800000,
         }
         #endregion
         public int ItemId { get; set; }

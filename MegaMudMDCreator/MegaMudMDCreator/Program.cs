@@ -12,7 +12,7 @@ namespace MegaMudMDCreator
             //PrintAllClasses();
             //PrintAllRaces();
             //PrintAllSpells();
-            //PrintAllItems();
+            PrintAllItems();
             //PrintAllMonsters();
             // Rooms?
             // Paths?

@@ -31,10 +31,9 @@ namespace MegaMudMDCreator
                     Path = item.IfNeededDoPath,
                     MinimumToKeep = item.MinimumToKeep,
                     MaximumToGet = item.MaximumToGet,
-                    //Type = (Item.ItemType)BitConverter.ToUInt16(item.ItemType, 0),
+                    Type = (Item.ItemType)BitConverter.ToUInt16(item.ItemType, 0),
                     Weight = item.Weight,
                     Price = item.Cost,
-                    //Flags = (Item.ItemFlags)BitConverter.ToUInt32(item.Flags, 0),  // TODO: This feels wrong.
                     MinimumStrengthToUse = item.RequiredStrength,
                     MinimumDamage = item.MinimumDamage,
                     MaximumDamage = item.MaximumDamage,
@@ -43,6 +42,9 @@ namespace MegaMudMDCreator
                     ArmorClass = item.AC,
                     DamageReduction = item.DR,
                 };
+
+                int flag = item.Flags[2] << 16 | item.Flags[1] << 8 | item.Flags[0];
+                newItem.Flags = (Item.ItemFlags)flag;
 
                 //<Abilities, int> Abilities = new Dictionary<Abilities, int>(); // Max 10
                 //<int> NegatesSpells = new List<int>();   // Max 5 spell IDs
