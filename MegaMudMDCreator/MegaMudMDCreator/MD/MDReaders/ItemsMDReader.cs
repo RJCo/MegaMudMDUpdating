@@ -46,11 +46,6 @@ namespace MegaMudMDCreator
                 int flag = item.Flags[2] << 16 | item.Flags[1] << 8 | item.Flags[0];
                 newItem.Flags = (Item.ItemFlags)flag;
 
-                //<Abilities, int> Abilities = new Dictionary<Abilities, int>(); // Max 10
-                //<int> NegatesSpells = new List<int>();   // Max 5 spell IDs
-                //<int> Classes { get; set; }              // Allowed classes, max 10
-                //<int> Races { get; set; }                // Allowed races, max 10
-
                 // Abilities and Mods
                 for (int i = 0; i < MAX_BYTES_FOR_ABILITIES / 2; i++)
                 {
@@ -60,21 +55,38 @@ namespace MegaMudMDCreator
                     Array.Reverse(abilityBytes);
                     Array.Reverse(abilityValuesBytes);
 
-                    var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
-                    var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
+                    ushort abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
+                    short abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
 
                     // If the ability is zero, the value is zero or garbage, so ignore it
-                    if (abilityCode != 0)
+                    if (abilityCode == 0)
+                        continue;
+
+                    var ability = (Common.Abilities)abilityCode;
+
+                    // Handle special-case, multiple valued ability: NegateAbility
+                    if (ability == Common.Abilities.NegateAbility) // TODO:  TerminateSpell
                     {
-                        var ability = (Common.Abilities)abilityCode;
-                        if (newItem.Abilities.ContainsKey(ability))
-                        {
-                            Console.WriteLine($"Item {newItem.ItemName} already has the ability {ability} with value {newItem.Abilities[ability]}.  Skipping new value {abilityValueCode}");
-                        }
-                        else
-                        {
-                            newItem.Abilities.Add(ability, abilityValueCode);
-                        }
+                        newItem.NegatesSpells.Add(abilityValueCode);
+                    }
+                    // Handle special-case, multiple valued ability: ClassItemInclusion
+                    else if (ability == Common.Abilities.ClassItemInclusion)
+                    {
+                        newItem.Classes.Add(abilityValueCode);
+                    }
+                    // Handle special-case, multiple valued ability: ????
+                    else if (false) // TODO:  Is there actually an ability for race allowance?
+                    {
+                        //<int> Races { get; set; }                // Allowed races, max 10
+                    }
+                    // Handle general case, testing for disallowed duplicates
+                    else if (newItem.Abilities.ContainsKey(ability))
+                    {
+                        Console.WriteLine($"Item {newItem.ItemName} already has the ability {ability} with value {newItem.Abilities[ability]}.  Skipping new value {abilityValueCode}");
+                    }
+                    else
+                    {
+                        newItem.Abilities.Add(ability, abilityValueCode);
                     }
                 }
 
