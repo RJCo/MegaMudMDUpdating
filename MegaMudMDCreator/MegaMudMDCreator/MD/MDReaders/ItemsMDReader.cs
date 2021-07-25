@@ -8,6 +8,8 @@ namespace MegaMudMDCreator
     public class ItemsMDReader<T> : MDReaderFactory<T>
         where T : Item
     {
+        private const int MAX_BYTES_FOR_ABILITIES = 20;
+
         public override List<T> GetAllRecords()
         {
             var items = new List<T>();
@@ -48,7 +50,7 @@ namespace MegaMudMDCreator
                 //<int> Races { get; set; }                // Allowed races, max 10
 
                 // Abilities and Mods
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < MAX_BYTES_FOR_ABILITIES / 2; i++)
                 {
                     byte[] abilityBytes = item.AbilityKeys.Skip(i * 2).Take(2).ToArray();
                     byte[] abilityValuesBytes = item.AbilityValues.Skip(i * 2).Take(2).ToArray();
@@ -61,7 +63,7 @@ namespace MegaMudMDCreator
 
                     // If the ability is zero, the value is zero or garbage, so ignore it
                     if (abilityCode != 0)
-                    { 
+                    {
                         var ability = (Common.Abilities)abilityCode;
                         if (newItem.Abilities.ContainsKey(ability))
                         {
