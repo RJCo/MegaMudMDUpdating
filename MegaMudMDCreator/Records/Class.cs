@@ -42,8 +42,7 @@ namespace Records
             Kai = 0x05,
         }
         #endregion
-
-        public int ID { get; set; }
+                public int ID { get; set; }
         public string Name { get; set; }
         public int ExperiencePercentage { get; set; }
         public int Combat { get; set; }

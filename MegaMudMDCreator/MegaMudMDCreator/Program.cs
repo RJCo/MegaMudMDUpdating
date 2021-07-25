@@ -14,11 +14,11 @@ namespace MegaMudMDCreator
             //PrintAllSpells();
             //PrintAllItems();
             //PrintAllMonsters();
-
-            // MME (MajorMUD Explorer) input, MegaMud MD output
-            PrintAllMMEClasses();
             // Rooms?
             // Paths?
+
+            // MME (MajorMUD Explorer) input, MegaMud MD output
+            // PrintAllMMEClasses();
 
             Console.Read();
         }

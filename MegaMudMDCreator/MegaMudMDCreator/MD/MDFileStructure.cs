@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 
 namespace MegaMudMDCreator
 {
     public class Record
     {
+        public uint ID;
         public byte Length;
         public byte[] Data;
     }
@@ -18,6 +20,9 @@ namespace MegaMudMDCreator
 
     public abstract class Page
     {
+        private const int MAX_RECORDS_PER_PAGE = 25;  // This is the max records per page I've seen in the MD files
+        private const int MAX_PAGE_DATA_LENGTH = 1012;  // 1024 minus header length which is always 12
+
         public abstract PageType PageType { get; }
         public ushort Count
         {
@@ -32,7 +37,27 @@ namespace MegaMudMDCreator
         public ushort Next = 0xFFFF;
         public ushort Previous = 0xFFFF;
 
-        public List<Record> Records { get; } = new List<Record>();
+        private int _totalRecordLength = 0;
+        private readonly List<Record> _records = new List<Record>(MAX_RECORDS_PER_PAGE);
+        public IReadOnlyList<Record> Records => _records;
+
+        public bool TryAddRecord(Record toAdd)
+        {
+            if (_records.Count == MAX_RECORDS_PER_PAGE)
+                return false;
+
+            if (_totalRecordLength + toAdd.Length > MAX_PAGE_DATA_LENGTH)
+                return false;
+
+            _records.Add(toAdd);
+            _totalRecordLength += toAdd.Length;
+            return true;
+        }
+
+        public byte[] Serialize()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class RecordChain : Page

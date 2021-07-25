@@ -2,12 +2,9 @@
 
 namespace MegaMudMDCreator
 {
-    // TODO:  SpellMD fields and update Size in StructLayout
-    [StructLayout(LayoutKind.Sequential, Size = 0, Pack = 1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct SpellMD
     {
-        public byte UnusedByte;
-
         public short SpellId;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 30)]

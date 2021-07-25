@@ -20,16 +20,12 @@ namespace MegaMudMDCreator
         public byte ArmorUseable;
         public byte MagicLevel;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public byte[] AbilityKeys;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public byte[] UnusedByteArray;
-
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public byte[] AbilityValues;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
-        public byte[] EndChars;
+        public byte EndChar;
     }
 }

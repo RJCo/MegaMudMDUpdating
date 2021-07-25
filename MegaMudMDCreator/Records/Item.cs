@@ -110,7 +110,6 @@ namespace Records
             Cash = 0x00800000,
         }
         #endregion
-
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public ItemType Type { get; set; }
@@ -184,7 +183,7 @@ namespace Records
 
             foreach (KeyValuePair<Common.Abilities, short> ability in Abilities)
             {
-                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
+                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}: {ability.Value}\n");
             }
 
             return sb.ToString();

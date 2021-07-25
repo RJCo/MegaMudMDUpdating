@@ -9,7 +9,7 @@ namespace MegaMudMDCreator
         private static readonly byte[] _header = new byte[0x400];
 
         public string Filename { get; }
-        private List<byte[]> _records;
+        private readonly List<byte[]> _records;
 
         public MDFileData(string filename, List<byte[]> records)
         {

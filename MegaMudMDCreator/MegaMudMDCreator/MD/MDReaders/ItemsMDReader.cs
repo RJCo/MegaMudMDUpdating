@@ -1,57 +1,13 @@
 ﻿using Records;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace MegaMudMDCreator
 {
     public class ItemsMDReader<T> : MDReaderFactory<T>
         where T : Item
     {
-        private static void AbilityHelper(byte[] abilityKey, byte[] abilityValue, Item newItem)
-        {
-            ushort abilityKeyUshort = BitConverter.ToUInt16(abilityKey, 0);
-            if (abilityKeyUshort != 0)
-            {
-                Common.Abilities k = (Common.Abilities)abilityKeyUshort;
-                short v = BitConverter.ToInt16(abilityValue, 0);
-
-                if (k == Common.Abilities.ClassItemInclusion)
-                {
-                    newItem.Classes.Add(v);
-                    return;
-                }
-
-                if (k == Common.Abilities.LinkToSpell)
-                {
-                    // Default, only `black tome` and `blackened skin-bound book` teach more than 1 spell
-                    newItem.LinkToSpell.Add(v);
-                    return;
-                }
-
-                if (k == Common.Abilities.Casts)
-                {
-                    newItem.Casts.Add(v);
-                    return;
-                }
-
-                if (k == Common.Abilities.AlterBSMinimum && newItem.ItemName == "jeweled dirk")
-                {
-                    // Known issue in the default MegaMud MD files - two BS Minimums for jeweled dirk
-                    return;
-                }
-
-                if (newItem.Abilities.TryGetValue(k, out var currentValue))
-                {
-                    // TODO:  When we stop logging to the console, what do we want to do here?
-                    Console.WriteLine($"{newItem.ItemName} -- DUPLICATE KEY: {k} oldVaue={currentValue} but newValue={v}");
-                    return;
-                }
-                newItem.Abilities.Add(k, v);
-
-            }
-        }
-
         public override List<T> GetAllRecords()
         {
             var items = new List<T>();
@@ -91,16 +47,32 @@ namespace MegaMudMDCreator
                 //<int> Classes { get; set; }              // Allowed classes, max 10
                 //<int> Races { get; set; }                // Allowed races, max 10
 
-                AbilityHelper(item.Ability1Key, item.Ability1Value, newItem);
-                AbilityHelper(item.Ability2Key, item.Ability2Value, newItem);
-                AbilityHelper(item.Ability3Key, item.Ability3Value, newItem);
-                AbilityHelper(item.Ability4Key, item.Ability4Value, newItem);
-                AbilityHelper(item.Ability5Key, item.Ability5Value, newItem);
-                AbilityHelper(item.Ability6Key, item.Ability6Value, newItem);
-                AbilityHelper(item.Ability7Key, item.Ability7Value, newItem);
-                AbilityHelper(item.Ability8Key, item.Ability8Value, newItem);
-                AbilityHelper(item.Ability9Key, item.Ability9Value, newItem);
-                AbilityHelper(item.Ability10Key, item.Ability10Value, newItem);
+                // Abilities and Mods
+                for (int i = 0; i < 8; i++)
+                {
+                    byte[] abilityBytes = item.AbilityKeys.Skip(i * 2).Take(2).ToArray();
+                    byte[] abilityValuesBytes = item.AbilityValues.Skip(i * 2).Take(2).ToArray();
+
+                    Array.Reverse(abilityBytes);
+                    Array.Reverse(abilityValuesBytes);
+
+                    var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
+                    var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
+
+                    // If the ability is zero, the value is zero or garbage, so ignore it
+                    if (abilityCode != 0)
+                    { 
+                        var ability = (Common.Abilities)abilityCode;
+                        if (newItem.Abilities.ContainsKey(ability))
+                        {
+                            Console.WriteLine($"Item {newItem.ItemName} already has the ability {ability} with value {newItem.Abilities[ability]}.  Skipping new value {abilityValueCode}");
+                        }
+                        else
+                        {
+                            newItem.Abilities.Add(ability, abilityValueCode);
+                        }
+                    }
+                }
 
                 items.Add((T)newItem);
             }

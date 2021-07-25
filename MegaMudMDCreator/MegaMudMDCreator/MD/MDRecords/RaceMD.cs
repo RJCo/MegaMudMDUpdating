@@ -26,16 +26,10 @@ namespace MegaMudMDCreator
         public byte HitpointModifierPerLevel;
         public ushort ExperiencePercentage;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public byte[] AbilityKeys;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public byte[] UnusedByteArray1;
-
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public byte[] AbilityValues;
-
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public byte[] UnusedByteArray2;
     }
 }
