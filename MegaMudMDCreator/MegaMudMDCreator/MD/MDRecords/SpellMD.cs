@@ -13,7 +13,9 @@ namespace MegaMudMDCreator
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
         public string Abbreviation;
 
-        public int Flags;
+        public ushort Flags;
+        
+        public ushort UNKNOWN;  // Always 0x0000 or 0x4000 (or possibly 0x0040)
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 41)]
         public string Command;
