@@ -12,17 +12,18 @@ namespace MegaMudMDCreator
         public string RaceName;
 
         public byte MinimumStrength;
-        public byte MaximumStrength;
         public byte MinimumIntellect;
-        public byte MaximumIntellect;
-        public byte MinimumWillpower;
-        public byte MaximumWillpower;
         public byte MinimumAgility;
-        public byte MaximumAgility;
+        public byte MinimumWillpower;
         public byte MinimumHealth;
-        public byte MaximumHealth;
         public byte MinimumCharm;
+        public byte MaximumStrength;
+        public byte MaximumIntellect;
+        public byte MaximumAgility;
+        public byte MaximumWillpower;
+        public byte MaximumHealth;
         public byte MaximumCharm;
+
         public byte HitpointModifierPerLevel;
         public ushort ExperiencePercentage;
 
