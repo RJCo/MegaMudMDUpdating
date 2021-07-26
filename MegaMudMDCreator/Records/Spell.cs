@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Records
@@ -23,6 +22,7 @@ namespace Records
             MYSTIC = 11,
         }
 
+        [Flags]
         public enum SpellFlag
         {
             NONE = 0x0000,
@@ -37,7 +37,7 @@ namespace Records
             LEARNT = 0x1000,
         }
 
-        // TODO:  Are there more CasTypes?
+        // TODO:  Are there more CastTypes?
         public enum CastType
         {
             None = 0,

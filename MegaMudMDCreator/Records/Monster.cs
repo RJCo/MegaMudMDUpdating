@@ -37,6 +37,7 @@ namespace Records
             First = 0x80,
         }
 
+        [Flags]
         public enum MegamudFlags
         {
             NotHostile = 0x02,
@@ -64,39 +65,45 @@ namespace Records
 
         public enum LocationGroup
         {
-            OrcMansion = 0x26,
-            SpecialCreateAtUser = 0x25,
-            NewhavenGraveyardAndCrypt = 0x24,
-            ProphecyOfPlagueMod9 = 0x20,
-            SavageLandsMod7 = 0x1f,
-            SmugglersMod5 = 0x1e,
-            ObsidianPassageways = 0x1d,
-            CrystalTunnels = 0x1c,
-            CrackedPlainsAndLavaFields = 0x1b,
-            FungusForestAndBlackFort = 0x1a,
-            HazySwamp = 0x19,
-            DwarfMinesMod4 = 0x18,
-            BlackWastelands = 0x17,
-            BlackCavesMod3 = 0x16,
-            AncientRuinsMod2 = 0x15,
-            DesertMod6 = 0x14,
-            Rhudaur = 0x13,
-            NomadsAndMonastery = 0x12,
-            FrozenCaverns = 0x11,
-            RockyTrailNomads = 0x10,
-            Monastery = 0x0f,
-            CryptQuestMonsters = 0x0e,
-            HornedDemon = 0x0d,
-            CryptQuestArea = 0x0c,
-            Labyrinth = 0x0b,
-            GoblinCaves = 0x0a,
-            DragonsTeethHills = 0x09,
-            BlackHouseAndBelow = 0x08,
-            GraveyardAndCrypt = 0x07,
-            SlumsAndSewers = 0x06,
-            GuardsTemplars = 0x05,
-            UniquesShopkeepers = 0x02,
             Arena = 0x00,
+            // 0x01?
+            UniquesShopkeepers = 0x02,
+            // 0x03?
+            // 0x04?
+            GuardsTemplars = 0x05,
+            SlumsAndSewers = 0x06,
+            GraveyardAndCrypt = 0x07,
+            BlackHouseAndBelow = 0x08,
+            DragonsTeethHills = 0x09,
+            GoblinCaves = 0x0a,
+            Labyrinth = 0x0b,
+            CryptQuestArea = 0x0c,
+            HornedDemon = 0x0d,
+            CryptQuestMonsters = 0x0e,
+            Monastery = 0x0f,
+            RockyTrailNomads = 0x10,
+            FrozenCaverns = 0x11,
+            NomadsAndMonastery = 0x12,
+            Rhudaur = 0x13,
+            DesertMod6 = 0x14,
+            AncientRuinsMod2 = 0x15,
+            BlackCavesMod3 = 0x16,
+            BlackWastelands = 0x17,
+            DwarfMinesMod4 = 0x18,
+            HazySwamp = 0x19,
+            FungusForestAndBlackFort = 0x1a,
+            CrackedPlainsAndLavaFields = 0x1b,
+            CrystalTunnels = 0x1c,
+            ObsidianPassageways = 0x1d,
+            SmugglersMod5 = 0x1e,
+            SavageLandsMod7 = 0x1f,
+            ProphecyOfPlagueMod9 = 0x20,
+            // 0x21?
+            // 0x22?
+            // 0x23?
+            NewhavenGraveyardAndCrypt = 0x24,
+            SpecialCreateAtUser = 0x25,
+            OrcMansion = 0x26,
         }
 
         public enum AttackType
@@ -202,7 +209,7 @@ namespace Records
             sb.Append($"LocationMap: {LocationMap}\n");
             sb.Append($"LocationRoom: {LocationRoom}\n");
 
-            var cashDrop = (CashDrop_Runic * 1_000_000) + (CashDrop_Platinum * 10_000) + (CashDrop_Gold * 100) + (CashDrop_Silver * 10) + (CashDrop_Copper);
+            int cashDrop = (CashDrop_Runic * 1_000_000) + (CashDrop_Platinum * 10_000) + (CashDrop_Gold * 100) + (CashDrop_Silver * 10) + (CashDrop_Copper);
 
             sb.Append($"CashDrop: {cashDrop}\n");
             sb.Append($"Experience: {Experience}\n");
