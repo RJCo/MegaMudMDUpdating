@@ -48,9 +48,6 @@ namespace MegaMudMDCreator
                     byte[] abilityBytes = race.AbilityKeys.Skip(i * 2).Take(2).ToArray();
                     byte[] abilityValuesBytes = race.AbilityValues.Skip(i * 2).Take(2).ToArray();
 
-                    Array.Reverse(abilityBytes);
-                    Array.Reverse(abilityValuesBytes);
-
                     var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
                     var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
 
