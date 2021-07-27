@@ -11,8 +11,8 @@ namespace MegaMudMDCreator
             // MegaMud MD input, MegaMud MD output
             //PrintAllClasses();
             //PrintAllRaces();
-            //PrintAllSpells();
-            PrintAllItems();
+            PrintAllSpells();
+            //PrintAllItems();
             //PrintAllMonsters();
             // Rooms?
             // Paths?

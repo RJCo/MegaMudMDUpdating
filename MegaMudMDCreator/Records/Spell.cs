@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Records
@@ -64,7 +65,8 @@ namespace Records
         public int UseLevel;                        // Use level range?
         public int IncEvery;                        // ?
         public CastType CastingType;                // Cast type
-        public Item LearnedFromItem { get; set; }
+        public ushort LearnedFromItem { get; set; }
+        public Dictionary<Common.Abilities, short> AbilitiesAndMods = new Dictionary<Common.Abilities, short>();
 
         public override string ToString()
         {
@@ -77,7 +79,7 @@ namespace Records
             sb.Append($"Mana: {Mana}\t");
             sb.Append($"Level: {Level}\t");
             sb.Append($"Type: {Enum.GetName(typeof(SpellType), Type)}\n");
-            sb.Append($"Flag: {Flag} {Enum.GetName(typeof(SpellFlag), Flag)}\n");
+            sb.Append($"Flag: {Flag}\n");
             sb.Append($"LevelMultiplier: {LevelMultiplier}\n");
             sb.Append($"EnergyUsed: {EnergyUsed}\n");
             sb.Append($"MinimumDamage: {MinimumDamage}\n");
@@ -90,7 +92,12 @@ namespace Records
             sb.Append($"UseLevel: {UseLevel}\n");
             sb.Append($"IncEvery: {IncEvery}\n");
             sb.Append($"CastType: {Enum.GetName(typeof(CastType), CastingType)}\t");
-            sb.Append($"LearnedFromItem: {LearnedFromItem}\n");
+            sb.Append($"LearnedFromItem: #{LearnedFromItem}\n");
+            
+            foreach (KeyValuePair<Common.Abilities, short> ability in AbilitiesAndMods)
+            {
+                sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
+            }
 
             return sb.ToString();
         }
