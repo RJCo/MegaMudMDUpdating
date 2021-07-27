@@ -37,7 +37,7 @@ namespace MegaMudMDCreator
                 };
 
                 // Abilities and Mods
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < Common.MAX_NUMBER_OF_ABILITIES; i++)
                 {
                     byte[] abilityBytes = cls.AbilityKeys.Skip(i * 2).Take(2).ToArray();
                     byte[] abilityValuesBytes = cls.AbilityValues.Skip(i * 2).Take(2).ToArray();

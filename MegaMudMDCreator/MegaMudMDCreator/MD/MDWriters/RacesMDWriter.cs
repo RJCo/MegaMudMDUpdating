@@ -10,7 +10,6 @@ namespace MegaMudMDCreator
     public class RacesMDWriter<T> : MDWriterFactory<T>
         where T : Race
     {
-        private const int MAX_BYTES_FOR_ABILITIES = 20;
         private readonly List<Race> _races;
         public RacesMDWriter(List<Race> races)
         {
@@ -63,8 +62,8 @@ namespace MegaMudMDCreator
             raceMD.HitpointModifierPerLevel = (byte)rec.HitpointModifierPerLevel;
             raceMD.ExperiencePercentage = (byte)rec.ExperiencePercentage;
 
-            raceMD.AbilityKeys = new byte[MAX_BYTES_FOR_ABILITIES];
-            raceMD.AbilityValues = new byte[MAX_BYTES_FOR_ABILITIES];
+            raceMD.AbilityKeys = new byte[Common.MAX_BYTES_FOR_ABILITIES];
+            raceMD.AbilityValues = new byte[Common.MAX_BYTES_FOR_ABILITIES];
 
             int i = 0;
             foreach (KeyValuePair<Race.AbilitiesAndModifiers, short> kvp in rec.AbilitiesAndMods)

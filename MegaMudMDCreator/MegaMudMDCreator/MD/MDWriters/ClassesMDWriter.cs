@@ -10,7 +10,6 @@ namespace MegaMudMDCreator
     public class ClassesMDWriter<T> : MDWriterFactory<T>
         where T : Class
     {
-        private const int MAX_BYTES_FOR_ABILITIES = 20;
         private readonly List<Class> _classes;
         public ClassesMDWriter(List<Class> classes)
         {
@@ -57,8 +56,8 @@ namespace MegaMudMDCreator
             classMD.ArmorUseable = (byte)rec.ArmorType;
             classMD.MagicLevel = (byte)rec.MagicLevel;
 
-            classMD.AbilityKeys = new byte[MAX_BYTES_FOR_ABILITIES];
-            classMD.AbilityValues = new byte[MAX_BYTES_FOR_ABILITIES];
+            classMD.AbilityKeys = new byte[Common.MAX_BYTES_FOR_ABILITIES];
+            classMD.AbilityValues = new byte[Common.MAX_BYTES_FOR_ABILITIES];
 
             int i = 0;
             foreach (KeyValuePair<Common.Abilities, short> kvp in rec.AbilitiesAndMods)
@@ -66,7 +65,7 @@ namespace MegaMudMDCreator
                 Common.Abilities ability = kvp.Key;
                 short abilityMod = kvp.Value;
 
-                if (i >= MAX_BYTES_FOR_ABILITIES)
+                if (i >= Common.MAX_BYTES_FOR_ABILITIES)
                 {
                     Console.WriteLine($"{GetType().Name}.{nameof(Serialize)}: Got more than {classMD.AbilityKeys.Length / 2} abilities for {rec.Name}!  Can't add {ability}={abilityMod}");
                     continue;

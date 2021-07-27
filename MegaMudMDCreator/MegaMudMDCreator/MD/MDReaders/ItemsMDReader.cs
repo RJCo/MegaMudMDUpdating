@@ -8,8 +8,6 @@ namespace MegaMudMDCreator
     public class ItemsMDReader<T> : MDReaderFactory<T>
         where T : Item
     {
-        private const int MAX_BYTES_FOR_ABILITIES = 20;
-
         public override List<T> GetAllRecords()
         {
             var items = new List<T>();
@@ -47,13 +45,10 @@ namespace MegaMudMDCreator
                 newItem.Flags = (Item.ItemFlags)flag;
 
                 // Abilities and Mods
-                for (int i = 0; i < MAX_BYTES_FOR_ABILITIES / 2; i++)
+                for (int i = 0; i < Common.MAX_BYTES_FOR_ABILITIES / 2; i++)
                 {
                     byte[] abilityBytes = item.AbilityKeys.Skip(i * 2).Take(2).ToArray();
                     byte[] abilityValuesBytes = item.AbilityValues.Skip(i * 2).Take(2).ToArray();
-
-                    Array.Reverse(abilityBytes);
-                    Array.Reverse(abilityValuesBytes);
 
                     ushort abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
                     short abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);

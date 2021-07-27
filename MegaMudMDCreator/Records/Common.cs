@@ -3,6 +3,10 @@ namespace Records
 {
     public class Common
     {
+
+        public const int MAX_BYTES_FOR_ABILITIES = 20;
+        public static int MAX_NUMBER_OF_ABILITIES = MAX_BYTES_FOR_ABILITIES / 2;
+
         public enum Abilities
         {
             NoAbility = 0x0000,
