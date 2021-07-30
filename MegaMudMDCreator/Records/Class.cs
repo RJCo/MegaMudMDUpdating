@@ -23,13 +23,13 @@ namespace Records
 
         public enum ArmorClasses
         {
-            Platemail = 0x09,
-            Scalemail = 0x08,
-            Chainmail = 0x07,
-            Leather = 0x06,
-            Ninja = 0x02,
-            Silk = 0x01,
             Unknown = 0x00,
+            Silk = 0x01,
+            Ninja = 0x02,
+            Leather = 0x06,
+            Chainmail = 0x07,
+            Scalemail = 0x08,
+            Platemail = 0x09,
         }
 
         public enum MagicTypes
