@@ -84,10 +84,6 @@ namespace MegaMudMDCreator
                     }
                     else if (newSpell.AbilitiesAndMods.TryGetValue(ability, out short currentValue))
                     {
-                        /*
-                            Spell bubbling blue potion already has the ability DescriptionMessage with value 388.  Skipping new value 71
-                            Spell rainbow2 already has the ability DescriptionMessage with value 8554.  Skipping new value 388
-                         */
                         if (currentValue != abilityValueCode)
                         {
                             // Spell out archway temp already has the ability NightVision with value 1.  Skipping new value -1
