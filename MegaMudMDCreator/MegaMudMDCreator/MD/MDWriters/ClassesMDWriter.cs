@@ -24,7 +24,6 @@ namespace MegaMudMDCreator
 
             foreach (Class cls in sortedClasses)
             {
-                Console.WriteLine($"Doing classID {cls.ID}");
                 byte[] serializedClass = Serialize(cls);
                 classesBytes.Add(serializedClass);
             }

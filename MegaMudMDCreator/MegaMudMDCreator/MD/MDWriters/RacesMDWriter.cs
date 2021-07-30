@@ -24,7 +24,6 @@ namespace MegaMudMDCreator
 
             foreach (Race race in sortedRaces)
             {
-                Console.WriteLine($"Doing raceID {race.ID}");
                 byte[] serializedRace = Serialize(race);
                 racesBytes.Add(serializedRace);
             }
