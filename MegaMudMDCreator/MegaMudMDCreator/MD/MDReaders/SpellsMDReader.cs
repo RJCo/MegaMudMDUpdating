@@ -78,6 +78,10 @@ namespace MegaMudMDCreator
                     {
                         newSpell.TriggersTextblock.Add((ushort)abilityValueCode);
                     }
+                    else if (ability == Common.Abilities.DescriptionMessage)
+                    {
+                        newSpell.DescriptionMessages.Add((ushort)abilityValueCode);
+                    }
                     else if (newSpell.AbilitiesAndMods.TryGetValue(ability, out short currentValue))
                     {
                         /*

@@ -102,7 +102,8 @@ namespace Records
         public HashSet<ushort> TerminatesSpell = new HashSet<ushort>();
         public HashSet<ushort> SummonsCreature = new HashSet<ushort>();
         public HashSet<ushort> TriggersTextblock = new HashSet<ushort>();
-        
+        public HashSet<ushort> DescriptionMessages = new HashSet<ushort>();
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -140,6 +141,9 @@ namespace Records
 
             if (TriggersTextblock.Count > 0)
                 sb.Append($"TriggersTextblocks: {string.Join(", ", TriggersTextblock)}\n");
+            
+            if (DescriptionMessages.Count > 0)
+                sb.Append($"DescriptionMessages: {string.Join(", ", DescriptionMessages)}\n");
 
             foreach (KeyValuePair<Common.Abilities, short> ability in AbilitiesAndMods)
                 sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
