@@ -36,15 +36,15 @@ namespace MegaMudMDCreator
                     MaximumDamage = spell.MaximumDamage,
                     Duration = spell.DurationInRounds,
                     Chance = spell.SCModifier,
-                    AreaOfEffect = spell.IsAreaOfEffect == 1,
+                    AreaOfEffect = (Spell.AreaOfEffectType)spell.AreaOfEffect,
                     Type = (Spell.SpellType)spell.Type,
-                    CastingType = (Spell.CastType)spell.SpellClass,
+                    SpellClass = (Spell.SpellClasses)spell.SpellClass,
                     LearnedFromItem = spell.LearnedFromItemId,
-                    //MaximumLevel;                    // Max. level
-                    //LevelDivider;                    // Level divider?
-                    //UseLevel;                        // Use level range?
-                    //IncEvery;                        // ?
-                    //LearnedFromItem
+                    MaximumLevel = spell.MaximumLevel,
+                    LevelDivider = spell.LevelDivider,
+                    UseLevel = spell.UseLevel, // What is this actually used for?
+                    IncEvery = spell.IncEvery, // What is this actually used for?
+                    CastingType = spell.CastType == 0x03 ? Spell.CastType.Immediate : Spell.CastType.PerRound,
                 };
 
                 // Abilities and Mods
@@ -62,24 +62,39 @@ namespace MegaMudMDCreator
 
                     var ability = (Common.Abilities)abilityCode;
 
-                    if (newSpell.AbilitiesAndMods.ContainsKey(ability))
+                    if (ability == Common.Abilities.RemoveSpell)
                     {
-                        Console.WriteLine($"Spell {newSpell.Name} already has the ability {ability} with value {newSpell.AbilitiesAndMods[ability]}.  Skipping new value {abilityValueCode}");
+                        newSpell.RemovesSpell.Add((ushort)abilityValueCode);
+                    }
+                    else if (ability == Common.Abilities.TerminateSpell)
+                    {
+                        newSpell.TerminatesSpell.Add((ushort)abilityValueCode);
+                    }
+                    else if (ability == Common.Abilities.SummonCreature)
+                    {
+                        newSpell.SummonsCreature.Add((ushort)abilityValueCode);
+                    }
+                    else if (ability == Common.Abilities.TriggerTextblock)
+                    {
+                        newSpell.TriggersTextblock.Add((ushort)abilityValueCode);
+                    }
+                    else if (newSpell.AbilitiesAndMods.TryGetValue(ability, out short currentValue))
+                    {
+                        /*
+                            Spell bubbling blue potion already has the ability DescriptionMessage with value 388.  Skipping new value 71
+                            Spell rainbow2 already has the ability DescriptionMessage with value 8554.  Skipping new value 388
+                         */
+                        if (currentValue != abilityValueCode)
+                        {
+                            // Spell out archway temp already has the ability NightVision with value 1.  Skipping new value -1
+                            Console.WriteLine($"Spell {newSpell.Name} already has the ability {ability} with value {newSpell.AbilitiesAndMods[ability]}.  Skipping new value {abilityValueCode}");
+                        }
                     }
                     else
                     {
                         newSpell.AbilitiesAndMods.Add((Common.Abilities)abilityCode, abilityValueCode);
                     }
                 }
-
-
-                //if (spell.UNKNOWN_BYTES.Any(x => x != 0))
-                //{
-                //    string hex = "";
-                //    foreach (byte b in spell.UNKNOWN_BYTES)
-                //        hex += string.Format("{0:X2} ", b);
-                //    Console.WriteLine($"{spell.SpellName} - UNKNOWN_BYTES = {hex}");
-                //}
 
                 spells.Add((T)newSpell);
             }

@@ -23,6 +23,17 @@ namespace Records
             MYSTIC = 11,
         }
 
+        public enum SpellClasses
+        {
+            Cold = 0,
+            Hot = 1,
+            Stone = 2,
+            Lightning = 3,
+            Normal = 4,
+            Water = 5,
+            Poison = 6,
+        }
+
         [Flags]
         public enum SpellFlag
         {
@@ -41,7 +52,26 @@ namespace Records
         // TODO:  Are there more CastTypes?
         public enum CastType
         {
-            None = 0,
+            PerRound,
+            Immediate = 3,
+        }
+
+        public enum AreaOfEffectType
+        {
+            Unknown = 0,
+            SelfOnly = 1,
+            SelfOrPlayer = 2,
+            // 3?
+            MonsterOnly = 4,
+            // 5?
+            SelfOrMonster = 6,
+            Anything = 7,
+            PlayerOrMonster = 8,
+            // 9?
+            // 10?
+            EntireRoom = 11,
+            AllNotInParty = 12,
+            EntireParty = 13,
         }
         #endregion
 
@@ -59,15 +89,20 @@ namespace Records
         public int MaximumDamage { get; set; }
         public int Duration { get; set; }
         public int Chance { get; set; }
-        public bool AreaOfEffect { get; set; }
-        public int MaximumLevel;                    // Max. level
-        public int LevelDivider;                    // Level divider?
-        public int UseLevel;                        // Use level range?
-        public int IncEvery;                        // ?
-        public CastType CastingType;                // Cast type
+        public AreaOfEffectType AreaOfEffect { get; set; }
+        public int MaximumLevel { get; set; }
+        public int LevelDivider { get; set; }
+        public int UseLevel { get; set; }
+        public int IncEvery { get; set; }
+        public CastType CastingType { get; set; }
+        public SpellClasses SpellClass { get; set; }
         public ushort LearnedFromItem { get; set; }
         public Dictionary<Common.Abilities, short> AbilitiesAndMods = new Dictionary<Common.Abilities, short>();
-
+        public HashSet<ushort> RemovesSpell = new HashSet<ushort>();
+        public HashSet<ushort> TerminatesSpell = new HashSet<ushort>();
+        public HashSet<ushort> SummonsCreature = new HashSet<ushort>();
+        public HashSet<ushort> TriggersTextblock = new HashSet<ushort>();
+        
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -93,11 +128,21 @@ namespace Records
             sb.Append($"IncEvery: {IncEvery}\n");
             sb.Append($"CastType: {Enum.GetName(typeof(CastType), CastingType)}\t");
             sb.Append($"LearnedFromItem: #{LearnedFromItem}\n");
-            
+
+            if (RemovesSpell.Count > 0)
+                sb.Append($"RemovesSpells: {string.Join(", ", RemovesSpell)}\n");
+
+            if (TerminatesSpell.Count > 0)
+                sb.Append($"TerminatesSpells: {string.Join(", ", TerminatesSpell)}\n");
+
+            if (SummonsCreature.Count > 0)
+                sb.Append($"SummonsCreatures: {string.Join(", ", SummonsCreature)}\n");
+
+            if (TriggersTextblock.Count > 0)
+                sb.Append($"TriggersTextblocks: {string.Join(", ", TriggersTextblock)}\n");
+
             foreach (KeyValuePair<Common.Abilities, short> ability in AbilitiesAndMods)
-            {
                 sb.Append($"Ability/Modifier: {Enum.GetName(typeof(Common.Abilities), ability.Key)}:{ability.Value}\n");
-            }
 
             return sb.ToString();
         }
