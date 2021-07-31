@@ -9,9 +9,9 @@ namespace MegaMudMDCreator
         static void Main(string[] args)
         {
             // MegaMud MD input, MegaMud MD output
-            //PrintAllClasses();
+            PrintAllClasses();
             //PrintAllRaces();
-            PrintAllSpells();
+            //PrintAllSpells();
             //PrintAllItems();
             //PrintAllMonsters();
             // Rooms?

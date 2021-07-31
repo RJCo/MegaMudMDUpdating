@@ -47,11 +47,12 @@ namespace MegaMudMDCreator
 
                     var abilityCode = BitConverter.ToUInt16(abilityBytes, 0);
                     var abilityValueCode = BitConverter.ToInt16(abilityValuesBytes, 0);
-
-                    // If the ability is zero, the value is zero or garbage, so ignore it
-                    if (abilityCode != 0)
+                    
+                    
+                    var ability = (Common.Abilities)abilityCode;
+                    if (ability != Common.Abilities.NoAbility)
                     {
-                        newClass.AbilitiesAndMods.Add((Common.Abilities)abilityCode, abilityValueCode);
+                        newClass.AbilitiesAndMods.Add(ability, abilityValueCode);
                     }
                 }
 
