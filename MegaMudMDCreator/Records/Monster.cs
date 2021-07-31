@@ -115,8 +115,8 @@ namespace Records
         }
         #endregion
 
-        public int MonsterId { get; set; }
-        public string MonsterName { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
         public Priority AttackPriority { get; set; }
         public MegamudFlags Flags { get; set; }
         public MonsterAlignment Alignment { get; set; }
@@ -183,8 +183,8 @@ namespace Records
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append($"MonsterId: {MonsterId}\n");
-            sb.Append($"MonsterName: {MonsterName}\n");
+            sb.Append($"ID: {ID}\n");
+            sb.Append($"Name: {Name}\n");
             sb.Append($"AttackPriority: {AttackPriority}\n");
             sb.Append($"Flags: {Flags}\n");
             sb.Append($"Alignment: {Alignment}\n");

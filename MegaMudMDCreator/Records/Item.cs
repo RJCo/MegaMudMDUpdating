@@ -111,8 +111,8 @@ namespace Records
             Cash = 0x800000,
         }
         #endregion
-        public int ItemId { get; set; }
-        public string ItemName { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
         public ItemType Type { get; set; }
         public ItemEquippableSlot Slot { get; set; }
         public ItemEquippedOn CurrentEquippedOn { get; set; }
@@ -150,8 +150,8 @@ namespace Records
         public new string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"ID: {ItemId}\n");
-            sb.Append($"Name: {ItemName}\n");
+            sb.Append($"ID: {ID}\n");
+            sb.Append($"Name: {Name}\n");
             sb.Append($"Type: {Type}\n");
             sb.Append($"Slot: {Slot}\n");
             sb.Append($"CurrentEquippedOn: {CurrentEquippedOn}\n");

@@ -58,6 +58,7 @@ namespace Records
         }
         #endregion
 
+        public int ID { get; set; } // Unused?
         public string Code { get; set; }
         public string Checksum { get; set; }
         public string Name { get; set; }
