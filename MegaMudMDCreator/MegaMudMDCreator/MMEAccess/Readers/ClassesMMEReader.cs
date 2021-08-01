@@ -5,7 +5,7 @@ using static Records.Class;
 
 namespace MegaMudMDCreator
 {
-    public class ClassesMMEReader<T> where T : Class
+    public class ClassesMMEReader
     {
         private readonly string connString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={Properties.Settings.Default.MMUDExplorerMDBPath}";
         private const string getAllClasses = @"SELECT [Number], [Name], [MinHits], [MaxHits], [ExpTable],
@@ -17,9 +17,9 @@ namespace MegaMudMDCreator
                                                       [Abil-8], [AbilVal-8], [Abil-9], [AbilVal-9]
                                                FROM Classes";
 
-        public List<T> GetAllRecords()
+        public List<IRecord> GetAllRecords()
         {
-            List<T> classes = new List<T>();
+            List<IRecord> classes = new List<IRecord>();
             using (var connection = new OleDbConnection(connString))
             {
                 connection.Open();
@@ -125,7 +125,7 @@ namespace MegaMudMDCreator
                             c.AbilitiesAndMods.Add((Common.Abilities)ability9, ability9value);
                         }
 
-                        classes.Add((T)c);
+                        classes.Add(c);
                     }
                 }
             }

@@ -5,12 +5,11 @@ using System.Linq;
 
 namespace MegaMudMDCreator
 {
-    public class RacesMDReader<T> : MDReaderFactory<T>
-        where T : Race
+    public class RacesMDReader : MDReaderFactory<Race>
     {
-        public override List<T> GetAllRecords()
+        public override List<Race> GetAllRecords()
         {
-            var races = new List<T>();
+            var races = new List<Race>();
 
             List<RaceMD> rawData = MDFileReader.FileReader<RaceMD>(MDFiles.RACES_FILE);
             if (rawData == null)
@@ -58,7 +57,7 @@ namespace MegaMudMDCreator
                     }
                 }
 
-                races.Add((T)newRace);
+                races.Add(newRace);
             }
 
             return races;

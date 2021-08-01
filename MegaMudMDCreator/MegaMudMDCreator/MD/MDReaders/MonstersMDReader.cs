@@ -5,12 +5,11 @@ using System.Collections.Generic;
 
 namespace MegaMudMDCreator
 {
-    public class MonstersMDReader<T> : MDReaderFactory<T>
-        where T : Monster
+    public class MonstersMDReader : MDReaderFactory<Monster>
     {
-        public override List<T> GetAllRecords()
+        public override List<Monster> GetAllRecords()
         {
-            var monsters = new List<T>();
+            var monsters = new List<Monster>();
 
             List<MonsterMD> rawData = MDFileReader.FileReader<MonsterMD>(MDFiles.MONSTERS_FILE);
             if (rawData == null)
@@ -23,8 +22,8 @@ namespace MegaMudMDCreator
             {
                 Monster newMonster = new Monster()
                 {
-                    MonsterId = monster.MonsterId,
-                    MonsterName = monster.MonsterName,
+                    ID = monster.MonsterId,
+                    Name = monster.MonsterName,
                     AttackPriority = (Monster.Priority)monster.AttackPriority,
                     Attack = (Monster.AttackType)monster.AttackModifiers,
                     MonsterRelationship = (Monster.Relationship)monster.FearLevel,
@@ -41,7 +40,7 @@ namespace MegaMudMDCreator
                     EnslaveLevel = monster.EnslaveLevel,
                 };
 
-                monsters.Add((T)newMonster);
+                monsters.Add(newMonster);
             }
 
             return monsters;

@@ -5,12 +5,11 @@ using System.Linq;
 
 namespace MegaMudMDCreator
 {
-    public class ItemsMDReader<T> : MDReaderFactory<T>
-        where T : Item
+    public class ItemsMDReader : MDReaderFactory<Item>
     {
-        public override List<T> GetAllRecords()
+        public override List<Item> GetAllRecords()
         {
-            var items = new List<T>();
+            var items = new List<Item>();
 
             List<ItemMD> rawData = MDFileReader.FileReader<ItemMD>(MDFiles.ITEMS_FILE);
             if (rawData == null)
@@ -23,8 +22,8 @@ namespace MegaMudMDCreator
             {
                 Item newItem = new Item
                 {
-                    ItemId = item.ItemId,
-                    ItemName = item.ItemName,
+                    ID = item.ItemId,
+                    Name = item.ItemName,
                     Shop = item.BoughtAndSoldAt,
                     Path = item.IfNeededDoPath,
                     MinimumToKeep = item.MinimumToKeep,
@@ -77,7 +76,7 @@ namespace MegaMudMDCreator
                     // Handle general case, testing for disallowed duplicates
                     else if (newItem.Abilities.ContainsKey(ability))
                     {
-                        Console.WriteLine($"Item {newItem.ItemName} already has the ability {ability} with value {newItem.Abilities[ability]}.  Skipping new value {abilityValueCode}");
+                        Console.WriteLine($"Item {newItem.Name} already has the ability {ability} with value {newItem.Abilities[ability]}.  Skipping new value {abilityValueCode}");
                     }
                     else
                     {
@@ -85,7 +84,7 @@ namespace MegaMudMDCreator
                     }
                 }
 
-                items.Add((T)newItem);
+                items.Add(newItem);
             }
 
             return items;
